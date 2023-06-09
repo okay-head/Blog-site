@@ -13,22 +13,29 @@ export default function FormComponent () {
         className='shadow-md bg-[var(--gray-100)] py-20 px-10'
         onSubmit={e => handleSubmit(e)}
       >
-        <label htmlFor='input_email'>Enter your email</label>
-        <input type='email' name='email' id='input_email' defaultValue={''} />
+        <label className='label' htmlFor='input_email'>
+          Enter your email
+        </label>
+        <input
+          id='input_email'
+          type='email'
+          name='email'
+          placeholder=''
+          className='input input-bordered w-full max-w-xs h-auto py-1'
+        />
 
         {/* or alternatively you can do */}
-        <label>
-          Enter your username
-          <input type='text' name='text' id='input_username' />
-        </label>
-        <button
-          id='btn-submit'
-          type='submit'
-          htmlFor='form'
-          className=' mt-4 px-4 py-2 shadow-md'
-        >
-          Submit
-        </button>
+        <label className='label' htmlFor='input_username'>Enter your username</label>
+          <input
+            type='text'
+            name='text'
+            id='input_username'
+            placeholder=''
+            className='input input-bordered w-full max-w-xs h-auto py-1'
+          />
+
+        <button id='btn-submit' type="submit" value="Submit" className="btn h-auto min-h-0 py-2 mt-4">Submit</button>
+
       </form>
     </section>
   )
