@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 :root {
-	--gray-100: #d9d9d98e;
+	--gray-400: #d9d9d98e;
 	--gray-200: #c6c3bd;
-	--text-base: #1E1E1E;
+	--text-base: #1e1e1e;
 
+	--gray-100: #e5e6e6;
+	--gray-300: #c6c6c6bf;
 	/* Font */
 	--h1: 2rem;
 
@@ -14,23 +16,19 @@
 	/* md: 768px */
 }
 
-.padding-fluid{
+.padding-fluid {
 	padding: 0 40px;
 }
 
-.title{
-	font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem  );
+.title {
+	font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
 }
-.resize-svg>svg{
+.resize-svg svg {
 	width: 85%;
 }
-.resize-svg-2>svg{
-	width: 35%;
-}
 
-@media (min-width:768px) {
-	.resize-svg>svg{
+@media (min-width: 768px) {
+	.resize-svg svg {
 		width: 100%;
 	}
 }
-
