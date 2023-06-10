@@ -3,11 +3,18 @@ export default {
   content: ["./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        montserrat: ['Montserrat', 'system-ui', 'sans-serif'],
+        lato: ['Lato', 'system-ui', 'sans-serif'],
+        merriweather: ['Merriweather', 'system-ui', 'sans-serif'],
+        pacifio: ['Pacifio', 'system-ui', 'sans-serif'],
+      }
+    },
   },
   plugins: [require("daisyui")],
   daisyui:{
-    themes: ["light", "dark", "cupcake"],
+    themes: ["light", "dark", "wireframe"],
   }
 }
 

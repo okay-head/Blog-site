@@ -2,12 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --gray-100: #d9d9d98e;
-  --gray-200: #C6C3BD;
+:root {
+	--gray-100: #d9d9d98e;
+	--gray-200: #c6c3bd;
+	--text-base: #1E1E1E;
 
+	/* Font */
+	--h1: 2rem;
+
+	/* breakpoints */
+	/* md: 768px */
 }
 
-input,label{
-  display: block;
+.padding-fluid{
+	padding: 0 40px;
 }
+
+.title{
+	font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem  );
+}
+.resize-svg>svg{
+	width: 85%;
+}
+.resize-svg-2>svg{
+	width: 35%;
+}
+
+@media (min-width:768px) {
+	.resize-svg>svg{
+		width: 100%;
+	}
+}
+
