@@ -6,5 +6,7 @@ export default function App() {
     <Navbar />
     // <FormComponent />
     // <ControlledFormComponent />
+
+    // prettier class order tailwind
     )
 }

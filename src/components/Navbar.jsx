@@ -1,5 +1,4 @@
 import editing from './../assets/editing(1).png'
-import user from './../assets/user.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
