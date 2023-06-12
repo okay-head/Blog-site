@@ -1,12 +1,10 @@
 // import './index.css'
 import Navbar from './components/Navbar'
-import FormComponent  from './components/forms/FormComponent'
+import FormComponent from './components/forms/FormComponent'
 export default function App() {
-  return(
+  return (
     <Navbar />
     // <FormComponent />
     // <ControlledFormComponent />
-
-    // prettier class order tailwind
-    )
+  )
 }

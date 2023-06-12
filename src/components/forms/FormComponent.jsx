@@ -1,5 +1,5 @@
-export default function FormComponent () {
-  function handleSubmit (e) {
+export default function FormComponent() {
+  function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.target)
     for (const [key, value] of formData) {
@@ -7,11 +7,11 @@ export default function FormComponent () {
     }
   }
   return (
-    <section className='h-screen grid place-items-center'>
+    <section className='grid h-screen place-items-center'>
       <form
         id='form'
-        className='shadow-md bg-[var(--gray-100)] py-20 px-10'
-        onSubmit={e => handleSubmit(e)}
+        className='bg-[var(--gray-100)] px-10 py-20 shadow-md'
+        onSubmit={(e) => handleSubmit(e)}
       >
         <label className='label' htmlFor='input_email'>
           Enter your email
@@ -21,21 +21,29 @@ export default function FormComponent () {
           type='email'
           name='email'
           placeholder=''
-          className='input input-bordered w-full max-w-xs h-auto py-1'
+          className='input-bordered input h-auto w-full max-w-xs py-1'
         />
 
         {/* or alternatively you can do */}
-        <label className='label' htmlFor='input_username'>Enter your username</label>
-          <input
-            type='text'
-            name='text'
-            id='input_username'
-            placeholder=''
-            className='input input-bordered w-full max-w-xs h-auto py-1'
-          />
+        <label className='label' htmlFor='input_username'>
+          Enter your username
+        </label>
+        <input
+          type='text'
+          name='text'
+          id='input_username'
+          placeholder=''
+          className='input-bordered input h-auto w-full max-w-xs py-1'
+        />
 
-        <button id='btn-submit' type="submit" value="Submit" className="btn h-auto min-h-0 py-2 mt-4">Submit</button>
-
+        <button
+          id='btn-submit'
+          type='submit'
+          value='Submit'
+          className='btn mt-4 h-auto min-h-0 py-2'
+        >
+          Submit
+        </button>
       </form>
     </section>
   )
