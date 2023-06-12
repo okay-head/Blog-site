@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+	.btn-custom{
+		@apply btn capitalize h-auto min-h-0 text-inherit bg-[var(--gray-100)] hover:bg-[var(--gray-300)];
+	}
+}
+
 :root {
 	--gray-400: #d9d9d98e;
 	--gray-200: #c6c3bd;
@@ -23,12 +29,17 @@
 .title {
 	font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
 }
+
 .resize-svg svg {
 	width: 85%;
 }
-
 @media (min-width: 768px) {
 	.resize-svg svg {
 		width: 100%;
 	}
 }
+
+
+/* .custom-input{
+	hover, focus, focus-visible,
+} */

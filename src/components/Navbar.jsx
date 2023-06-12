@@ -1,11 +1,12 @@
 import editing from './../assets/editing(1).png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import Container from './Container'
 
 export default function Navbar() {
   return (
     <nav className='overflow-hidden shadow-md'>
-      <div className='aka-container mx-auto max-w-[1920px] px-4 md:px-10'>
+      <Container>
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>
             <button className='-ms-2 rounded-lg p-2 transition-all duration-200 hover:bg-[var(--gray-100)]'>
@@ -21,7 +22,7 @@ export default function Navbar() {
           </h1>
 
           <div className='resize-svg | -ms-7 flex items-center gap-3 md:gap-6'>
-            <button className='| | btn  h-auto min-h-0 border-none bg-transparent p-1 font-lato capitalize hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-300)] '>
+            <button className='text-inherit btn h-auto min-h-0 border-none bg-transparent p-1  capitalize hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-300)] '>
               <img
                 src={editing}
                 alt='edit'
@@ -39,7 +40,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   )
 }
