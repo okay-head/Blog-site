@@ -5,7 +5,7 @@ import Container from './Container'
 
 export default function Navbar() {
   return (
-    <nav className='overflow-hidden shadow-md'>
+    <nav className='overflow-hidden bg-[var(--white-base)] shadow-md'>
       <Container>
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>
@@ -17,7 +17,7 @@ export default function Navbar() {
               />
             </button>
           </div>
-          <h1 className='title font-montserrat text-3xl font-bold'>
+          <h1 className='title ms-2 font-montserrat text-3xl font-bold md:ms-20'>
             On the Blog
           </h1>
 

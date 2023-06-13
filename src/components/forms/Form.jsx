@@ -13,11 +13,11 @@ export default function Form() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <h2 className='card-title mb-8'>
+      <h2 className='card-title mb-10'>
         <u>Sign in</u>
       </h2>
       {/* email */}
-      <div className='email-container form-control min-h-[7rem] w-full max-w-xs'>
+      <div className='email-container form-control min-h-[7rem] w-full max-w-sm'>
         <label className='label'>
           <span className='label-text font-semibold'>Email</span>
         </label>
@@ -33,7 +33,7 @@ export default function Form() {
           name='email'
           id='email'
           placeholder='Type here'
-          className='custom-input input-bordered input w-full max-w-xs border-2'
+          className='custom-input input-bordered input w-full max-w-sm border-2'
         />
         {errors.email && (
           <label className='label pb-0'>
@@ -43,7 +43,7 @@ export default function Form() {
       </div>
 
       {/* password */}
-      <div className='password-container form-control min-h-[7rem] w-full max-w-xs'>
+      <div className='password-container form-control min-h-[7rem] w-full max-w-sm'>
         <label className='label'>
           <span className='label-text font-semibold'>Password</span>
         </label>
@@ -59,7 +59,7 @@ export default function Form() {
           name='password'
           id='password'
           placeholder='Type here'
-          className='custom-input input-bordered input w-full max-w-xs border-2'
+          className='custom-input input-bordered input w-full max-w-sm border-2'
         />
         {errors.password && (
           <label className='label pb-0'>
