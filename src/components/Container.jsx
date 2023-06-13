@@ -1,8 +1,7 @@
-export default function Container({children}) {
-  return(
+export default function Container({ children }) {
+  return (
     <div className='aka-container mx-auto max-w-[1920px] px-4 md:px-10'>
       {children}
     </div>
-
   )
 }

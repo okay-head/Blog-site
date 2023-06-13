@@ -4,10 +4,10 @@ import FormContainer from './components/forms/FormContainer'
 export default function App() {
   return (
     <>
-    <Navbar />
-     {/* <FormComponent />
+      <Navbar />
+      {/* <FormComponent />
     <ControlledFormComponent /> */}
-    <FormContainer />
+      <FormContainer />
     </>
   )
 }
