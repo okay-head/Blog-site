@@ -4,17 +4,19 @@
 
 @layer components{
 	.btn-custom{
-		@apply btn capitalize h-auto min-h-0 text-inherit bg-[var(--gray-100)] hover:bg-[var(--gray-300)];
+		@apply btn capitalize h-auto min-h-0 text-inherit bg-[var(--gray-100)] hover:bg-[var(--gray-200)];
 	}
 }
 
 :root {
 	--gray-400: #d9d9d98e;
-	--gray-200: #c6c3bd;
-	--text-base: #1e1e1e;
+	/* --gray-200: #c6c3bd; */
+	--text-lighter: hsla(0, 0%, 12%, 0.812);
+	--text-base: hsl(0, 0%, 12%);
 
-	--gray-100: #e5e6e6;
-	--gray-300: #c6c6c6bf;
+	--gray-100: hsl(180, 2%, 90%);
+	--gray-200: hsla(0, 0%, 78%, 0.618);
+	--gray-300: hsla(0, 0%, 78%, 0.749);
 	/* Font */
 	--h1: 2rem;
 
@@ -40,6 +42,7 @@
 }
 
 
-/* .custom-input{
-	hover, focus, focus-visible,
-} */
+	 input:focus, input:focus-visible,input:focus-within{
+		border: var(--text-lighter) solid 2px;
+		outline: none!important;
+	}

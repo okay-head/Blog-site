@@ -22,7 +22,7 @@ export default function Navbar() {
           </h1>
 
           <div className='resize-svg | -ms-7 flex items-center gap-3 md:gap-6'>
-            <button className='text-inherit btn h-auto min-h-0 border-none bg-transparent p-1  capitalize hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-300)] '>
+            <button className='text-inherit btn h-auto min-h-0 border-none bg-transparent p-1  capitalize hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-200)] '>
               <img
                 src={editing}
                 alt='edit'
