@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx prettier ./src/**/*.{js,ts,jsx,tsx} --write && vite build",
+    "build": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write && vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "format": "npx prettier ./src/**/*.{js,ts,jsx,tsx} --write",
+    "format": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write",
     "preview": "vite preview"
   },
   "dependencies": {

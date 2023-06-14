@@ -2,52 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-	.btn-custom{
-		@apply btn capitalize h-auto min-h-0 text-inherit bg-[var(--gray-100)] hover:bg-[var(--gray-200)];
-	}
+@layer components {
+  .btn-custom {
+    @apply btn h-auto min-h-0 bg-[var(--gray-100)] capitalize text-inherit hover:bg-[var(--gray-200)];
+  }
 }
 
 :root {
-	--gray-400: #d9d9d98e;
-	/* --gray-200: #c6c3bd; */
-	--text-lighter: hsla(0, 0%, 12%, 0.812);
-	--text-base: hsl(0, 0%, 12%);
+  --gray-400: #d9d9d98e;
+  /* --gray-200: #c6c3bd; */
+  --text-lighter: hsla(0, 0%, 12%, 0.812);
+  --text-base: hsl(0, 0%, 12%);
 
-	--gray-100: hsl(180, 2%, 90%);
-	--gray-200: hsla(0, 0%, 78%, 0.618);
-	--gray-300: hsla(0, 0%, 78%, 0.749);
+  --gray-100: hsl(180, 2%, 90%);
+  --gray-200: hsla(0, 0%, 78%, 0.618);
+  --gray-300: hsla(0, 0%, 78%, 0.749);
 
+  --white-base: #fcfcfc;
+  --white-secondary: #f7f7f7;
+  --white-tertiary: #fbf9fa;
+  /* Font */
+  --h1: 2rem;
 
-	--white-base: #FCFCFC;
-	--white-secondary: #F7F7F7;
-	--white-tertiary: #FBF9FA;
-	/* Font */
-	--h1: 2rem;
-
-	/* breakpoints */
-	/* md: 768px */
+  /* breakpoints */
+  /* md: 768px */
 }
 
 .padding-fluid {
-	padding: 0 40px;
+  padding: 0 40px;
 }
 
 .title {
-	font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
+  font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
 }
 
 .resize-svg svg {
-	width: 85%;
+  width: 85%;
 }
 @media (min-width: 768px) {
-	.resize-svg svg {
-		width: 100%;
-	}
+  .resize-svg svg {
+    width: 100%;
+  }
 }
 
+input:focus,
+input:focus-visible,
+input:focus-within {
+  border: var(--text-lighter) solid 2px;
+  outline: none !important;
+}
 
-	 input:focus, input:focus-visible,input:focus-within{
-		border: var(--text-lighter) solid 2px;
-		outline: none!important;
-	}
+/* shadow-xl */
+shadow-custom{
+  color: inherit;
+}
