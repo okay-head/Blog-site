@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-export default function Form() {
+export default function Signin() {
   const {
     register,
     handleSubmit,

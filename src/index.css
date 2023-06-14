@@ -52,7 +52,6 @@ input:focus-within {
   outline: none !important;
 }
 
-/* shadow-xl */
-shadow-custom{
-  color: inherit;
+.label-text-alt{
+  font-size: 10px;
 }
