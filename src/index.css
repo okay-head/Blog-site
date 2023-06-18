@@ -54,6 +54,25 @@ input:focus-within {
   outline: none !important;
 }
 
-.label-text-alt{
+.label-text-alt {
   font-size: 10px;
+}
+.bg-style {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (min-width: 768px) {
+  .bg-style {
+    background-position: 40% center;
+  }
+}
+.bullet::before {
+  content: '';
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  width: 4px;
+  background-color: #808080;
+  position: absolute;
+  left: -7px;
+  bottom: 25%;
 }

@@ -23,7 +23,7 @@ export default function Signup() {
         </label>
         <input
           {...register('name', {
-            required: 'Display name is required'
+            required: 'Display name is required',
           })}
           type='text'
           name='name'
@@ -95,13 +95,13 @@ export default function Signup() {
           <span className='label-text font-semibold'>Avatar (optional)</span>
         </label>
         <input
-             {...register('avatar', {
-              required: false,
-            })}
+          {...register('avatar', {
+            required: false,
+          })}
           type='file'
           name='avatar'
           id='avatar'
-          accept=".jpg, .jpeg, .png"
+          accept='.jpg, .jpeg, .png'
           className='input-bordered input w-full max-w-sm border-2 pt-2'
         />
       </div>

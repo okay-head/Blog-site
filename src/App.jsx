@@ -7,8 +7,10 @@ export default function App() {
     <>
       <Navbar />
       {/* <FormContainer /> */}
-      <div className='mt-16 mx-6 md:mx-10'>
-      <Card1 />
+      <div className='dummy-card-container mx-6 mt-16 md:mx-10'>
+        <Card1 />
+        <Card1 />
+        <Card1 />
       </div>
     </>
   )
