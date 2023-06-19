@@ -5,7 +5,7 @@ import Container from './Container'
 
 export default function Navbar() {
   return (
-    <nav className='overflow-hidden bg-[var(--white-base)] shadow-md'>
+    <nav className='overflow-hidden bg-[var(--white-base)] shadow-md fixed inset-0 bottom-[unset]'>
       <Container>
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>
