@@ -2,7 +2,7 @@ import Tag from './Tag'
 
 export default function Card1() {
   return (
-    <article className='flex flex-col gap-4 border-b-2 py-8 md:py-10 '>
+    <article className='flex flex-col gap-4 border-t-2 py-6 md:py-8 '>
       <div className='card-head flex gap-3'>
         <div className=''>
           <img src='/assets/user.png' alt='avatar' className='w-9' />
@@ -54,7 +54,7 @@ export default function Card1() {
           </p>
         </div>
         <div
-          className='img-container bg-style h-36 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-44 xl:h-60'
+          className='img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-44 xl:h-60'
           style={{
             backgroundImage:
               'url("/assets/(s)mick-haupt-TEjR4zowKgE-unsplash.jpg")',
