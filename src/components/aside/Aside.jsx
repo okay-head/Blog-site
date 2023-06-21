@@ -16,9 +16,6 @@ export default function Aside() {
         <section className='suggestions'>
           <Card1 />
           <Card1 />
-          {/* card1 */}
-          {/* card2 */}
-          {/* card3 */}
         </section>
       </Container>
     </aside>
