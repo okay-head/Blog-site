@@ -1,8 +1,8 @@
 import Tag from './Tag'
 
-export default function Card1() {
+export default function Card1({ tagNone = '' }) {
   return (
-    <article className='flex flex-col gap-4 border-t-2 py-6 md:py-8 '>
+    <article className='flex flex-col gap-4 border-t-2 py-7 md:py-8 '>
       <div className='card-head flex gap-3'>
         <div className=''>
           <img src='/assets/user.png' alt='avatar' className='w-9' />
@@ -61,7 +61,7 @@ export default function Card1() {
           }}
         ></div>
       </div>
-      <div className='tags mt-1 flex gap-3'>
+      <div className={`tags mt-1 flex gap-3 ${tagNone}`}>
         <Tag txt='Health' />
         <Tag txt='Lifestyle' />
       </div>

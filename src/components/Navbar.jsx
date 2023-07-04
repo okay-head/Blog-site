@@ -32,19 +32,19 @@ export default function Navbar() {
             </button>
 
             <div className='group relative'>
-              <button className='rounded-full border-2'>
+              <button className='rounded-full'>
                 <FontAwesomeIcon
                   icon={faCircleUser}
                   size='2x'
                   style={{ color: '#C6C3BD' }}
                 />
                 <span className='absolute inset-0 -left-4 h-12 w-16 bg-transparent  text-transparent'>
-                  to ease hover{' '}
+                  to ease hover
                 </span>
               </button>
               <ul
                 tabIndex={0}
-                className='dropdown-content menu absolute -left-28 top-12 z-[100] hidden w-40 rounded-lg bg-[var(--white-base)] p-2 shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block'
+                className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40'
               >
                 <li>
                   <a>My articles</a>
