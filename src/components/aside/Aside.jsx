@@ -30,7 +30,7 @@ export default function Aside() {
 
   return (
     <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
-      <Container classVars='pt-10 lg:ps-6'>
+      <Container classVars='pt-10 lg:ps-6 xl:ps-9'>
         <section className='reading-list'>
           <h1 className='block text-lg font-bold md:text-2xl'>
             My reading list

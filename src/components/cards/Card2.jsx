@@ -1,6 +1,6 @@
 export default function Card2() {
   return (
-    <article className='py-6'>
+    <article className='pt-6'>
       <div className='card-content grid h-40 grid-cols-[0.9fr,1.1fr] items-center gap-4 overflow-hidden'>
         <div
           className='img-container bg-style h-36 min-w-[130px]  rounded-md bg-blue-400'
