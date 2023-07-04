@@ -20,7 +20,7 @@ export default function Card1() {
         </div>
       </div>
 
-      <div className='card-content grid h-40 grid-cols-[2.8fr,1.3fr] xl:grid-cols-[3fr,1fr] items-center gap-4 overflow-hidden md:h-48 xl:h-60'>
+      <div className='card-content grid h-40 grid-cols-[2.8fr,1.3fr] items-center gap-4 overflow-hidden md:h-48 xl:h-60 xl:grid-cols-[3fr,1fr]'>
         <div className='h-40 md:h-48 xl:h-60'>
           <h2 className='pb-2 text-lg font-bold !leading-6 md:text-2xl'>
             Long term effects of our increasing disconnect from nature

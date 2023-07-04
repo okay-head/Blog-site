@@ -4,10 +4,10 @@ import Feed from './feed/Feed'
 export default function Main() {
   return (
     // <Container>
-      <main className='pt-[4.5rem] pb-2 lg:flex'>
-        <Feed />
-        <Aside />
-      </main>
+    <main className='pb-2 pt-[4.5rem] lg:flex'>
+      <Feed />
+      <Aside />
+    </main>
     // </Container>
   )
 }
