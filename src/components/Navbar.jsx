@@ -5,7 +5,7 @@ import Container from './Container'
 
 export default function Navbar() {
   return (
-    <nav className='fixed inset-0 bottom-[unset] z-30 overflow-hidden bg-[var(--white-base)] shadow-md'>
+    <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>
@@ -31,13 +31,35 @@ export default function Navbar() {
               <span className='hidden md:inline-block'>Write</span>
             </button>
 
-            <button className='| rounded-full border-[4px] border-transparent transition-all duration-200 hover:border-[var(--gray-100)]'>
-              <FontAwesomeIcon
-                icon={faCircleUser}
-                size='2x'
-                style={{ color: '#C6C3BD' }}
-              />
-            </button>
+            <div className='group relative'>
+              <button className='rounded-full border-2'>
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  size='2x'
+                  style={{ color: '#C6C3BD' }}
+                />
+                <span className='absolute inset-0 -left-4 h-12 w-16 bg-transparent  text-transparent'>
+                  to ease hover{' '}
+                </span>
+              </button>
+              <ul
+                tabIndex={0}
+                className='dropdown-content menu absolute -left-28 top-12 z-[100] hidden w-40 rounded-lg bg-[var(--white-base)] p-2 shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block'
+              >
+                <li>
+                  <a>My articles</a>
+                </li>
+                <li>
+                  <a>My reading list</a>
+                </li>
+                <li>
+                  <a>Edit profile</a>
+                </li>
+                <li>
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </Container>
