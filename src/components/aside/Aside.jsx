@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import Container from '../Container'
 import Card1 from '../cards/Card1'
 import Card2 from '../cards/Card2'
+import NotSignedIn from './NotSignedIn'
 import sparkles from './razzle-dazzle.png'
 
 export default function Aside() {
+  
   /*   -------- resize logic -------- */
-
   //debounce/ optimize later
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
   const [width, setWidth] = useState(window.innerWidth)
@@ -26,12 +27,15 @@ export default function Aside() {
     //   removeEventListener('resize',handleResize)
     // )
   }, [])
-
   /*   -------- resize logic -------- */
+
+  // this should be a global state
+  const isSignedIn = false
 
   return (
     <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
       <Container classVars='py-8 lg:py-10 lg:ps-6 xl:ps-9'>
+       { isSignedIn? <div className='signedIn'>
         <section className='reading-list'>
           <h2 className='block text-lg font-bold md:text-xl'>
             My reading list
@@ -59,6 +63,7 @@ export default function Aside() {
             </a>
           </div>
         </section>
+        </div>: <NotSignedIn />}
       </Container>
     </aside>
   )

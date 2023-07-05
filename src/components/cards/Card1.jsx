@@ -1,4 +1,5 @@
 import Tag from './Tag'
+const isSignedIn = false
 
 export default function Card1({ tagNone = '' }) {
   return (
@@ -54,7 +55,7 @@ export default function Card1({ tagNone = '' }) {
           </p>
         </div>
         <div
-          className='img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-48'
+          className={`img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-48 ${isSignedIn? '':'md:w-72 ms-auto'}`}
           style={{
             backgroundImage:
               'url("/assets/(s)mick-haupt-TEjR4zowKgE-unsplash.jpg")',
