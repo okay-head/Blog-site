@@ -76,3 +76,7 @@ input:focus-within {
   left: -7px;
   bottom: 25%;
 }
+
+.widget--sticky {
+  background-color: aquamarine;
+}

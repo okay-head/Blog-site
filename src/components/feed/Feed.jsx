@@ -25,6 +25,8 @@ export default function Feed() {
         <Card1 />
         <Card1 />
         <Card1 />
+        <Card1 />
+        <Card1 />
       </Container>
     </section>
   )
