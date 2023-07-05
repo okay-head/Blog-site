@@ -4,9 +4,10 @@ import Card1 from '../cards/Card1'
 import Card2 from '../cards/Card2'
 import NotSignedIn from './NotSignedIn'
 import sparkles from './razzle-dazzle.png'
+import { useContext } from 'react'
+import SignInContext from '../../state/ContextProvider'
 
 export default function Aside() {
-  
   /*   -------- resize logic -------- */
   //debounce/ optimize later
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
@@ -29,41 +30,43 @@ export default function Aside() {
   }, [])
   /*   -------- resize logic -------- */
 
-  // this should be a global state
-  const isSignedIn = false
-
+  const { isSignedIn } = useContext(SignInContext)
   return (
     <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
       <Container classVars='py-8 lg:py-10 lg:ps-6 xl:ps-9'>
-       { isSignedIn? <div className='signedIn'>
-        <section className='reading-list'>
-          <h2 className='block text-lg font-bold md:text-xl'>
-            My reading list
-          </h2>
-          {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
-          <div className='mt-3 text-right text-xs font-semibold'>
-            <a href='#' className='me-2 underline hover:no-underline'>
-              See all
-            </a>
-          </div>
-        </section>
+        {isSignedIn ? (
+          <div className='signedIn'>
+            <section className='reading-list'>
+              <h2 className='block text-lg font-bold md:text-xl'>
+                My reading list
+              </h2>
+              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+              <div className='mt-3 text-right text-xs font-semibold'>
+                <a href='#' className='me-2 underline hover:no-underline'>
+                  See all
+                </a>
+              </div>
+            </section>
 
-        <section className='suggestions mt-6'>
-          <div className='suggestion-header flex items-center gap-2'>
-            <img src={sparkles} alt='sparkles' className='h-6 w-6' />
-            <h2 className='relative block text-lg font-bold md:text-xl'>
-              Suggested
-            </h2>
+            <section className='suggestions mt-6'>
+              <div className='suggestion-header flex items-center gap-2'>
+                <img src={sparkles} alt='sparkles' className='h-6 w-6' />
+                <h2 className='relative block text-lg font-bold md:text-xl'>
+                  Suggested
+                </h2>
+              </div>
+              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+              <div className='mt-3 pb-2 text-right text-xs font-semibold'>
+                <a href='#' className='me-2 underline hover:no-underline'>
+                  See more
+                </a>
+              </div>
+            </section>
           </div>
-          {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
-          {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
-          <div className='mt-3 pb-2 text-right text-xs font-semibold'>
-            <a href='#' className='me-2 underline hover:no-underline'>
-              See more
-            </a>
-          </div>
-        </section>
-        </div>: <NotSignedIn />}
+        ) : (
+          <NotSignedIn />
+        )}
       </Container>
     </aside>
   )

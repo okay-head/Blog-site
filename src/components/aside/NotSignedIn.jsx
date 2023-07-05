@@ -1,10 +1,14 @@
 export default function NotSignedIn() {
-  return(
-    <section className='bg-[var(--white-base)] min-w-[16rem] grid place-items-center shadow-xl mx-2 lg:ms-6 lg:me-4
-    p-8  lg:min-h-[25rem]'>
+  return (
+    <section
+      className='mx-2 grid min-w-[16rem] place-items-center bg-[var(--white-base)] p-8 shadow-xl lg:me-4
+    lg:ms-6  lg:min-h-[25rem]'
+    >
       <div className='lg:max-w-[8rem] '>
-      <h2 className='text-lg lg:text-2xl font-medium'>SIGN IN</h2>
-      <p className='text-[var(--text-gray)]'>to acess your reading list, favourites and much more...</p>
+        <h2 className='text-lg font-medium lg:text-2xl'>SIGN IN</h2>
+        <p className='text-[var(--text-gray)]'>
+          to acess your reading list, favourites and much more...
+        </p>
       </div>
     </section>
   )

@@ -1,7 +1,9 @@
 import Tag from './Tag'
-const isSignedIn = false
+import { useContext } from 'react'
+import SignInContext from '../../state/ContextProvider'
 
 export default function Card1({ tagNone = '' }) {
+  const { isSignedIn } = useContext(SignInContext)
   return (
     <article className='flex flex-col gap-4 border-t-2 py-7 md:py-8 '>
       <div className='card-head flex gap-3'>
@@ -55,7 +57,9 @@ export default function Card1({ tagNone = '' }) {
           </p>
         </div>
         <div
-          className={`img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-48 ${isSignedIn? '':'md:w-72 ms-auto'}`}
+          className={`img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-48 ${
+            isSignedIn ? '' : 'md:ms-auto md:w-72'
+          }`}
           style={{
             backgroundImage:
               'url("/assets/(s)mick-haupt-TEjR4zowKgE-unsplash.jpg")',
