@@ -19,12 +19,13 @@ export default function Aside() {
   function resizeFn() {
     addEventListener('resize', handleResize)
   }
+  const { isSignedIn } = useContext(SignInContext)
 
   useEffect(() => {
     resizeFn()
     /* var instance = new Sticksy(target[, options]); */
     let stickyEl = new Sticksy('.js-sticky-widget', {
-      topSpacing: -215,
+      topSpacing: isSignedIn ? -215 : 150,
     })
     stickyEl.onStateChanged = function (state) {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
@@ -36,8 +37,6 @@ export default function Aside() {
     // )
   }, [])
   /*   -------- resize logic -------- */
-
-  const { isSignedIn } = useContext(SignInContext)
 
   return (
     <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
