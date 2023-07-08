@@ -73,7 +73,7 @@ export default function View() {
           <Tag txt='Lifestyle' classVars='lg:text-base' />
         </div>
 
-        <div className='border-t-2 pb-4 pt-4 text-right text-sm font-semibold text-[var(--text-gray)] md:pt-6 lg:text-base'>
+        <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
           <a href='#' className='me-2 underline hover:no-underline'>
             Back to all articles
           </a>

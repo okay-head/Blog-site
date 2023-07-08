@@ -2,8 +2,12 @@ import editing from './../assets/editing(1).png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
+import { useContext } from 'react'
+import SignInContext from './../state/ContextProvider'
 
 export default function Navbar() {
+  const { isSignedIn } = useContext(SignInContext)
+  console.log(isSignedIn)
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -42,23 +46,37 @@ export default function Navbar() {
                   to ease hover
                 </span>
               </button>
-              <ul
-                tabIndex={0}
-                className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
-              >
-                <li>
-                  <a>My articles</a>
-                </li>
-                <li>
-                  <a>My reading list</a>
-                </li>
-                <li>
-                  <a>Edit profile</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
+
+              {isSignedIn ? (
+                <ul
+                  tabIndex={0}
+                  id='user-menu-logged-in'
+                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                >
+                  <li>
+                    <a>My articles</a>
+                  </li>
+                  <li>
+                    <a>My reading list</a>
+                  </li>
+                  <li>
+                    <a>Edit profile</a>
+                  </li>
+                  <li>
+                    <a>Logout</a>
+                  </li>
+                </ul>
+              ) : (
+                <ul
+                  tabIndex={0}
+                  id='user-menu-not-logged-in'
+                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                >
+                  <li>
+                    <a>Login</a>
+                  </li>
+                </ul>
+              )}
             </div>
           </div>
         </div>
