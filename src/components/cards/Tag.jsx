@@ -1,4 +1,4 @@
-export default function Tag({ txt = '' , classVars=''}) {
+export default function Tag({ txt = '', classVars = '' }) {
   if (txt === '') {
     return null
   }
