@@ -28,7 +28,7 @@ export default function Navbar() {
                 alt='edit'
                 className='| mb-[2px] ms-1 aspect-square w-6 md:ms-0 md:w-[19px] '
               />
-              <span className='hidden md:inline-block'>Write</span>
+              <span className='hidden md:inline-block lg:text-base'>Write</span>
             </button>
 
             <div className='group relative'>
@@ -44,7 +44,7 @@ export default function Navbar() {
               </button>
               <ul
                 tabIndex={0}
-                className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40'
+                className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 text-[var(--text-gray)] lg:text-base'
               >
                 <li>
                   <a>My articles</a>

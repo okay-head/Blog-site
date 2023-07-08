@@ -2,24 +2,24 @@ import Container from '../Container'
 import Tag from '../cards/Tag'
 export default function View() {
   return (
-    <Container classVars='border-2 border-red-300 lg:max-w-6xl xl:border-cyan-300 xl:px-0'>
-      <article className='flex flex-col gap-6 pt-24 py-7 md:py-8' style={{'container':'inline-size'}}>
+    <Container classVars='border-2 border-red-300 lg:max-w-6xl xl:px-0'>
+      <article className='flex flex-col gap-6 mt-20 py-7 md:py-8' style={{'container':'inline-size'}}>
         <div className='article-heading'>
-          <h2 className='-mb-2 text-2xl font-bold md:text-2xl'>
+          <h2 className='-mb-2 text-2xl font-bold md:text-3xl lg:text-4xl lg:mb-1'>
             Long term effects of our increasing disconnect from nature
           </h2>
         </div>
 
-        <div className='card-head flex gap-2 items-center'>
+        <div className='card-head flex gap-2 items-center lg:gap-3'>
           <div>
-            <img src='/assets/user.png' alt='avatar' className='w-11' />
+            <img src='/assets/user.png' alt='avatar' className='w-11 lg:w-14' />
           </div>
           <div className='flex flex-col gap-[1px]'>
-            <span className='block text-base font-semibold'>Chris coyer</span>
-            <span className='block text-xs font-semibold text-[var(--text-gray)]'>
+            <span className='block text-base lg:text-lg font-semibold'>Chris coyer</span>
+            <span className='block text-xs lg:text-sm font-semibold text-[var(--text-gray)]'>
               3 min read
             </span>
-            <span className='block text-xs font-semibold text-[var(--text-gray)]'>
+            <span className='block text-xs lg:text-sm font-semibold text-[var(--text-gray)]'>
               Last updated: 16th Apr, 2023
             </span>
 
@@ -35,7 +35,7 @@ export default function View() {
           ></div>
 
           <div className='article-body'>
-            <p className='text-base text-[var(--text-base)]'>
+            <p className='text-base text-[var(--text-base)] lg:text-lg'>
               Lorem, ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Beatae atque, aperiam quam ipsa vero alias.
               Fuga, corporis optio! Sequi dolores tempora repellendus placeat
@@ -66,8 +66,8 @@ export default function View() {
           </div>
 
         <div className={`tags mt-1 flex gap-3`}>
-          <Tag txt='Health' />
-          <Tag txt='Lifestyle' />
+          <Tag txt='Health' classVars='lg:text-base' />
+          <Tag txt='Lifestyle' classVars='lg:text-base' />
         </div>
       </article>
     </Container>
