@@ -1,10 +1,13 @@
 import Container from '../Container'
 import Tag from '../cards/Tag'
+import { useContext } from 'react'
+import SignInContext from '../../state/ContextProvider'
 export default function View() {
+  const { isSignedIn } = useContext(SignInContext)
   return (
     <Container classVars='lg:max-w-5xl xl:px-0'>
       <article
-        className='mt-20 flex flex-col gap-6 py-7 md:py-8'
+        className='flex flex-col gap-6 pb-7 pt-24 md:pb-8 md:pt-28'
         style={{ container: 'inline-size' }}
       >
         <div className='article-heading'>
@@ -17,6 +20,7 @@ export default function View() {
           <div>
             <img src='/assets/user.png' alt='avatar' className='w-11 lg:w-14' />
           </div>
+
           <div className='flex flex-col gap-[1px]'>
             <span className='block text-base font-semibold lg:text-lg'>
               Chris coyer
@@ -28,6 +32,25 @@ export default function View() {
               Last updated: 16th Apr, 2023
             </span>
           </div>
+
+          {isSignedIn ? (
+            <div
+              id='user-logged-in-article-tools'
+              className='me-6 ms-auto flex gap-3 self-end'
+            >
+              <button
+                id='edit-article'
+                className='-mb-1 block w-8 rotate-[270deg] lg:w-11'
+              >
+                <img src='/assets/pen(1).png' alt='pencil' />
+              </button>
+              <button id='bookmark-article' className='-mb-1 block w-7 lg:w-10'>
+                <img src='/assets/book(1).png' alt='book' />
+              </button>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
 
         <div

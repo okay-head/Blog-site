@@ -7,7 +7,6 @@ import SignInContext from './../state/ContextProvider'
 
 export default function Navbar() {
   const { isSignedIn } = useContext(SignInContext)
-  console.log(isSignedIn)
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -70,7 +69,7 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-not-logged-in'
-                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                  className='dropdown-content menu absolute -left-10 top-10 z-[100] hidden w-20 rounded-lg bg-[var(--white-base)] p-2 text-center text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-10 md:top-11 md:w-[5.5rem] lg:text-base'
                 >
                   <li>
                     <a>Login</a>

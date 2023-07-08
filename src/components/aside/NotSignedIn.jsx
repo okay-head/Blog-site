@@ -1,7 +1,7 @@
 export default function NotSignedIn() {
   return (
     <section
-      className='mx-2 grid min-w-[16rem] place-items-center bg-[var(--white-base)] p-8 shadow-xl lg:me-4
+      className='mx-2 my-4 grid min-w-[16rem] place-items-center bg-[var(--white-base)] p-8 shadow-xl sm:mx-auto sm:max-w-md lg:my-0 lg:me-4
     lg:ms-6  lg:min-h-[25rem]'
     >
       <div className='lg:max-w-[8rem] '>
