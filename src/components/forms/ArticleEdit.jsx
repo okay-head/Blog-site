@@ -23,7 +23,10 @@ export default function ArticleEdit({ articleAction = 'Create ' }) {
           >
             {/* form-title */}
             <div className='form-title form-control w-full max-w-2xl'>
-              <label className='mb-3 text-base font-semibold text-[var(--text-gray)]' htmlFor='title'>
+              <label
+                className='mb-3 text-base font-semibold text-[var(--text-gray)]'
+                htmlFor='title'
+              >
                 Title
               </label>
               <input
@@ -56,7 +59,10 @@ export default function ArticleEdit({ articleAction = 'Create ' }) {
             {/* form-body */}
 
             <div className='form-body form-control w-full max-w-2xl'>
-              <label className='mb-3 text-base font-semibold text-[var(--text-gray)]' htmlFor='body'>
+              <label
+                className='mb-3 text-base font-semibold text-[var(--text-gray)]'
+                htmlFor='body'
+              >
                 Body
               </label>
 
@@ -65,7 +71,7 @@ export default function ArticleEdit({ articleAction = 'Create ' }) {
                 name='body'
                 type='text'
                 placeholder='Enter article body'
-                className='textarea-bordered textarea h-64 w-full max-w-2xl border-2 text-sm lg:text-base focus:border-2 focus:border-[#1f1f1fcf] focus:outline-0'
+                className='textarea-bordered textarea h-64 w-full max-w-2xl border-2 text-sm focus:border-2 focus:border-[#1f1f1fcf] focus:outline-0 lg:text-base'
                 {...register('body', {
                   required: { value: true, message: 'Body is required' },
                   minLength: {
@@ -90,7 +96,10 @@ export default function ArticleEdit({ articleAction = 'Create ' }) {
             {/* form-hero-img */}
 
             <div className='form-hero form-control w-full max-w-sm'>
-              <label className='mb-3 text-base font-semibold text-[var(--text-gray)]' htmlFor='hero'>
+              <label
+                className='mb-3 text-base font-semibold text-[var(--text-gray)]'
+                htmlFor='hero'
+              >
                 Hero image
               </label>
               <input
@@ -117,7 +126,10 @@ export default function ArticleEdit({ articleAction = 'Create ' }) {
 
             {/* form-tags */}
             <div className='form-tags form-control w-full max-w-sm'>
-              <label className='mb-3 text-base font-semibold text-[var(--text-gray)]' htmlFor='tags'>
+              <label
+                className='mb-3 text-base font-semibold text-[var(--text-gray)]'
+                htmlFor='tags'
+              >
                 Tags
               </label>
               <input
