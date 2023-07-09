@@ -84,3 +84,10 @@ input:focus-within {
 .custom-h-img {
   height: clamp(10rem, 72cqw, 40rem);
 }
+
+.file-input::file-selector-button{
+  background-color: var(--gray-100);
+  color: var(--text-base);
+  border: none;
+  font-size: 0.75rem!important;
+}
