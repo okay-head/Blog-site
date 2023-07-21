@@ -3,14 +3,23 @@ import Main from './components/Main'
 import Navbar from './components/Navbar'
 import View from './components/articleView/View'
 import ArticleEdit from './components/forms/articleEdit'
-import { ContextProvider } from './state/ContextProvider'
+import SignInContext from './state/ContextProvider'
 import FormContainer from './components/forms/FormContainer'
 import NotFound from './components/NotFound'
 import Signin from './components/forms/Signin'
 import Signup from './components/forms/Signup'
+import { useContext, useEffect } from 'react'
 export default function App() {
+  const {setSignedIn} = useContext(SignInContext)
+
+  useEffect(()=>{
+    // init signedInState with local storage
+    const flag = JSON.parse(localStorage.getItem('signedIn')) || false
+    setSignedIn(flag)
+
+  },[])
+
   return (
-    <ContextProvider>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -27,6 +36,5 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </ContextProvider>
   )
 }
