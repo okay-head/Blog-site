@@ -1,8 +1,18 @@
-import {Routes, Route, Outlet} from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Container from '../Container'
-import Signin from './Signin'
-import Signup from './Signup'
+import { useContext, useEffect } from 'react'
+import SignInContext from '../../state/ContextProvider'
+
 export default function FormContainer() {
+  const { isSignedIn } = useContext(SignInContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isSignedIn) {
+      navigate('/')
+    }
+  }, [])
+
   return (
     <Container>
       <article className='form-container grid min-h-[calc(90vh-4.625rem)] place-items-center py-10 pt-32 md:min-h-[calc(100vh-4.625rem)]'>
@@ -12,12 +22,6 @@ export default function FormContainer() {
         >
           <div className='card-body py-12'>
             <Outlet />
-          {/*   <Routes>
-              <Route path='/auth/signin' element={<Signin />} />
-              <Route path='/auth/signup' element={<Signup />} />
-            </Routes> */}
-            {/* <Signin /> */}
-            {/* <Signup /> */}
           </div>
         </div>
       </article>

@@ -10,27 +10,23 @@ import Signin from './components/forms/Signin'
 import Signup from './components/forms/Signup'
 export default function App() {
   return (
-    <BrowserRouter>
-      <ContextProvider>
+    <ContextProvider>
+      <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/auth/' element={<FormContainer />}>
-            <Route path='signin' element={<Signin />} />
-            <Route path='signup' element={<Signup />} />
-            {/* <Route path='*' element={<NotFound />} /> */}
+          <Route path='/'>
+            <Route index element={<Main />} />
+            <Route path='auth/' element={<FormContainer />}>
+              <Route path='signin' element={<Signin />} />
+              <Route path='signup' element={<Signup />} />
+            </Route>
+            <Route path='edit' element={<ArticleEdit />} />
+            <Route path='view' element={<View />} />
+            <Route path='notfound' element={<NotFound />} />
+            <Route path='*' element={<NotFound />} />
           </Route>
-          <Route path='/edit' element={<ArticleEdit />} />
-          <Route path='/view' element={<View />} />
-          <Route path='/notfound' element={<NotFound />} />
-          <Route path='*' element={<NotFound />} />
         </Routes>
-      </ContextProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ContextProvider>
   )
 }
-
-
-//<Route path='/*/' element={<NotFound />} />
-//<Route path='/*/*' element={<NotFound />} />
-//<Route path='/*/*/*' element={<NotFound />} />

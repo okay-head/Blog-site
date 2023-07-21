@@ -1,5 +1,10 @@
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import SignInContext from '../../state/ContextProvider'
 export default function Signin() {
+  const navigate = useNavigate()
+  const { setSignedIn } = useContext(SignInContext)
   const {
     register,
     handleSubmit,
@@ -8,8 +13,17 @@ export default function Signin() {
 
   // {...register(name, options)}
 
-  const onSubmit = (vals) => console.log(vals)
+  const onSubmit = (vals) => signInHandler(vals)
   const onError = (err) => console.error(err)
+
+  const signInHandler = (vals) => {
+    // apply more validations, firebase auth etc..
+    console.clear(vals)
+    console.log(vals)
+
+    setSignedIn(true)
+    navigate('/')
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -75,9 +89,9 @@ export default function Signin() {
       <div className='sign-in-help mt-8 flex flex-col gap-4 text-center text-sm'>
         <div className='italic'>Don't have an account?</div>
         <div>
-          <a href='#' className='underline hover:no-underline'>
+          <Link to='/auth/signup' className='underline hover:no-underline'>
             Sign up instead
-          </a>
+          </Link>
         </div>
       </div>
     </form>
