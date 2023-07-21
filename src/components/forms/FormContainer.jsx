@@ -1,3 +1,4 @@
+import {Routes, Route, Outlet} from 'react-router-dom'
 import Container from '../Container'
 import Signin from './Signin'
 import Signup from './Signup'
@@ -10,7 +11,12 @@ export default function FormContainer() {
           style={{ width: 'min(24rem,100% )' }}
         >
           <div className='card-body py-12'>
-            <Signin />
+            <Outlet />
+          {/*   <Routes>
+              <Route path='/auth/signin' element={<Signin />} />
+              <Route path='/auth/signup' element={<Signup />} />
+            </Routes> */}
+            {/* <Signin /> */}
             {/* <Signup /> */}
           </div>
         </div>
