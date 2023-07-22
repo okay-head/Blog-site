@@ -2,6 +2,7 @@ import Container from '../Container'
 import Tag from '../cards/Tag'
 import { useContext } from 'react'
 import SignInContext from '../../state/ContextProvider'
+import { Link } from 'react-router-dom'
 export default function View() {
   const { isSignedIn } = useContext(SignInContext)
   return (
@@ -97,9 +98,9 @@ export default function View() {
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
-          <a href='#' className='me-2 underline hover:no-underline'>
+          <Link to='/' className='me-2 underline hover:no-underline'>
             Back to all articles
-          </a>
+          </Link>
         </div>
       </article>
     </Container>

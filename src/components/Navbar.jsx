@@ -7,7 +7,7 @@ import SignInContext from './../state/ContextProvider'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-  const { isSignedIn } = useContext(SignInContext)
+  const { isSignedIn, setSignedIn } = useContext(SignInContext)
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -67,7 +67,9 @@ export default function Navbar() {
                     <a>Edit profile</a>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <Link onClick={()=>{
+                      setSignedIn(false)
+                    }} >Logout</Link>
                   </li>
                 </ul>
               ) : (

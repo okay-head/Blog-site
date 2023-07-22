@@ -1,7 +1,11 @@
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { useContext  } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import SignInContext from '../../state/ContextProvider'
 
 export default function Signup() {
+  const navigate = useNavigate()
+  const { setSignedIn } = useContext(SignInContext)
   const {
     register,
     handleSubmit,
