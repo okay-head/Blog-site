@@ -1,17 +1,18 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import Container from '../Container'
-import { useContext, useEffect } from 'react'
 import SignInContext from '../../state/ContextProvider'
+import { useContext, useEffect } from 'react'
 
 export default function FormContainer() {
-  const { isSignedIn } = useContext(SignInContext)
   const navigate = useNavigate()
+  const { isSignedIn, setSignedIn } = useContext(SignInContext)
 
+  // first check if the user is already logged in
   useEffect(() => {
     if (isSignedIn) {
       navigate('/')
     }
-  }, [])
+  }, [isSignedIn])
 
   return (
     <Container>
