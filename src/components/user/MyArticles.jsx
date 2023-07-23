@@ -1,5 +1,3 @@
 export default function MyArticles() {
-  return (
-    <div className='pt-24'>MyArticles</div>
-  )
+  return <div className='pt-24'>MyArticles</div>
 }

@@ -1,10 +1,10 @@
+import useContextHook from '../../state/useContextHook'
 import Container from '../Container'
 import Tag from '../cards/Tag'
-import { useContext } from 'react'
-import SignInContext from '../../state/ContextProvider'
 import { Link } from 'react-router-dom'
+
 export default function View() {
-  const { isSignedIn } = useContext(SignInContext)
+  const { isSignedIn } = useContextHook()
   return (
     <Container classVars='lg:max-w-5xl xl:px-0'>
       <article

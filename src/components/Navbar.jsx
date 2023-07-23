@@ -2,8 +2,6 @@ import editing from './../assets/editing(1).png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
-import { useContext } from 'react'
-import SignInContext from './../state/ContextProvider'
 import useContextHook from '../state/useContextHook'
 import { Link } from 'react-router-dom'
 
@@ -68,10 +66,14 @@ export default function Navbar() {
                     <a>Edit profile</a>
                   </li>
                   <li>
-                    <Link onClick={()=>{
-                      setSignedIn(false)
-                      window.location.reload()
-                    }} >Logout</Link>
+                    <Link
+                      onClick={() => {
+                        setSignedIn(false)
+                        window.location.reload()
+                      }}
+                    >
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               ) : (

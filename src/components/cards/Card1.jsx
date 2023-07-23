@@ -1,9 +1,8 @@
+import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
-import { useContext } from 'react'
-import SignInContext from '../../state/ContextProvider'
 
 export default function Card1({ tagNone = '' }) {
-  const { isSignedIn } = useContext(SignInContext)
+  const { isSignedIn } = useContextHook()
   return (
     <article className='flex flex-col gap-4 border-t-2 py-7 md:py-8 '>
       <div className='card-head flex gap-3'>

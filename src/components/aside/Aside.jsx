@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import Container from '../Container'
 import Card1 from '../cards/Card1'
 import Card2 from '../cards/Card2'
 import NotSignedIn from './NotSignedIn'
 import sparkles from './razzle-dazzle.png'
-import SignInContext from '../../state/ContextProvider'
 import 'sticksy'
+import useContextHook from '../../state/useContextHook'
 
 export default function Aside() {
   /*   -------- resize logic -------- */
@@ -19,7 +19,7 @@ export default function Aside() {
   function resizeFn() {
     addEventListener('resize', handleResize)
   }
-  const { isSignedIn } = useContext(SignInContext)
+  const { isSignedIn } = useContextHook()
 
   useEffect(() => {
     resizeFn()

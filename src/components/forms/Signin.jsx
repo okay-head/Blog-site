@@ -1,11 +1,10 @@
-import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import SignInContext from '../../state/ContextProvider'
+import useContextHook from '../../state/useContextHook'
 
 export default function Signin() {
   const navigate = useNavigate()
-  const { setSignedIn } = useContext(SignInContext)
+  const { setSignedIn } = useContextHook()
 
   const {
     register,

@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import SignInContext from '../state/ContextProvider'
+import useContextHook from '../state/useContextHook'
 
 export default function CheckAuth() {
-  const { isSignedIn } = useContext(SignInContext)
+  const { isSignedIn } = useContextHook()
   const navigate = useNavigate()
   useEffect(() => {
     if (!isSignedIn) navigate('/')
