@@ -5,7 +5,7 @@ import { useContext, useEffect } from 'react'
 
 export default function FormContainer() {
   const navigate = useNavigate()
-  const { isSignedIn, setSignedIn } = useContext(SignInContext)
+  const { isSignedIn } = useContext(SignInContext)
 
   // first check if the user is already logged in
   useEffect(() => {

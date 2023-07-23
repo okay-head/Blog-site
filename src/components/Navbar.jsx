@@ -69,6 +69,7 @@ export default function Navbar() {
                   <li>
                     <Link onClick={()=>{
                       setSignedIn(false)
+                      window.location.reload()
                     }} >Logout</Link>
                   </li>
                 </ul>
