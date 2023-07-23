@@ -1,5 +1,5 @@
 export default function ReadingList() {
   return (
-    <div>ReadingList</div>
+    <div className='pt-24'>ReadingList</div>
   )
 }

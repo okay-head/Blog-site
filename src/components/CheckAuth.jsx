@@ -6,7 +6,6 @@ export default function CheckAuth() {
   const { isSignedIn } = useContext(SignInContext)
   const navigate = useNavigate()
   useEffect(() => {
-    console.log(isSignedIn) // why is it false?
     if (!isSignedIn) navigate('/')
   }, [isSignedIn])
 

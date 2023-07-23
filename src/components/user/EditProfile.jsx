@@ -1,5 +1,5 @@
 export default function EditProfile() {
   return (
-    <div>EditProfile</div>
+    <div className='pt-24'>EditProfile</div>
   )
 }

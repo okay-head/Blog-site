@@ -4,10 +4,11 @@ import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import { useContext } from 'react'
 import SignInContext from './../state/ContextProvider'
+import useContextHook from '../state/useContextHook'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-  const { isSignedIn, setSignedIn } = useContext(SignInContext)
+  const { isSignedIn, setSignedIn } = useContextHook()
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>

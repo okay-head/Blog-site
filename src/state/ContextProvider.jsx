@@ -2,7 +2,9 @@ import { useState, createContext } from 'react'
 const SignInContext = createContext(undefined)
 
 export function ContextProvider({ children }) {
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  //init from localStorage
+  const flag = JSON.parse(localStorage.getItem('signedIn')) || false
+  const [isSignedIn, setIsSignedIn] = useState(flag)
 
   const setSignedIn = (val) => {
     setIsSignedIn(val)

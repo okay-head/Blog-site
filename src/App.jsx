@@ -1,28 +1,18 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './components/Main'
 import Navbar from './components/Navbar'
 import View from './components/articleView/View'
 import ArticleEdit from './components/forms/articleEdit'
-import SignInContext from './state/ContextProvider'
 import FormContainer from './components/forms/FormContainer'
 import NotFound from './components/NotFound'
 import Signin from './components/forms/Signin'
 import Signup from './components/forms/Signup'
-import { useContext, useEffect } from 'react'
 import CheckAuth from './components/CheckAuth'
 import MyArticles from './components/user/MyArticles'
 import ReadingList from './components/user/ReadingList'
 import EditProfile from './components/user/EditProfile'
 
 export default function App() {
-  const { setSignedIn } = useContext(SignInContext)
-
-  useEffect(() => {
-    // init signedInState with local storage
-    const flag = JSON.parse(localStorage.getItem('signedIn')) || false
-    setSignedIn(flag)
-  }, [])
-
   return (
     <BrowserRouter>
       <Navbar />

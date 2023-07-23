@@ -1,5 +1,5 @@
 export default function MyArticles() {
   return (
-    <div>MyArticles</div>
+    <div className='pt-24'>MyArticles</div>
   )
 }
