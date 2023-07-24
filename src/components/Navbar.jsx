@@ -54,19 +54,19 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-logged-in'
-                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                  className='dropdown-content menu hidden absolute -left-24 top-10 z-[100]  w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
                 >
                   <li>
-                    <Link to='/user/articles'>My articles</Link>
+                    <Link className='mt-1' to='/user/articles'>My articles</Link>
                   </li>
                   <li>
-                    <Link to='/user/bookmarks'>My reading list</Link>
+                    <Link className='mt-1' to='/user/bookmarks'>My reading list</Link>
                   </li>
                   <li>
-                    <Link to='/user/profile' replace>Edit profile</Link>
+                    <Link className='mt-1' to='/user/profile' replace>Edit profile</Link>
                   </li>
                   <li>
-                    <Link
+                    <Link className='mt-1'
                       onClick={() => {
                         setSignedIn(false)
                         window.location.reload()
