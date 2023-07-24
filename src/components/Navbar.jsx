@@ -57,13 +57,13 @@ export default function Navbar() {
                   className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
                 >
                   <li>
-                    <a>My articles</a>
+                    <Link to='/user/articles'>My articles</Link>
                   </li>
                   <li>
-                    <a>My reading list</a>
+                    <Link to='/user/bookmarks'>My reading list</Link>
                   </li>
                   <li>
-                    <a>Edit profile</a>
+                    <Link to='/user/profile' replace>Edit profile</Link>
                   </li>
                   <li>
                     <Link

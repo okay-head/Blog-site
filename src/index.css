@@ -29,6 +29,9 @@
   /* md: 768px */
 }
 
+html{
+  scroll-behavior: smooth;
+}
 .padding-fluid {
   padding: 0 40px;
 }
