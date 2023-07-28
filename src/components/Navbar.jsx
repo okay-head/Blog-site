@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn } = useContextHook()
+
+  const location = useLocation().pathname
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -25,7 +27,7 @@ export default function Navbar() {
           </h1>
 
           <div className='resize-svg | -ms-7 flex items-center gap-3 md:gap-6'>
-            <Link to={isSignedIn ? '/edit' : '/auth/signin'}>
+            <Link to={isSignedIn ? '/edit' : '/auth/signin'} state={{from:location, to:'/edit'}}>
               <button className='btn h-auto min-h-0 border-none bg-transparent p-1 capitalize  text-inherit hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-200)] '>
                 <img
                   src={editing}

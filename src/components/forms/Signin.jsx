@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
 
 export default function Signin() {
+  const {redirectTo} = useOutletContext()
   const navigate = useNavigate()
   const { setSignedIn } = useContextHook()
 
@@ -23,7 +24,7 @@ export default function Signin() {
     console.log(vals)
 
     setSignedIn(true)
-    navigate('/')
+    navigate(redirectTo)
   }
 
   return (

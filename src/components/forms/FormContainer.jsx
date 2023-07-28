@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Container from '../Container'
 import { useEffect } from 'react'
 import useContextHook from '../../state/useContextHook'
@@ -6,6 +6,9 @@ import useContextHook from '../../state/useContextHook'
 export default function FormContainer() {
   const navigate = useNavigate()
   const { isSignedIn } = useContextHook()
+
+  const location = useLocation()
+  const redirectTo = location?.state?.to || location?.state?.from || '/'
 
   // first check if the user is already logged in
   useEffect(() => {
@@ -22,7 +25,7 @@ export default function FormContainer() {
           style={{ width: 'min(24rem,100% )' }}
         >
           <div className='card-body py-12'>
-            <Outlet />
+            <Outlet context={{redirectTo} } />
           </div>
         </div>
       </article>
