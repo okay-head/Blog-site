@@ -92,4 +92,5 @@ input:focus-within {
   color: var(--text-base);
   border: none;
   font-size: 0.75rem !important;
+  font-family: inherit;
 }
