@@ -1,6 +1,28 @@
+import axios from 'axios'
 import Container from '../Container'
 import Card1 from './../cards/Card1'
+import { useEffect, useState } from 'react'
 export default function Feed() {
+  // get feed data (iife)
+  const [feedData,setFeedData] = useState('No feed data')
+  // console.log(feedData?.data?.map(e=>console.log(e)))
+
+  useEffect(() => {
+  const data = (async ()=>{
+    try {
+      return await axios.get('http://localhost:3300/data')
+
+    } catch (e) {
+      alert(e)
+      console.log(e)
+    }
+  })()
+
+  data.then((res)=>setFeedData(res))
+}, [])
+
+
+  
   return (
     <section className='feed'>
       <Container classVars='pt-10'>
@@ -22,11 +44,9 @@ export default function Feed() {
             />
           </div>
         </div>
-        <Card1 />
-        <Card1 />
-        <Card1 />
-        <Card1 />
-        <Card1 />
+        {
+          feedData?.data?.map(x=><Card1 key={x.id} data={x} />)
+        }
       </Container>
     </section>
   )
