@@ -25,7 +25,8 @@ export default function Aside() {
     resizeFn()
     /* var instance = new Sticksy(target[, options]); */
     let stickyEl = new Sticksy('.js-sticky-widget', {
-      topSpacing: isSignedIn ? -215 : 150,
+      listen: true,
+      topSpacing: isSignedIn ? -215 : 100,
     })
     stickyEl.onStateChanged = function (state) {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
