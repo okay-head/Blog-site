@@ -1,11 +1,25 @@
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function Signin() {
-  const {redirectTo} = useOutletContext()
-  const navigate = useNavigate()
+  // get all users
+  const [data, setData] = useState('User data is empty')
+  useEffect(() => {
+    try {
+      ;(async function getData() {
+        const response = await axios.get('http://localhost:3300/user')
+        setData(response.data)
+      })()
+    } catch (e) {
+      throw new Error(e)
+    }
+  }, [])
+  const { redirectTo } = useOutletContext()
   const { setSignedIn } = useContextHook()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -18,11 +32,21 @@ export default function Signin() {
   const onSubmit = (vals) => signInHandler(vals)
   const onError = (err) => console.error(err)
 
-  const signInHandler = (vals) => {
+  const signInHandler = ({ email, password }) => {
     // apply more validations, firebase auth etc..
-    console.clear(vals)
-    console.log(vals)
 
+    console.clear()
+
+    // check if the user exists / check password
+    const user = data.find((x) => x.user_email == email)
+    if (!user) {
+      alert('Email not found!\nPlease Sign Up if you are a new user.')
+      return
+    }
+    if(user.user_passHash!=password){
+      alert('Incorrect password! Try again.')
+      return
+    }
     setSignedIn(true)
     navigate(redirectTo)
   }
