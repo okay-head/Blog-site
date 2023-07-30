@@ -29,6 +29,16 @@ const jsonData = {
     body: faker.lorem.paragraphs(5),
     tags: [faker.word.noun(), faker.word.noun()],
     hero: null
+  })),
+
+  user: Array(5).fill(1).map((_,i)=>({
+    user_id: Number(faker.number.int({min:10, max:100})) + i,
+    user_displayName: faker.person.fullName(),
+    user_email: faker.internet.email(),
+    user_passHash: faker.git.commitSha({length:8}),
+    user_avatar: null, 
+    user_articles: [i+1],
+    user_bookmarks:[i+2]
   }))
 }
 console.log(jsonData);
