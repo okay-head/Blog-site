@@ -33,9 +33,9 @@ export default function Aside() {
       else stickyEl.nodeRef.classList.remove('widget--sticky')
     }
     // uncomment in production
-    // return(
-    //   removeEventListener('resize',handleResize)
-    // )
+    return(
+      removeEventListener('resize',handleResize)
+    )
   }, [])
   /*   -------- resize logic -------- */
 

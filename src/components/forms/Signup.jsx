@@ -1,11 +1,26 @@
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function Signup() {
-  const {redirectTo} = useOutletContext()
-  const navigate = useNavigate()
+  // get all users
+  const [data, setData] = useState('User data is empty')
+  useEffect(() => {
+    try {
+      ;(async function getData() {
+        const response = await axios.get('http://localhost:3300/user')
+        setData(response.data)
+      })()
+    } catch (e) {
+      throw new Error(e)
+    }
+  }, [])
+
+  const { redirectTo } = useOutletContext()
   const { setSignedIn } = useContextHook()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -17,13 +32,51 @@ export default function Signup() {
   const onSubmit = (vals) => signUpHandler(vals)
   const onError = (err) => console.error(err)
 
-  const signUpHandler = (vals) => {
+  const signUpHandler = ({ name, email, password, avatar }) => {
     // apply more validations, firebase auth etc..
-    console.clear(vals)
-    console.log(vals)
+    console.clear()
 
-    setSignedIn(true)
-    navigate(redirectTo)
+    // check if the user exists / check password
+    const user = data.find((x) => x.user_email == email)
+    if (user) {
+      alert('Email already in use!')
+      return
+    }
+
+    const seed = (Math.random() * 100).toFixed(0) + Date.now()
+    // if not then post to db
+    try {
+      const post = async () => {
+        const payload = JSON.stringify({
+          id: seed,
+          user_id: seed,
+          user_displayName: name,
+          user_email: email,
+          user_passHash: password,
+          user_avatar: [],
+          user_articles: [],
+          user_bookmarks: [],
+        })
+        /*       console.log(JSON.parse(payload))
+      fetch('http://localhost:3300/user',{
+        method: 'POST',
+        body: payload,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(d=>d.json())
+      .then(d=>console.log(d)) */
+        return await axios.post('http://localhost:3300/user', payload, {
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      post().then((d) => console.log(d))
+    } catch (e) {
+      throw new Error(e)
+    }
+
+    // setSignedIn(true)
+    // navigate(redirectTo)
   }
 
   return (

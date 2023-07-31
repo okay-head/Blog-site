@@ -9,7 +9,7 @@ export default function Signin() {
   const [data, setData] = useState('User data is empty')
   useEffect(() => {
     try {
-      ;(async function getData() {
+      (async function getData() {
         const response = await axios.get('http://localhost:3300/user')
         setData(response.data)
       })()

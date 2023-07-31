@@ -11,9 +11,21 @@ import CheckAuth from './components/CheckAuth'
 import MyArticles from './components/user/MyArticles'
 import ReadingList from './components/user/ReadingList'
 import EditProfile from './components/user/EditProfile'
+import {ErrorBoundary} from 'react-error-boundary'
 
+function fallbackRender({ error, resetErrorBoundary }) {
+  // Call resetErrorBoundary() to reset the error boundary and retry the render.
+
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
+  );
+}
 export default function App() {
   return (
+    <ErrorBoundary fallbackRender={fallbackRender}>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -37,5 +49,7 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
+
   )
 }
