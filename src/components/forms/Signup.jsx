@@ -45,6 +45,7 @@ export default function Signup() {
 
     const seed = (Math.random() * 100).toFixed(0) + Date.now()
     // if not then post to db
+    // 'id' attribute is important to every payload !!
     try {
       const post = async () => {
         const payload = JSON.stringify({
@@ -53,19 +54,11 @@ export default function Signup() {
           user_displayName: name,
           user_email: email,
           user_passHash: password,
-          user_avatar: [],
+          user_avatar: avatar,
           user_articles: [],
           user_bookmarks: [],
         })
-        /*       console.log(JSON.parse(payload))
-      fetch('http://localhost:3300/user',{
-        method: 'POST',
-        body: payload,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(d=>d.json())
-      .then(d=>console.log(d)) */
+
         return await axios.post('http://localhost:3300/user', payload, {
           headers: { 'Content-Type': 'application/json' },
         })
@@ -75,8 +68,8 @@ export default function Signup() {
       throw new Error(e)
     }
 
-    // setSignedIn(true)
-    // navigate(redirectTo)
+    setSignedIn(true)
+    navigate(redirectTo)
   }
 
   return (

@@ -47,6 +47,7 @@ export default function Signin() {
       alert('Incorrect password! Try again.')
       return
     }
+    console.log(`Signed in as ${user?.user_displayName}`,user);
     setSignedIn(true)
     navigate(redirectTo)
   }

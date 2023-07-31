@@ -26,16 +26,16 @@ export default function Aside() {
     /* var instance = new Sticksy(target[, options]); */
     let stickyEl = new Sticksy('.js-sticky-widget', {
       listen: true,
-      topSpacing: isSignedIn ? -215 : 100,
+      topSpacing: isSignedIn ? -215 : 70,
     })
     stickyEl.onStateChanged = function (state) {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
       else stickyEl.nodeRef.classList.remove('widget--sticky')
     }
     // uncomment in production
-    return(
-      removeEventListener('resize',handleResize)
-    )
+    // return(
+    //   removeEventListener('resize',handleResize)
+    // )
   }, [])
   /*   -------- resize logic -------- */
 
