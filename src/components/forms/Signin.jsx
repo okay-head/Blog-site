@@ -18,7 +18,7 @@ export default function Signin() {
     }
   }, [])
   const { redirectTo } = useOutletContext()
-  const { setSignedIn } = useContextHook()
+  const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
 
   const {
@@ -47,8 +47,9 @@ export default function Signin() {
       alert('Incorrect password! Try again.')
       return
     }
-    console.log(`Signed in as ${user?.user_displayName}`,user);
+    console.log(`Signed in as ${user?.user_displayName}`,user)
     setSignedIn(true)
+    setUser(user)
     navigate(redirectTo)
   }
 

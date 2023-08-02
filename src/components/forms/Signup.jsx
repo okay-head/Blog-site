@@ -19,7 +19,7 @@ export default function Signup() {
   }, [])
 
   const { redirectTo } = useOutletContext()
-  const { setSignedIn } = useContextHook()
+  const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
   const {
     register,
@@ -37,17 +37,27 @@ export default function Signup() {
     console.clear()
 
     // check if the user exists / check password
-    const user = data.find((x) => x.user_email == email)
+    let user = data.find((x) => x.user_email == email)
     if (user) {
       alert('Email already in use!')
       return
     }
 
-    const seed = (Math.random() * 100).toFixed(0) + Date.now()
     // if not then post to db
+    
+    // process image
+    let reader = new FileReader()
+    reader.readAsDataURL(avatar[0])
+    
+    reader.onload =  ()=> {
+      avatar = reader.result
+
+
+    const seed = (Math.random() * 100).toFixed(0) + Date.now()
+    let post = undefined
     // 'id' attribute is important to every payload !!
     try {
-      const post = async () => {
+      post = async () => {
         const payload = JSON.stringify({
           id: seed,
           user_id: seed,
@@ -63,13 +73,18 @@ export default function Signup() {
           headers: { 'Content-Type': 'application/json' },
         })
       }
-      post().then((d) => console.log(d))
     } catch (e) {
       throw new Error(e)
     }
-
-    setSignedIn(true)
-    navigate(redirectTo)
+    // After entry is added
+    post().then((d) => {
+      user = d.data
+      console.log(`Signed in as ${user?.user_displayName}`, user)
+      setSignedIn(true)
+      setUser(user)
+      navigate(redirectTo)
+    })
+  }
   }
 
   return (

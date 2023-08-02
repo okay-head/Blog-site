@@ -1,21 +1,7 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import useContextHook from '../../state/useContextHook'
 
 export default function EditProfile() {
-  const [data, setData] = useState('User data is empty')
-  console.log(data)
-
-  useEffect(() => {
-    try {
-      (async function getData() {
-        const response = await axios.get('http://localhost:3300/user')
-        setData(response.data)
-      })()
-
-    } catch (e) {
-      throw new Error(e)
-    }
-  }, [])
-
+  const {user} = useContextHook()
+  console.log(`Edit profile: Edit profile for ${user?.user_displayName} `,user);
   return <div className='pt-24'>EditProfile</div>
 }
