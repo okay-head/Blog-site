@@ -8,6 +8,7 @@ export default function EditProfile() {
 
   // prefill with user values
   // HAVE to use controlled form components
+  // or just try using default props
   useEffect(() => {
 /*  
     // This doesn't work too
@@ -76,7 +77,10 @@ export default function EditProfile() {
           user_avatar: avatar,
         })
 
-        console.log(JSON.parse(payload))
+        console.log(Object.values(JSON.parse(payload).user_avatar).length)
+        // if(Object.entries(JSON.parse(payload).user_avatar).length){
+        //   console.log('inside if',);
+        // }
         // return await axios.patch('http://localhost:3300/user', payload, {
         //   headers: { 'Content-Type': 'application/json' },
         // })
@@ -116,6 +120,7 @@ export default function EditProfile() {
                 id='name'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                defaultValue={user?.user_displayName || ''}
                 
               />
               {errors.name && (
@@ -144,6 +149,7 @@ export default function EditProfile() {
                 id='email'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                defaultValue={user?.user_email||''}
                 
               />
               {errors.email && (
@@ -171,6 +177,7 @@ export default function EditProfile() {
                 id='password'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                defaultValue={user?.user_passHash||''}
                 
               />
               {errors.password && (
@@ -199,6 +206,7 @@ export default function EditProfile() {
                   id='avatar'
                   accept='.jpg, .jpeg, .png'
                   className='file-input-bordered file-input w-full max-w-xl border-2'
+                defaultValue={''}
                  
                 />
                 <img src='/assets/user.png' id='current-avatar' className='ms-4 w-11 lg:w-14' alt='current user image'/>

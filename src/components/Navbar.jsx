@@ -71,6 +71,8 @@ export default function Navbar() {
                     <Link className='mt-1'
                       onClick={() => {
                         setSignedIn(false)
+                        // clear localStorage
+                        localStorage.clear()
                         //there's a delay here
                         window.location.reload()
                       }}
