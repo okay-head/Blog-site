@@ -6,8 +6,19 @@ import { useEffect } from 'react'
 export default function EditProfile() {
   const { user } = useContextHook()
 
+  // prefill with user values
+  // HAVE to use controlled form components
   useEffect(() => {
-    const collection = document.getElementsByTagName('input')
+/*  
+    // This doesn't work too
+    nameRef.current.value = user?.user_displayName
+    emailRef.current.value = user?.user_email
+    passwordRef.current.value = user?.user_passHash
+    avatarRef.current.value = ''
+ */
+
+    // wrong approach
+/*     const collection = document.getElementsByTagName('input')
     for (const element of collection) {
       switch (element.id) {
         case 'name':
@@ -26,9 +37,10 @@ export default function EditProfile() {
         default:
           break;
       }
-      // console.log(element.get);
     }
+ */    
   }, [])
+
   // console.log(`Edit profile: Edit profile for ${user?.user_displayName} `, user)
   const {
     register,
@@ -48,35 +60,35 @@ export default function EditProfile() {
 
     /* __ Post to db__ */
     // process image
-    let reader = new FileReader()
-    reader.readAsDataURL(avatar[0])
+    // let reader = new FileReader()
+    // reader.readAsDataURL(avatar[0])
     
-    reader.onload =  ()=> {
-      avatar = reader.result
+    // reader.onload =  ()=> {
+    //   avatar = reader.result
 
-    let post = undefined
+    let patch = undefined
     try {
-      post = async () => {
+      patch = async () => {
         const payload = JSON.stringify({
           user_displayName: name,
           user_email: email,
           user_passHash: password,
           user_avatar: avatar,
-          user_articles: [],
-          user_bookmarks: [],
         })
 
-        return await axios.post('http://localhost:3300/user', payload, {
-          headers: { 'Content-Type': 'application/json' },
-        })
+        console.log(JSON.parse(payload))
+        // return await axios.patch('http://localhost:3300/user', payload, {
+        //   headers: { 'Content-Type': 'application/json' },
+        // })
       }
+      patch()
     } catch (e) {
       throw new Error(e)
     }
+    
+    // post.then((res)=>console.log(`Entry updated!`,res))
   }
-
-  post.then((res)=>console.log(`Entry updated!`,res))
-  }
+  // }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='edit-profile'>
@@ -95,7 +107,7 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Display name</span>
               </label>
-              <input
+              <input  
                 {...register('name', {
                   required: 'Display name is required',
                 })}
@@ -104,6 +116,7 @@ export default function EditProfile() {
                 id='name'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                
               />
               {errors.name && (
                 <label className='label pb-0'>
@@ -117,20 +130,21 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Email</span>
               </label>
-              <input
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: '/^[^s@]+@[^s@]+.[^s@]+$/',
-                    message: 'Please enter a valid email',
-                  },
-                })}
+              <input  
+                // {...register('email', {
+                //   required: 'Email is required',
+                //   pattern: {
+                //     value: '/^[^s@]+@[^s@]+.[^s@]+$/',
+                //     message: 'Please enter a valid email',
+                //   },
+                // })}
                 disabled
                 type='email'
                 name='email'
                 id='email'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                
               />
               {errors.email && (
                 <label className='label pb-0'>
@@ -144,7 +158,7 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Password</span>
               </label>
-              <input
+              <input  
                 {...register('password', {
                   required: 'Password is required',
                   minLength: {
@@ -157,6 +171,7 @@ export default function EditProfile() {
                 id='password'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
+                
               />
               {errors.password && (
                 <label className='label pb-0'>
@@ -175,7 +190,7 @@ export default function EditProfile() {
               </label>
 
               <div className='flex items-center justify-between'>
-                <input
+                <input 
                   {...register('avatar', {
                     required: false,
                   })}
@@ -184,6 +199,7 @@ export default function EditProfile() {
                   id='avatar'
                   accept='.jpg, .jpeg, .png'
                   className='file-input-bordered file-input w-full max-w-xl border-2'
+                 
                 />
                 <img src='/assets/user.png' id='current-avatar' className='ms-4 w-11 lg:w-14' alt='current user image'/>
               </div>
