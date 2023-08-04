@@ -42,8 +42,8 @@ export default function App() {
 
             {/* Protected routes / Only accessible when signedIn */}
             <Route element={<CheckAuth />}>
-                <Route element={<EditArticle />} path='edit'/>
-                <Route element={<CreateArticle />} path='create'/>
+              <Route element={<EditArticle />} path='edit' />
+              <Route element={<CreateArticle />} path='create' />
               <Route path='user/articles' element={<MyArticles />} />
               <Route path='user/bookmarks' element={<ReadingList />} />
               <Route path='user/profile' element={<EditProfile />} />
