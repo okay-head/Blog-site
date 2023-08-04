@@ -84,7 +84,7 @@ export default function Navbar() {
                         // clear localStorage
                         localStorage.clear()
                         //there's a delay here
-                        window.location.reload()
+                        // window.location.reload()
                       }}
                     >
                       Logout

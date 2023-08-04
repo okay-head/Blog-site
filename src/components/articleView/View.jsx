@@ -1,14 +1,25 @@
+import { useEffect, useState } from 'react'
+import defaultData from '../../state/defaultData'
 import useContextHook from '../../state/useContextHook'
 import Container from '../Container'
 import Tag from '../cards/Tag'
 import { Link, useLocation } from 'react-router-dom'
 
 export default function View() {
-  const {state:{ref}} = useLocation()
+  // const {state:{ref, data}} = useLocation()
+  const { state } = useLocation()
   const { isSignedIn } = useContextHook()
 
-  console.log(ref)
-  
+  const [data, setData] = useState({})
+
+  const root = document.getElementsByTagName('html')[0]
+  useEffect(() => {
+    setData(state?.data)
+    root.scrollTop = 0
+  }, [])
+  // console.log(defaultData)
+  // console.log({ref,data})
+
   return (
     <Container classVars='lg:max-w-5xl xl:px-0'>
       <article
@@ -17,7 +28,7 @@ export default function View() {
       >
         <div className='article-heading'>
           <h2 className='-mb-2 text-2xl font-bold md:text-3xl lg:mb-1 lg:text-4xl'>
-            Long term effects of our increasing disconnect from nature
+            {data?.title || defaultData?.title}
           </h2>
         </div>
 
@@ -28,13 +39,13 @@ export default function View() {
 
           <div className='flex flex-col gap-[1px]'>
             <span className='block text-base font-semibold lg:text-lg'>
-              Chris coyer
+              {data?.author || defaultData?.author}
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
               3 min read
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
-              Last updated: 16th Apr, 2023
+              Last updated: {data?.date || defaultData?.date}
             </span>
           </div>
 
@@ -68,37 +79,19 @@ export default function View() {
 
         <div className='article-body'>
           <p className='text-justify text-base text-[var(--text-base)] lg:text-lg'>
-            Lorem, ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Beatae atque, aperiam quam ipsa vero alias. Fuga,
-            corporis optio! Sequi dolores tempora repellendus placeat ipsum
-            reprehenderit omnis. Sapiente quaerat iusto laboriosam. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Itaque eum ex tenetur
-            numquam minima molestiae expedita illo sequi sint, necessitatibus
-            eligendi praesentium sit dicta aspernatur repellat veniam libero
-            architecto harum. consectetur adipisicing elit. Culpa molestias aut
-            facere nihil deleniti doloribus, saepe ex. Itaque, eveniet? Dolorum
-            possimus dolor asperiores ea aperiam dicta fugit vero assumenda
-            iste! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Culpa tenetur accusamus non! Soluta, ad dicta. Fugit laborum odit
-            repudiandae unde praesentium saepe eaque similique dolor? Reiciendis
-            repellendus eum dicta impedit Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Veniam consectetur deserunt excepturi
-            nihil maiores, molestiae fugit quibusdam obcaecati nemo earum
-            officiis molestias ipsam sapiente id temporibus odio eaque et
-            libero. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Quibusdam repudiandae inventore excepturi, repellendus ex quidem
-            debitis voluptate eius enim pariatur eum nemo atque at itaque, vero
-            exercitationem? Earum, deserunt pariatur.lorem Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. Qui alias tenetur asperiores
-            aspernatur quas, veniam eveniet repellendus doloremque? Temporibus
-            ad sunt accusantium laudantium reiciendis magni doloribus laborum
-            fugiat corporis quasi.
+            {data?.body || defaultData?.body}
           </p>
         </div>
 
         <div className={`tags mt-1 flex gap-3`}>
-          <Tag txt='Health' classVars='lg:text-base' />
-          <Tag txt='Lifestyle' classVars='lg:text-base' />
+          <Tag
+            txt={(data?.tags && data.tags[0]) || defaultData?.tags[0]}
+            classVars='lg:text-base'
+          />
+          <Tag
+            txt={(data?.tags && data.tags[1]) || defaultData?.tags[1]}
+            classVars='lg:text-base'
+          />
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>

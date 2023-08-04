@@ -2,26 +2,20 @@ import { useEffect, useRef } from 'react'
 import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
 import { useNavigate } from 'react-router-dom'
-const defaultData = {
-  id: 1,
-  avatar: null,
-  author: 'Tim Urban',
-  date: '16th April, 2023',
-  title: 'Long term effects of our increasing disconnect from nature',
-  body: 'Lorem, ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae atque, aperiam quam ipsa vero alias. Fuga, corporis optio! Sequi dolores tempora repellendus placeat ipsum reprehenderit omnis. Sapiente quaerat iusto laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eum ex tenetur numquam minima molestiae expedita illo sequi sint, necessitatibus eligendi praesentium sit dicta aspernatur repellat veniam libero architecto harum. consectetur adipisicing elit. Culpa molestias aut facere nihil deleniti doloribus, saepe ex. Itaque, eveniet? Dolorum possimus dolor asperiores ea aperiam dicta fugit vero assumenda iste! Lorem ipsum',
-  tags: ['Health', 'Lifestyle'],
-  hero: null,
-}
+import defaultData from '../../state/defaultData'
 export default function Card1({ tagNone = '', data = defaultData }) {
   const { isSignedIn } = useContextHook()
   const articleRef = useRef(null)
   const navigate = useNavigate()
 
   return (
-    <article ref={articleRef} className='flex flex-col gap-4 border-t-2 py-7 md:py-8 group hover:cursor-pointer' id={`${data.id}`}
-    onClick={()=>{
-      navigate(`/view/${articleRef?.current?.id}`,{state:{ref:articleRef?.current?.id}})
-    }}
+    <article
+      ref={articleRef}
+      className='group flex flex-col gap-4 border-t-2 py-7 hover:cursor-pointer md:py-8'
+      id={`${data.id}`}
+      onClick={() => {
+        navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
+      }}
     >
       <div className='card-head flex gap-3'>
         <div className=''>
@@ -44,7 +38,7 @@ export default function Card1({ tagNone = '', data = defaultData }) {
 
       <div className='card-content grid h-40 grid-cols-[2.8fr,1.3fr] items-center gap-4 overflow-hidden md:h-48'>
         <div className='h-40 md:h-48'>
-          <h2 className='pb-2 text-lg font-bold !leading-6 md:text-2xl group-hover:underline'>
+          <h2 className='pb-2 text-lg font-bold !leading-6 group-hover:underline md:text-2xl'>
             {data?.title || defaultData?.title}
           </h2>
           <p className='text-sm text-[var(--text-gray)]'>
