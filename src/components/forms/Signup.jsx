@@ -50,7 +50,7 @@ export default function Signup() {
       let post = undefined
       // 'id' attribute is important to every payload !!
       try {
-        console.log(avatar)
+        // console.log(avatar)
         post = async () => {
           const payload = JSON.stringify({
             id: seed,

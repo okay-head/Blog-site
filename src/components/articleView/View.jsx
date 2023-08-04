@@ -8,7 +8,7 @@ import { Link, useLocation } from 'react-router-dom'
 export default function View() {
   // const {state:{ref, data}} = useLocation()
   const { state } = useLocation()
-  const { isSignedIn } = useContextHook()
+  const { isSignedIn, user } = useContextHook()
 
   const [data, setData] = useState({})
 
@@ -54,12 +54,16 @@ export default function View() {
               id='user-logged-in-article-tools'
               className='me-6 ms-auto flex gap-3 self-end'
             >
-              <button
-                id='edit-article'
-                className='-mb-1 block w-8 rotate-[270deg] lg:w-11'
-              >
-                <img src='/assets/pen(1).png' alt='pencil' />
-              </button>
+              {user?.id == data.author_id ? (
+                <button
+                  id='edit-article'
+                  className='-mb-1 block w-8 rotate-[270deg] lg:w-11'
+                >
+                  <img src='/assets/pen(1).png' alt='pencil' />
+                </button>
+              ) : (
+                <span></span>
+              )}
               <button id='bookmark-article' className='-mb-1 block w-7 lg:w-10'>
                 <img src='/assets/book(1).png' alt='book' />
               </button>
