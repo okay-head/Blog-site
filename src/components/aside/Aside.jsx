@@ -33,7 +33,7 @@ export default function Aside() {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
       else stickyEl.nodeRef.classList.remove('widget--sticky')
     }
-    // uncomment in production
+    // uncomment in [production]
     // return(
     //   removeEventListener('resize',handleResize)
     // )

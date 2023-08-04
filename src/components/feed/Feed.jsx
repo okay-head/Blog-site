@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 export default function Feed() {
   // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
-  // console.log(feedData?.data?.map(e=>console.log(e)))
 
   useEffect(() => {
     const data = (async () => {

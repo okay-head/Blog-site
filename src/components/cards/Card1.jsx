@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
 const defaultData = {
@@ -12,8 +13,14 @@ const defaultData = {
 }
 export default function Card1({ tagNone = '', data = defaultData }) {
   const { isSignedIn } = useContextHook()
+  const articleRef = useRef(null)
+
   return (
-    <article className='flex flex-col gap-4 border-t-2 py-7 md:py-8 '>
+    <article ref={articleRef} className='flex flex-col gap-4 border-t-2 py-7 md:py-8 group hover:cursor-pointer' id={`${data.id}`}
+    onClick={()=>{
+      console.log(articleRef?.current?.id)
+    }}
+    >
       <div className='card-head flex gap-3'>
         <div className=''>
           <img src='/assets/user.png' alt='avatar' className='w-9' />
@@ -35,7 +42,7 @@ export default function Card1({ tagNone = '', data = defaultData }) {
 
       <div className='card-content grid h-40 grid-cols-[2.8fr,1.3fr] items-center gap-4 overflow-hidden md:h-48'>
         <div className='h-40 md:h-48'>
-          <h2 className='pb-2 text-lg font-bold !leading-6 md:text-2xl'>
+          <h2 className='pb-2 text-lg font-bold !leading-6 md:text-2xl group-hover:underline'>
             {data?.title || defaultData?.title}
           </h2>
           <p className='text-sm text-[var(--text-gray)]'>
