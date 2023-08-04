@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './components/Main'
 import Navbar from './components/Navbar'
 import View from './components/articleView/View'
-import ArticleEdit from './components/forms/articleEdit'
 import FormContainer from './components/forms/FormContainer'
 import NotFound from './components/NotFound'
 import Signin from './components/forms/Signin'
@@ -12,6 +11,8 @@ import MyArticles from './components/user/MyArticles'
 import ReadingList from './components/user/ReadingList'
 import EditProfile from './components/user/EditProfile'
 import { ErrorBoundary } from 'react-error-boundary'
+import CreateArticle from './components/forms/CreateArticle'
+import EditArticle from './components/forms/EditArticle'
 
 function fallbackRender({ error, resetErrorBoundary }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -41,7 +42,8 @@ export default function App() {
 
             {/* Protected routes / Only accessible when signedIn */}
             <Route element={<CheckAuth />}>
-              <Route path='edit' element={<ArticleEdit />} />
+                <Route element={<EditArticle />} path='edit'/>
+                <Route element={<CreateArticle />} path='create'/>
               <Route path='user/articles' element={<MyArticles />} />
               <Route path='user/bookmarks' element={<ReadingList />} />
               <Route path='user/profile' element={<EditProfile />} />

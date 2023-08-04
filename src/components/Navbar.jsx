@@ -27,11 +27,11 @@ export default function Navbar() {
           </h1>
 
           <div className='resize-svg | -ms-7 flex items-center gap-3 md:gap-6'>
-            <Link
-              to={isSignedIn ? '/edit' : '/auth/signin'}
-              state={{ from: location, to: '/edit' }}
-            >
-              <button className='btn h-auto min-h-0 border-none bg-transparent p-1 capitalize  text-inherit hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-200)] '>
+              <Link
+                to={isSignedIn ? '/create' : '/auth/signin'}
+                state={{ from: location, to: '/create' }}
+                className='btn h-auto min-h-0 border-none bg-transparent p-1 capitalize  text-inherit hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-200)] '
+              >
                 <img
                   src={editing}
                   alt='edit'
@@ -40,9 +40,7 @@ export default function Navbar() {
                 <span className='hidden md:inline-block lg:text-base'>
                   Write
                 </span>
-              </button>
-            </Link>
-
+              </Link>
             <div className='group relative'>
               <button className='rounded-full'>
                 <FontAwesomeIcon
