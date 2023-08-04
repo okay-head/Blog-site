@@ -1,6 +1,6 @@
 const defaultData = {
   id: 1,
-  avatar: null,
+  avatar: '/assets/user.png',
   author: 'Tim Urban',
   date: '16th April, 2023',
   title: 'Long term effects of our increasing disconnect from nature',

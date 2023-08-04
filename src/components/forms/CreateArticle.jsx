@@ -1,14 +1,58 @@
 import { useForm } from 'react-hook-form'
 import Container from '../Container'
+import useContextHook from '../../state/useContextHook'
+import { format } from 'fecha'
+import axios from 'axios'
 
 export default function CreateArticle() {
+  const { user, setUser } = useContextHook()
+  const postUrl = `http://localhost:3000/data`
+  const patchUrl = `http://localhost:3000/user/${user.id}`
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
+
+  const submitHandler = async (data) => {
+    // create article
+    const postPayload = JSON.stringify({
+      avatar: user.user_avatar,
+      author: user.user_displayName,
+      author_id: user.id,
+      date: format(Date.now(), 'Do MMMM, YYYY'),
+      title: data.title,
+      body: data.body,
+      tags: data.tags.trim().split(' '),
+      hero: null,
+    })
+
+
+    try {
+      // making a post request
+      const postRes = await axios.post(postUrl, postPayload, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      // if succeeds
+      console.log('Response successful! Make patch req', postRes)
+      const patchPayload = JSON.stringify({
+        user_articles:[...user.user_articles,postRes.data.id],
+      })
+  
+      console.log(patchPayload);
+      const patchRes = await axios.patch(patchUrl, patchPayload,{
+        headers: { 'Content-Type': 'application/json' },
+      })
+      console.log(patchRes)
+      setUser(patchRes.data)
+    } catch (e) {
+      // any error
+      throw new Error(e)
+    }
+  }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='create-article'>
@@ -111,7 +155,7 @@ export default function CreateArticle() {
                 className='file-input-bordered file-input w-full max-w-sm border-2 text-sm lg:text-base'
                 {...register('hero', {
                   required: {
-                    value: true,
+                    value: false,
                     message: 'Please upload a hero image',
                   },
                 })}
