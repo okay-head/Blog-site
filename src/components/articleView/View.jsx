@@ -1,10 +1,14 @@
 import useContextHook from '../../state/useContextHook'
 import Container from '../Container'
 import Tag from '../cards/Tag'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function View() {
+  const {state:{ref}} = useLocation()
   const { isSignedIn } = useContextHook()
+
+  console.log(ref)
+  
   return (
     <Container classVars='lg:max-w-5xl xl:px-0'>
       <article

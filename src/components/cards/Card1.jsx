@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
+import { useNavigate } from 'react-router-dom'
 const defaultData = {
   id: 1,
   avatar: null,
@@ -14,11 +15,12 @@ const defaultData = {
 export default function Card1({ tagNone = '', data = defaultData }) {
   const { isSignedIn } = useContextHook()
   const articleRef = useRef(null)
+  const navigate = useNavigate()
 
   return (
     <article ref={articleRef} className='flex flex-col gap-4 border-t-2 py-7 md:py-8 group hover:cursor-pointer' id={`${data.id}`}
     onClick={()=>{
-      console.log(articleRef?.current?.id)
+      navigate(`/view/${articleRef?.current?.id}`,{state:{ref:articleRef?.current?.id}})
     }}
     >
       <div className='card-head flex gap-3'>

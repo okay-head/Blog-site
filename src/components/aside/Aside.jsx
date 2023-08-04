@@ -20,7 +20,7 @@ export default function Aside() {
     addEventListener('resize', handleResize)
   }
   const { isSignedIn, user } = useContextHook()
-  isSignedIn ? console.log(`Aside: `, user) : ''
+  // isSignedIn ? console.log(`Aside: `, user) : ''
 
   useEffect(() => {
     resizeFn()

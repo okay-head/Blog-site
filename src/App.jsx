@@ -35,7 +35,7 @@ export default function App() {
               <Route path='signin' element={<Signin />} />
               <Route path='signup' element={<Signup />} />
             </Route>
-            <Route path='view' element={<View />} />
+            <Route path='view/:id' element={<View />} />
             <Route path='notfound' element={<NotFound />} />
             <Route path='*' element={<NotFound />} />
 
