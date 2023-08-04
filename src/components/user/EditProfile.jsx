@@ -2,46 +2,17 @@ import { useForm } from 'react-hook-form'
 import Container from '../Container'
 import useContextHook from '../../state/useContextHook'
 import { useEffect } from 'react'
+import axios from 'axios'
 
 export default function EditProfile() {
-  const { user } = useContextHook()
-
-  // prefill with user values
-  // HAVE to use controlled form components
-  // or just try using default props
+  const { user, setUser } = useContextHook()
+  const postUrl = `http://localhost:3300/user/${user.id}`
+  // prefill with user values - use default props (refs don't work, so don't controlled components, and neither regular DOM manipulation)
   useEffect(() => {
-/*  
-    // This doesn't work too
-    nameRef.current.value = user?.user_displayName
-    emailRef.current.value = user?.user_email
-    passwordRef.current.value = user?.user_passHash
-    avatarRef.current.value = ''
- */
-
-    // wrong approach
-/*     const collection = document.getElementsByTagName('input')
-    for (const element of collection) {
-      switch (element.id) {
-        case 'name':
-          element.value = user?.user_displayName
-          break;
-          case 'email':
-          element.value = user?.user_email
-          break;
-        case 'password':
-          element.value = user?.user_passHash
-          break;
-        case 'avatar':
-          document.getElementById('current-avatar').setAttribute('src',user?.user_avatar)
-          break;
-      
-        default:
-          break;
-      }
-    }
- */    
-  }, [])
-
+    document
+      .getElementById('current-avatar')
+      .setAttribute('src', user?.user_avatar)
+  }, [user])
   // console.log(`Edit profile: Edit profile for ${user?.user_displayName} `, user)
   const {
     register,
@@ -51,48 +22,58 @@ export default function EditProfile() {
   const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
 
-  const submitHandler = ({ name, email, password, avatar }) => {
-    // apply more validations, firebase auth etc..
-    console.clear()
-
-    // user cannot change email to something that already exists
-    // instead of performing this check, which would be costly
-    // disable edit for the email input
-
-    /* __ Post to db__ */
-    // process image
-    // let reader = new FileReader()
-    // reader.readAsDataURL(avatar[0])
-    
-    // reader.onload =  ()=> {
-    //   avatar = reader.result
-
-    let patch = undefined
+  const patchHandler = async(name, email, password, avatar) => {
     try {
-      patch = async () => {
         const payload = JSON.stringify({
           user_displayName: name,
           user_email: email,
           user_passHash: password,
           user_avatar: avatar,
         })
-
-        console.log(Object.values(JSON.parse(payload).user_avatar).length)
-        // if(Object.entries(JSON.parse(payload).user_avatar).length){
-        //   console.log('inside if',);
-        // }
-        // return await axios.patch('http://localhost:3300/user', payload, {
-        //   headers: { 'Content-Type': 'application/json' },
-        // })
-      }
-      patch()
+        return await axios.patch(postUrl, payload, {
+          headers: { 'Content-Type': 'application/json' },
+        })
     } catch (e) {
       throw new Error(e)
     }
-    
-    // post.then((res)=>console.log(`Entry updated!`,res))
   }
-  // }
+
+  
+  const submitHandler = ({ name, email, password, avatar }) => {
+    // apply more validations, firebase auth etc..
+    console.clear()
+
+    /* __ Post to db__ */
+
+    // check if img input is left unchanged
+    if (avatar=='' || Object.values(avatar).length==0) {
+      avatar= user.user_avatar
+      patchHandler(name, email, password, avatar)
+      patchHandler()
+      .then((d)=>{
+        alert('update successful!')
+        console.log(d)
+        // update the data in context as well
+        setUser(d.data)
+      })
+      return
+    }
+    // process image if input changed
+    let reader = new FileReader()
+    reader.readAsDataURL(avatar[0])
+
+    reader.onload = () => {
+      avatar = reader.result
+      patchHandler(name, email, password, avatar)
+      patchHandler()
+      .then((d)=>{
+        alert('update successful!')
+        console.log(d)
+        // update the data in context as well
+        setUser(d.data)
+      })
+    }
+  }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='edit-profile'>
@@ -111,7 +92,7 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Display name</span>
               </label>
-              <input  
+              <input
                 {...register('name', {
                   required: 'Display name is required',
                 })}
@@ -121,7 +102,6 @@ export default function EditProfile() {
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
                 defaultValue={user?.user_displayName || ''}
-                
               />
               {errors.name && (
                 <label className='label pb-0'>
@@ -135,7 +115,7 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Email</span>
               </label>
-              <input  
+              <input
                 // {...register('email', {
                 //   required: 'Email is required',
                 //   pattern: {
@@ -149,8 +129,7 @@ export default function EditProfile() {
                 id='email'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
-                defaultValue={user?.user_email||''}
-                
+                defaultValue={user?.user_email || ''}
               />
               {errors.email && (
                 <label className='label pb-0'>
@@ -164,7 +143,7 @@ export default function EditProfile() {
               <label className='label'>
                 <span className='label-text font-semibold'>Password</span>
               </label>
-              <input  
+              <input
                 {...register('password', {
                   required: 'Password is required',
                   minLength: {
@@ -177,8 +156,7 @@ export default function EditProfile() {
                 id='password'
                 placeholder='Type here'
                 className='input-bordered input w-full max-w-2xl border-2'
-                defaultValue={user?.user_passHash||''}
-                
+                defaultValue={user?.user_passHash || ''}
               />
               {errors.password && (
                 <label className='label pb-0'>
@@ -192,12 +170,12 @@ export default function EditProfile() {
             <div className='avatar-container form-control min-h-[6rem] w-full max-w-2xl'>
               <label className='label'>
                 <span className='label-text font-semibold'>
-                  Avatar (optional)
+                  Avatar
                 </span>
               </label>
 
               <div className='flex items-center justify-between'>
-                <input 
+                <input
                   {...register('avatar', {
                     required: false,
                   })}
@@ -206,10 +184,14 @@ export default function EditProfile() {
                   id='avatar'
                   accept='.jpg, .jpeg, .png'
                   className='file-input-bordered file-input w-full max-w-xl border-2'
-                defaultValue={''}
-                 
+                  defaultValue={''}
                 />
-                <img src='/assets/user.png' id='current-avatar' className='ms-4 w-11 lg:w-14' alt='current user image'/>
+                <img
+                  src='/assets/user.png'
+                  id='current-avatar'
+                  className='ms-4 w-11 lg:w-14'
+                  alt='current user image'
+                />
               </div>
             </div>
 
