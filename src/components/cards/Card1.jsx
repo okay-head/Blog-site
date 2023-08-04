@@ -19,7 +19,9 @@ export default function Card1({ tagNone = '', data = defaultData }) {
           <img src='/assets/user.png' alt='avatar' className='w-9' />
         </div>
         <div>
-          <span className='block text-sm font-semibold'>{data?.author || defaultData?.author}</span>
+          <span className='block text-sm font-semibold'>
+            {data?.author || defaultData?.author}
+          </span>
           <span className='block text-xs font-semibold text-[var(--text-gray)]'>
             3 min read
           </span>

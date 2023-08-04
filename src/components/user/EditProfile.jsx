@@ -6,14 +6,14 @@ import axios from 'axios'
 
 export default function EditProfile() {
   const { user, setUser } = useContextHook()
-  const postUrl = `http://localhost:3300/user/${user.id}`
+  const postUrl = `http://localhost:3000/user/${user.id}`
+
   // prefill with user values - use default props (refs don't work, so don't controlled components, and neither regular DOM manipulation)
   useEffect(() => {
     document
       .getElementById('current-avatar')
       .setAttribute('src', user?.user_avatar)
   }, [user])
-  // console.log(`Edit profile: Edit profile for ${user?.user_displayName} `, user)
   const {
     register,
     handleSubmit,
@@ -22,23 +22,22 @@ export default function EditProfile() {
   const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
 
-  const patchHandler = async(name, email, password, avatar) => {
+  const patchHandler = async (name, email, password, avatar) => {
     try {
-        const payload = JSON.stringify({
-          user_displayName: name,
-          user_email: email,
-          user_passHash: password,
-          user_avatar: avatar,
-        })
-        return await axios.patch(postUrl, payload, {
-          headers: { 'Content-Type': 'application/json' },
-        })
+      const payload = JSON.stringify({
+        user_displayName: name,
+        user_email: email,
+        user_passHash: password,
+        user_avatar: avatar,
+      })
+      return await axios.patch(postUrl, payload, {
+        headers: { 'Content-Type': 'application/json' },
+      })
     } catch (e) {
       throw new Error(e)
     }
   }
 
-  
   const submitHandler = ({ name, email, password, avatar }) => {
     // apply more validations, firebase auth etc..
     console.clear()
@@ -46,11 +45,10 @@ export default function EditProfile() {
     /* __ Post to db__ */
 
     // check if img input is left unchanged
-    if (avatar=='' || Object.values(avatar).length==0) {
-      avatar= user.user_avatar
+    if (avatar == '' || Object.values(avatar).length == 0) {
+      avatar = user.user_avatar
       patchHandler(name, email, password, avatar)
-      patchHandler()
-      .then((d)=>{
+      patchHandler().then((d) => {
         alert('update successful!')
         console.log(d)
         // update the data in context as well
@@ -65,8 +63,7 @@ export default function EditProfile() {
     reader.onload = () => {
       avatar = reader.result
       patchHandler(name, email, password, avatar)
-      patchHandler()
-      .then((d)=>{
+      patchHandler().then((d) => {
         alert('update successful!')
         console.log(d)
         // update the data in context as well
@@ -169,9 +166,7 @@ export default function EditProfile() {
             {/* avatar */}
             <div className='avatar-container form-control min-h-[6rem] w-full max-w-2xl'>
               <label className='label'>
-                <span className='label-text font-semibold'>
-                  Avatar
-                </span>
+                <span className='label-text font-semibold'>Avatar</span>
               </label>
 
               <div className='flex items-center justify-between'>
@@ -204,6 +199,3 @@ export default function EditProfile() {
     </Container>
   )
 }
-
-// pull out user from context ✔
-// data from axios

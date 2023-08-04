@@ -27,7 +27,10 @@ export default function Navbar() {
           </h1>
 
           <div className='resize-svg | -ms-7 flex items-center gap-3 md:gap-6'>
-            <Link to={isSignedIn ? '/edit' : '/auth/signin'} state={{from:location, to:'/edit'}}>
+            <Link
+              to={isSignedIn ? '/edit' : '/auth/signin'}
+              state={{ from: location, to: '/edit' }}
+            >
               <button className='btn h-auto min-h-0 border-none bg-transparent p-1 capitalize  text-inherit hover:bg-[var(--gray-100)] md:bg-[var(--gray-100)] md:px-4 md:py-2 md:hover:bg-[var(--gray-200)] '>
                 <img
                   src={editing}
@@ -56,19 +59,26 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-logged-in'
-                  className='dropdown-content menu hidden absolute -left-24 top-10 z-[100]  w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden  w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
                 >
                   <li>
-                    <Link className='mt-1' to='/user/articles'>My articles</Link>
+                    <Link className='mt-1' to='/user/articles'>
+                      My articles
+                    </Link>
                   </li>
                   <li>
-                    <Link className='mt-1' to='/user/bookmarks'>My reading list</Link>
+                    <Link className='mt-1' to='/user/bookmarks'>
+                      My reading list
+                    </Link>
                   </li>
                   <li>
-                    <Link className='mt-1' to='/user/profile' replace>Edit profile</Link>
+                    <Link className='mt-1' to='/user/profile' replace>
+                      Edit profile
+                    </Link>
                   </li>
                   <li>
-                    <Link className='mt-1'
+                    <Link
+                      className='mt-1'
                       onClick={() => {
                         setSignedIn(false)
                         // clear localStorage

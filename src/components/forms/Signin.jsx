@@ -9,8 +9,8 @@ export default function Signin() {
   const [data, setData] = useState('User data is empty')
   useEffect(() => {
     try {
-      (async function getData() {
-        const response = await axios.get('http://localhost:3300/user')
+      ;(async function getData() {
+        const response = await axios.get('http://localhost:3000/user')
         setData(response.data)
       })()
     } catch (e) {
@@ -43,11 +43,11 @@ export default function Signin() {
       alert('Email not found!\nPlease Sign Up if you are a new user.')
       return
     }
-    if(user.user_passHash!=password){
+    if (user.user_passHash != password) {
       alert('Incorrect password! Try again.')
       return
     }
-    console.log(`Signed in as ${user?.user_displayName}`,user)
+    console.log(`Signed in as ${user?.user_displayName}`, user)
     setSignedIn(true)
     setUser(user)
     navigate(redirectTo)

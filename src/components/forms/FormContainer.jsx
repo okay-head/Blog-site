@@ -25,7 +25,7 @@ export default function FormContainer() {
           style={{ width: 'min(24rem,100% )' }}
         >
           <div className='card-body py-12'>
-            <Outlet context={{redirectTo} } />
+            <Outlet context={{ redirectTo }} />
           </div>
         </div>
       </article>

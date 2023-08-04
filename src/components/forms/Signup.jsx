@@ -3,6 +3,7 @@ import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import userImg from '../../../public/assets/blob/userImg'
 
 export default function Signup() {
   // get all users
@@ -10,7 +11,7 @@ export default function Signup() {
   useEffect(() => {
     try {
       ;(async function getData() {
-        const response = await axios.get('http://localhost:3300/user')
+        const response = await axios.get('http://localhost:3000/user')
         setData(response.data)
       })()
     } catch (e) {
@@ -44,47 +45,54 @@ export default function Signup() {
     }
 
     // if not then post to db
-    
-    // process image
+    const postHandler = () => {
+      const seed = (Math.random() * 100).toFixed(0) + Date.now()
+      let post = undefined
+      // 'id' attribute is important to every payload !!
+      try {
+        console.log(avatar)
+        post = async () => {
+          const payload = JSON.stringify({
+            id: seed,
+            user_id: seed,
+            user_displayName: name,
+            user_email: email,
+            user_passHash: password,
+            user_avatar: avatar,
+            user_articles: [],
+            user_bookmarks: [],
+          })
+
+          return await axios.post('http://localhost:3000/user', payload, {
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
+      } catch (e) {
+        throw new Error(e)
+      }
+      // After entry is added
+      post().then((d) => {
+        user = d.data
+        console.log(`Signed in as ${user?.user_displayName}`, user)
+        setSignedIn(true)
+        setUser(user)
+        navigate(redirectTo)
+      })
+    }
+
+    if (avatar == '' || Object.values(avatar).length == 0) {
+      avatar = userImg()
+      postHandler()
+      return
+    }
+    // process image if exists
     let reader = new FileReader()
     reader.readAsDataURL(avatar[0])
-    
-    reader.onload =  ()=> {
+
+    reader.onload = () => {
       avatar = reader.result
-
-
-    const seed = (Math.random() * 100).toFixed(0) + Date.now()
-    let post = undefined
-    // 'id' attribute is important to every payload !!
-    try {
-      post = async () => {
-        const payload = JSON.stringify({
-          id: seed,
-          user_id: seed,
-          user_displayName: name,
-          user_email: email,
-          user_passHash: password,
-          user_avatar: avatar,
-          user_articles: [],
-          user_bookmarks: [],
-        })
-
-        return await axios.post('http://localhost:3300/user', payload, {
-          headers: { 'Content-Type': 'application/json' },
-        })
-      }
-    } catch (e) {
-      throw new Error(e)
+      postHandler()
     }
-    // After entry is added
-    post().then((d) => {
-      user = d.data
-      console.log(`Signed in as ${user?.user_displayName}`, user)
-      setSignedIn(true)
-      setUser(user)
-      navigate(redirectTo)
-    })
-  }
   }
 
   return (

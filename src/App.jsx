@@ -11,45 +11,44 @@ import CheckAuth from './components/CheckAuth'
 import MyArticles from './components/user/MyArticles'
 import ReadingList from './components/user/ReadingList'
 import EditProfile from './components/user/EditProfile'
-import {ErrorBoundary} from 'react-error-boundary'
+import { ErrorBoundary } from 'react-error-boundary'
 
 function fallbackRender({ error, resetErrorBoundary }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
   return (
-    <div role="alert">
+    <div role='alert'>
       <p>Something went wrong:</p>
-      <pre style={{ color: "red" }}>{error.message}</pre>
+      <pre style={{ color: 'red' }}>{error.message}</pre>
     </div>
-  );
+  )
 }
 export default function App() {
   return (
     <ErrorBoundary fallbackRender={fallbackRender}>
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path='/'>
-          <Route index element={<Main />} />
-          <Route path='auth/' element={<FormContainer />}>
-            <Route path='signin' element={<Signin />} />
-            <Route path='signup' element={<Signup />} />
-          </Route>
-          <Route path='view' element={<View />} />
-          <Route path='notfound' element={<NotFound />} />
-          <Route path='*' element={<NotFound />} />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/'>
+            <Route index element={<Main />} />
+            <Route path='auth/' element={<FormContainer />}>
+              <Route path='signin' element={<Signin />} />
+              <Route path='signup' element={<Signup />} />
+            </Route>
+            <Route path='view' element={<View />} />
+            <Route path='notfound' element={<NotFound />} />
+            <Route path='*' element={<NotFound />} />
 
-          {/* Protected routes / Only accessible when signedIn */}
-          <Route element={<CheckAuth />}>
-            <Route path='edit' element={<ArticleEdit />} />
-            <Route path='user/articles' element={<MyArticles />} />
-            <Route path='user/bookmarks' element={<ReadingList />} />
-            <Route path='user/profile' element={<EditProfile />} />
+            {/* Protected routes / Only accessible when signedIn */}
+            <Route element={<CheckAuth />}>
+              <Route path='edit' element={<ArticleEdit />} />
+              <Route path='user/articles' element={<MyArticles />} />
+              <Route path='user/bookmarks' element={<ReadingList />} />
+              <Route path='user/profile' element={<EditProfile />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </ErrorBoundary>
-
   )
 }
