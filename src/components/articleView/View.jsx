@@ -4,11 +4,12 @@ import useContextHook from '../../state/useContextHook'
 import Container from '../Container'
 import Tag from '../cards/Tag'
 import { Link, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 export default function View() {
   // const {state:{ref, data}} = useLocation()
   const { state } = useLocation()
-  const { isSignedIn, user } = useContextHook()
+  const { isSignedIn, user, setUser } = useContextHook()
 
   const [data, setData] = useState({})
 
@@ -17,9 +18,35 @@ export default function View() {
     setData(state?.data)
     root.scrollTop = 0
   }, [])
-  // console.log(defaultData)
-  // console.log({ref,data})
 
+  const patchUrl = `http://localhost:3000/user/${user?.id}`
+  const addBookmark = async () => {
+    // console.log('bookmark added')
+    // make a patch request
+    // update user state
+    try {
+      // first check if bookmark already exists
+      if (user.user_bookmarks.find((x) => x == data.id)) {
+        alert('Already added to bookmarks!')
+        return
+      }
+
+      const patchRes = await axios.patch(
+        patchUrl,
+        JSON.stringify({
+          user_bookmarks: [...user.user_bookmarks, data.id],
+        }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+      alert('Bookmark added!')
+      console.log(patchRes)
+      setUser(patchRes.data)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
   return (
     <Container classVars='lg:max-w-5xl xl:px-0'>
       <article
@@ -34,7 +61,11 @@ export default function View() {
 
         <div className='card-head flex items-center gap-2 lg:gap-3'>
           <div>
-            <img src='/assets/user.png' alt='avatar' className='w-11 lg:w-14' />
+            <img
+              src={data?.avatar || defaultData?.avatar}
+              alt='avatar'
+              className='aspect-square w-11 rounded-full lg:w-14'
+            />
           </div>
 
           <div className='flex flex-col gap-[1px]'>
@@ -64,7 +95,11 @@ export default function View() {
               ) : (
                 <span></span>
               )}
-              <button id='bookmark-article' className='-mb-1 block w-7 lg:w-10'>
+              <button
+                onClick={addBookmark}
+                id='bookmark-article'
+                className='-mb-1 block w-7 lg:w-10'
+              >
                 <img src='/assets/book(1).png' alt='book' />
               </button>
             </div>

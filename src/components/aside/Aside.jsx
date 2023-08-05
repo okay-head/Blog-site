@@ -8,6 +8,14 @@ import 'sticksy'
 import useContextHook from '../../state/useContextHook'
 
 export default function Aside() {
+  // console.log('Aside renders');
+
+  // useEffect(()=>{
+  //   //not signed in 
+  //   if(!(localStorage.getItem('user_data'))){
+  //     window.location.reload()
+  //   }
+  // })
   /*   -------- resize logic -------- */
   //debounce/ optimize later
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
