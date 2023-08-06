@@ -1,14 +1,48 @@
 import { useForm } from 'react-hook-form'
 import Container from '../Container'
+import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import axios from 'axios'
 
 export default function EditArticle() {
+  const { state } = useLocation()
+  const [articleData, setArticleData] = useState(state?.data)
+
+  //notice we didnt init w a useEffect here as in View.jsx
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
+
+  const patchUrl = `http://localhost:3000/data/${articleData?.id}`
+
+  const submitHandler = async ({ title, body, tags }) => {
+    // make a patch
+    try {
+      const patchRes = await axios.patch(
+        patchUrl,
+        JSON.stringify({
+          title,
+          body,
+          tags: tags.trim().split(' '),
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+
+      alert('Article edited!')
+      console.log(patchRes)
+      setArticleData(patchRes.data)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='edit-article'>
@@ -47,6 +81,7 @@ export default function EditArticle() {
                     message: 'Title should be less than 70 chars',
                   },
                 })}
+                defaultValue={articleData?.title || ''}
               />
               {errors.title && (
                 <label className='label'>
@@ -84,6 +119,7 @@ export default function EditArticle() {
                     message: 'Body should be less than 7000 chars',
                   },
                 })}
+                defaultValue={articleData?.body || ''}
               />
               {errors.body && (
                 <label className='label'>
@@ -109,12 +145,12 @@ export default function EditArticle() {
                 type='file'
                 placeholder='Enter article hero'
                 className='file-input-bordered file-input w-full max-w-sm border-2 text-sm lg:text-base'
-                {...register('hero', {
-                  required: {
-                    value: true,
-                    message: 'Please upload a hero image',
-                  },
-                })}
+                // {...register('hero', {
+                //   // required: {
+                //   //   value: true,
+                //   //   message: 'Please upload a hero image',
+                //   // },
+                // })}
               />
               {errors.hero && (
                 <label className='label'>
@@ -145,6 +181,11 @@ export default function EditArticle() {
                     message: 'Atleast two tags are required',
                   },
                 })}
+                defaultValue={
+                  (Array.isArray(articleData?.tags) &&
+                    articleData?.tags.join(' ')) ||
+                  ''
+                }
               />
               {errors.tags && (
                 <label className='label'>

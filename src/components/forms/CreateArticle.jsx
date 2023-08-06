@@ -29,7 +29,6 @@ export default function CreateArticle() {
       hero: null,
     })
 
-
     try {
       // making a post request
       const postRes = await axios.post(postUrl, postPayload, {
@@ -39,11 +38,11 @@ export default function CreateArticle() {
       // if succeeds
       console.log('Response successful! Make patch req', postRes)
       const patchPayload = JSON.stringify({
-        user_articles:[...user.user_articles,postRes.data.id],
+        user_articles: [...user.user_articles, postRes.data.id],
       })
-  
-      console.log(patchPayload);
-      const patchRes = await axios.patch(patchUrl, patchPayload,{
+
+      console.log(patchPayload)
+      const patchRes = await axios.patch(patchUrl, patchPayload, {
         headers: { 'Content-Type': 'application/json' },
       })
       console.log(patchRes)

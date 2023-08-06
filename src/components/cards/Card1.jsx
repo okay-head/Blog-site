@@ -19,7 +19,11 @@ export default function Card1({ tagNone = '', data = defaultData }) {
     >
       <div className='card-head flex gap-3'>
         <div className=''>
-          <img src={data?.avatar || defaultData?.avatar} alt='avatar' className='w-9 rounded-full aspect-square' />
+          <img
+            src={data?.avatar || defaultData?.avatar}
+            alt='avatar'
+            className='aspect-square w-9 rounded-full'
+          />
         </div>
         <div>
           <span className='block text-sm font-semibold'>

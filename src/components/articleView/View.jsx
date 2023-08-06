@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 export default function View() {
-  // const {state:{ref, data}} = useLocation()
   const { state } = useLocation()
   const { isSignedIn, user, setUser } = useContextHook()
 
@@ -86,12 +85,14 @@ export default function View() {
               className='me-6 ms-auto flex gap-3 self-end'
             >
               {user?.id == data.author_id ? (
-                <button
+                <Link
+                  to='/edit'
+                  state={{ data }}
                   id='edit-article'
                   className='-mb-1 block w-8 rotate-[270deg] lg:w-11'
                 >
                   <img src='/assets/pen(1).png' alt='pencil' />
-                </button>
+                </Link>
               ) : (
                 <span></span>
               )}
@@ -123,14 +124,18 @@ export default function View() {
         </div>
 
         <div className={`tags mt-1 flex gap-3`}>
-          <Tag
-            txt={(data?.tags && data.tags[0]) || defaultData?.tags[0]}
-            classVars='lg:text-base'
-          />
-          <Tag
-            txt={(data?.tags && data.tags[1]) || defaultData?.tags[1]}
-            classVars='lg:text-base'
-          />
+          {data?.tags
+            ? data.tags.map((x, i) => (
+                <Tag
+                  key={Number(data.id) + i}
+                  txt={x}
+                  classVars='lg:text-base'
+                />
+              ))
+            : defaultData?.tags &&
+              defaultData.tags.map((x, i) => (
+                <Tag key={i} txt={x} classVars='lg:text-base' />
+              ))}
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
