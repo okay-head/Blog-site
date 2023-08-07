@@ -6,7 +6,7 @@ import useContextHook from '../state/useContextHook'
 import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
-  const { isSignedIn, setSignedIn } = useContextHook()
+  const { isSignedIn, setSignedIn, user } = useContextHook()
 
   const location = useLocation().pathname
   return (
@@ -41,11 +41,19 @@ export default function Navbar() {
             </Link>
             <div className='group relative'>
               <button className='rounded-full'>
-                <FontAwesomeIcon
-                  icon={faCircleUser}
-                  size='2x'
-                  style={{ color: '#C6C3BD' }}
-                />
+                {isSignedIn ? (
+                  <img
+                    src={user?.user_avatar}
+                    alt='user-img'
+                    className='-mb-1 aspect-square w-8 rounded-full md:w-9'
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faCircleUser}
+                    size='2x'
+                    style={{ color: '#C6C3BD' }}
+                  />
+                )}
                 <span className='absolute inset-0 -left-4 h-12 w-16 bg-transparent  text-transparent'>
                   to ease hover
                 </span>
