@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
 import { useNavigate } from 'react-router-dom'
 import defaultData from '../../state/defaultData'
+
 export default function Card1({ tagNone = '', data = defaultData }) {
   const { isSignedIn } = useContextHook()
   const articleRef = useRef(null)

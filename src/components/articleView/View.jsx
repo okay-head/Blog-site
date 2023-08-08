@@ -10,6 +10,8 @@ export default function View() {
   const { state } = useLocation()
   const { isSignedIn, user, setUser } = useContextHook()
 
+  // article data is coming from route state
+  // i.e. it won't be passed when navigating directly thru url
   const [data, setData] = useState({})
 
   const root = document.getElementsByTagName('html')[0]
@@ -84,7 +86,7 @@ export default function View() {
               id='user-logged-in-article-tools'
               className='me-6 ms-auto flex gap-3 self-end'
             >
-              {user?.id == data.author_id ? (
+              {user?.id == data?.author_id ? (
                 <Link
                   to='/edit'
                   state={{ data }}
