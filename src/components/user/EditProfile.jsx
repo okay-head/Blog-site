@@ -39,6 +39,10 @@ export default function EditProfile() {
   }
 
   const submitHandler = ({ name, email, password, avatar }) => {
+    name = name.split('')
+    name.unshift(name.shift().toUpperCase())
+    name = name.join('')
+
     // apply more validations, firebase auth etc..
     console.clear()
 

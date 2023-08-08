@@ -48,6 +48,8 @@ export default function Signup() {
     const postHandler = () => {
       const seed = (Math.random() * 100).toFixed(0) + Date.now()
       let post = undefined
+      name = name.split('')
+      name.unshift(name.shift().toUpperCase())
       // 'id' attribute is important to every payload !!
       try {
         // console.log(avatar)
@@ -55,7 +57,7 @@ export default function Signup() {
           const payload = JSON.stringify({
             id: seed,
             user_id: seed,
-            user_displayName: name,
+            user_displayName: name.join(''),
             user_email: email,
             user_passHash: password,
             user_avatar: avatar,
