@@ -10,6 +10,7 @@
 
 :root {
   --gray-400: #d9d9d98e;
+  --gray-500: #d9d9d950;
 
   --text-gray: #808080;
   --text-lighter: hsla(0, 0%, 12%, 0.812);

@@ -4,7 +4,7 @@ import Tag from './Tag'
 import { useNavigate } from 'react-router-dom'
 import defaultData from '../../state/defaultData'
 
-export default function Card1({ tagNone = '', data = defaultData }) {
+export default function Card1({ tagNone = '', data = defaultData, classVars='' , forTag=''}) {
   const { isSignedIn } = useContextHook()
   const articleRef = useRef(null)
   const navigate = useNavigate()
@@ -12,7 +12,7 @@ export default function Card1({ tagNone = '', data = defaultData }) {
   return (
     <article
       ref={articleRef}
-      className='group flex flex-col gap-4 border-t-2 py-7 hover:cursor-pointer md:py-8'
+      className={`group flex flex-col gap-4 border-t-2 py-7 hover:cursor-pointer md:py-8 ${classVars}`}
       id={`${data.id}`}
       onClick={() => {
         navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
@@ -61,8 +61,8 @@ export default function Card1({ tagNone = '', data = defaultData }) {
         ></div>
       </div>
       <div className={`tags mt-1 flex gap-3 ${tagNone}`}>
-        <Tag txt={data?.tags[0] || defaultData?.tags[0]} />
-        <Tag txt={data?.tags[1] || defaultData?.tags[1]} />
+        <Tag classVars={forTag} txt={data?.tags[0] || defaultData?.tags[0]} />
+        <Tag classVars={forTag} txt={data?.tags[1] || defaultData?.tags[1]} />
       </div>
     </article>
   )
