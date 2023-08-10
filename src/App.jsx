@@ -7,7 +7,7 @@ import NotFound from './components/NotFound'
 import Signin from './components/forms/Signin'
 import Signup from './components/forms/Signup'
 import CheckAuth from './components/CheckAuth'
-import MyArticles from './components/user/MyArticles'
+import MyArticlesAndBookmarks from './components/user/MyArticlesAndBookmarks'
 import ReadingList from './components/user/ReadingList'
 import EditProfile from './components/user/EditProfile'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -44,8 +44,8 @@ export default function App() {
             <Route element={<CheckAuth />}>
               <Route element={<EditArticle />} path='edit' />
               <Route element={<CreateArticle />} path='create' />
-              <Route path='user/articles' element={<MyArticles />} />
-              <Route path='user/bookmarks' element={<ReadingList />} />
+              <Route path='user/articles' element={<MyArticlesAndBookmarks mode='articles' />} />
+              <Route path='user/bookmarks' element={<MyArticlesAndBookmarks mode='bookmarks' />} />
               <Route path='user/profile' element={<EditProfile />} />
             </Route>
           </Route>
