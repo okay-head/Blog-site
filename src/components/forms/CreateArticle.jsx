@@ -3,6 +3,7 @@ import Container from '../Container'
 import useContextHook from '../../state/useContextHook'
 import { format } from 'fecha'
 import axios from 'axios'
+import toTitleCase from '../../utility/toTitleCase'
 
 export default function CreateArticle() {
   const { user, setUser } = useContextHook()
@@ -23,7 +24,7 @@ export default function CreateArticle() {
       author: user.user_displayName,
       author_id: user.id,
       date: format(Date.now(), 'Do MMMM, YYYY'),
-      title: data.title,
+      title: toTitleCase(data.title),
       body: data.body,
       tags: data.tags.trim().split(' '),
       hero: null,

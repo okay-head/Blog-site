@@ -3,6 +3,7 @@ import Container from '../Container'
 import useContextHook from '../../state/useContextHook'
 import { useEffect } from 'react'
 import axios from 'axios'
+import toTitleCase from '../../utility/toTitleCase'
 
 export default function EditProfile() {
   const { user, setUser } = useContextHook()
@@ -39,10 +40,6 @@ export default function EditProfile() {
   }
 
   const submitHandler = ({ name, email, password, avatar }) => {
-    name = name.split('')
-    name.unshift(name.shift().toUpperCase())
-    name = name.join('')
-
     // apply more validations, firebase auth etc..
     console.clear()
 
@@ -51,7 +48,7 @@ export default function EditProfile() {
     // check if img input is left unchanged
     if (avatar == '' || Object.values(avatar).length == 0) {
       avatar = user.user_avatar
-      patchHandler(name, email, password, avatar)
+      patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
         alert('update successful!')
         console.log(d)
@@ -66,7 +63,7 @@ export default function EditProfile() {
 
     reader.onload = () => {
       avatar = reader.result
-      patchHandler(name, email, password, avatar)
+      patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
         alert('update successful!')
         console.log(d)

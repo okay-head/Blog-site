@@ -3,6 +3,8 @@ import Container from '../Container'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+import { format } from 'fecha'
+import toTitleCase from '../../utility/toTitleCase'
 
 export default function EditArticle() {
   const { state } = useLocation()
@@ -25,9 +27,10 @@ export default function EditArticle() {
       const patchRes = await axios.patch(
         patchUrl,
         JSON.stringify({
-          title,
+          title: toTitleCase(title),
           body,
           tags: tags.trim().split(' '),
+          date: format(Date.now(), 'Do MMMM, YYYY'),
         }),
         {
           headers: {
