@@ -76,6 +76,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           {Array.isArray(feedData) ? (
             feedData?.map((x) => (
               <Card1
+                minus={true}
                 key={x.id}
                 data={x}
                 classVars='bg-[var(--gray-100)] p-6 rounded-lg !border-t-0'

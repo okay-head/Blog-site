@@ -3,12 +3,14 @@ import useContextHook from '../../state/useContextHook'
 import Tag from './Tag'
 import { useNavigate } from 'react-router-dom'
 import defaultData from '../../state/defaultData'
+import DeleteCard from './DeleteCard'
 
 export default function Card1({
   tagNone = '',
   data = defaultData,
   classVars = '',
   forTag = '',
+  minus=false
 }) {
   const { isSignedIn } = useContextHook()
   const articleRef = useRef(null)
@@ -17,12 +19,13 @@ export default function Card1({
   return (
     <article
       ref={articleRef}
-      className={`group flex flex-col gap-4 border-t-2 py-7 hover:cursor-pointer md:py-8 ${classVars}`}
+      className={`group flex flex-col gap-4 border-t-2 py-7 hover:cursor-pointer md:py-8 relative ${classVars}`}
       id={`${data.id}`}
       onClick={() => {
         navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
       }}
     >
+      <DeleteCard minus={minus} />
       <div className='card-head flex gap-3'>
         <div className=''>
           <img
@@ -45,10 +48,9 @@ export default function Card1({
           </span>
         </div>
       </div>
-
       <div className='card-content grid h-40 grid-cols-[2.8fr,1.3fr] items-center gap-4 overflow-hidden md:h-48'>
         <div className='h-40 md:h-48'>
-          <h2 className='pb-2 text-lg font-bold !leading-6 group-hover:underline md:text-2xl'>
+          <h2 className='pb-2 text-lg font-bold !leading-6 md:text-2xl'>
             {data?.title || defaultData?.title}
           </h2>
           <p className='text-sm text-[var(--text-gray)]'>
