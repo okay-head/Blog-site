@@ -29,6 +29,9 @@ export default function App() {
     <ErrorBoundary fallbackRender={fallbackRender}>
       <BrowserRouter>
         <Navbar />
+
+        {/* need separate error boundary here */}
+
         <Routes>
           <Route path='/'>
             <Route index element={<Main />} />

@@ -3,6 +3,7 @@ import axios from 'axios'
 import Container from '../Container'
 import Card1 from '../cards/Card1'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
@@ -85,6 +86,12 @@ export default function MyArticlesAndBookmarks({ mode }) {
             <h2>Loader</h2>
           )}
         </div>
+      
+      <div className='mt-12 mb-1 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+        <Link to='/' className='me-2 underline hover:no-underline'>
+          Back to all articles
+        </Link>
+      </div>
       </Container>
     </section>
   )
