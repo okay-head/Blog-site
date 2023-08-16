@@ -14,11 +14,23 @@ export default function View() {
 
   // article data is coming from route state
   // i.e. it won't be passed when navigating directly thru url 🔴
-  const [data, setData] = useState({})
+  const [data, setData] = useState(state?.data)
 
   useEffect(() => {
-    setData(state?.data)
     scrollTop()
+    // if state data from prev route is not present, then make an api call to fetch data
+    if (!state) {
+      const x = Number(pathname.split('/')[2])
+      console.log(`Route state doesnt exist. Fetching data for ${x}...`)
+
+      let d = undefined
+      try {
+        d = (async () => axios.get(`http://localhost:3000/data/${x}`))()
+      } catch (e) {
+        throw new Error(e)
+      }
+      d.then(({ data }) => setData(data))
+    }
   }, [])
 
   const patchUrl = `http://localhost:3000/user/${user?.id}`
