@@ -1,8 +1,13 @@
 import Tooltip from '../shared/tooltip'
 
-export default function DeleteCard({minus=false}) {
+export default function DeleteCard({minus=false, mode, id, deleteCard}) {
+
+  const onClickHandler = ()=>{
+    deleteCard(mode, id)
+  }
+
   return (
-    <button className={`absolute group/btn right-7 top-7 ${minus?'':'hidden'}`}>
+    <button onClick={onClickHandler} className={`absolute group/btn right-7 top-7 ${minus?'':'hidden'}`}>
       <svg
         style={{ color: '#808080' }}
         xmlns='http://www.w3.org/2000/svg'

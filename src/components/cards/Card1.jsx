@@ -6,6 +6,8 @@ import defaultData from '../../state/defaultData'
 import DeleteCard from './DeleteCard'
 
 export default function Card1({
+  deleteCard,
+  mode,
   tagNone = '',
   data = defaultData,
   classVars = '',
@@ -25,7 +27,7 @@ export default function Card1({
         navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
       }}
     >
-      <DeleteCard minus={minus} />
+      <DeleteCard minus={minus} mode={mode} id={data.id} deleteCard={deleteCard}/>
       <div className='card-head flex gap-3'>
         <div className=''>
           <img

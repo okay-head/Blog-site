@@ -34,6 +34,8 @@ export default function MyArticlesAndBookmarks({ mode }) {
       data.then((res) => setFeedData(res.map(({ data }) => data)))
       return
     }
+
+    // if mode==bookmarks
     const data = (async () => {
       try {
         return Promise.all(
@@ -47,6 +49,41 @@ export default function MyArticlesAndBookmarks({ mode }) {
       }
     })()
     data.then((res) => setFeedData(res.map(({ data }) => data)))
+  }
+
+  const deleteCard = (mode, id)=>{
+    console.log('Delete info: ',{mode, id})
+    if (mode == 'articles') {
+      const data = (async () => {
+        try {
+          // more like patch
+          const new_user_articles = user_articles.filter((el)=>el!=(id))
+          console.log(new_user_articles)
+          // await axios.patch()
+          // await axios.delete(`http://localhost:3000/data/${id}`)
+        } catch (e) {
+          alert(e)
+          console.log(e)
+        }
+      })()
+      // data.then((res) => setFeedData(res.map(({ data }) => data)))
+      return
+    }
+
+    // if mode==bookmarks
+    // const data = (async () => {
+    //   try {
+    //     return Promise.all(
+    //       user_bookmarks.map((id) =>
+    //         axios.get(`http://localhost:3000/data/${id}`)
+    //       )
+    //     )
+    //   } catch (e) {
+    //     alert(e)
+    //     console.log(e)
+    //   }
+    // })()
+    // data.then((res) => setFeedData(res.map(({ data }) => data)))
   }
 
   return (
@@ -76,6 +113,8 @@ export default function MyArticlesAndBookmarks({ mode }) {
           {Array.isArray(feedData) ? (
             feedData?.map((x) => (
               <Card1
+              deleteCard={deleteCard}
+                mode={mode}
                 minus={true}
                 key={x.id}
                 data={x}
