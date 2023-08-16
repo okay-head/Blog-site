@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import Aside from './aside/Aside'
 import Feed from './feed/Feed'
+import scrollTop from '../utility/scrollToTop'
 export default function Main() {
   const root = document.getElementsByTagName('html')[0]
   useEffect(() => {
-    root.scrollTop = 0
+    scrollTop()
   }, [])
   return (
     <>

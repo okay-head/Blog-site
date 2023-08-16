@@ -5,19 +5,20 @@ import Container from '../Container'
 import Tag from '../cards/Tag'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import scrollTop from '../../utility/scrollToTop'
+import Tooltip from '../shared/tooltip'
 
 export default function View() {
   const { state } = useLocation()
   const { isSignedIn, user, setUser } = useContextHook()
 
   // article data is coming from route state
-  // i.e. it won't be passed when navigating directly thru url
+  // i.e. it won't be passed when navigating directly thru url 🔴
   const [data, setData] = useState({})
 
-  const root = document.getElementsByTagName('html')[0]
   useEffect(() => {
     setData(state?.data)
-    root.scrollTop = 0
+    scrollTop()
   }, [])
 
   const patchUrl = `http://localhost:3000/user/${user?.id}`
@@ -91,9 +92,15 @@ export default function View() {
                   to='/edit'
                   state={{ data }}
                   id='edit-article'
-                  className='-mb-1 block w-8 rotate-[270deg] lg:w-11'
+                  className='group relative -mb-1 block w-8  lg:w-11'
                 >
-                  <img src='/assets/pen(1).png' alt='pencil' />
+                  <img
+                    src='/assets/pen(1).png'
+                    alt='pencil'
+                    className='rotate-[270deg]'
+                  />
+
+                  <Tooltip text='Edit' left='-left-[10%]' />
                 </Link>
               ) : (
                 <span></span>
@@ -101,9 +108,11 @@ export default function View() {
               <button
                 onClick={addBookmark}
                 id='bookmark-article'
-                className='-mb-1 block w-7 lg:w-10'
+                className='group relative -mb-1 block w-7 lg:w-10'
               >
                 <img src='/assets/book(1).png' alt='book' />
+
+                <Tooltip text='Bookmark' left='-left-[46%]' />
               </button>
             </div>
           ) : (
