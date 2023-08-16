@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form'
 import Container from '../Container'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import { format } from 'fecha'
 import toTitleCase from '../../utility/toTitleCase'
 
 export default function EditArticle() {
+  const navigate = useNavigate()
   const { state } = useLocation()
   const [articleData, setArticleData] = useState(state?.data)
 
@@ -29,7 +30,10 @@ export default function EditArticle() {
         JSON.stringify({
           title: toTitleCase(title),
           body,
-          tags: tags.trim().split(' '),
+          tags: tags
+            .trim()
+            .split(' ')
+            .map((el) => toTitleCase(el)),
           date: format(Date.now(), 'Do MMMM, YYYY'),
         }),
         {
@@ -41,7 +45,8 @@ export default function EditArticle() {
 
       alert('Article edited!')
       console.log(patchRes)
-      setArticleData(patchRes.data)
+      navigate(state?.from)
+      // setArticleData(patchRes.data)
     } catch (e) {
       throw new Error(e)
     }

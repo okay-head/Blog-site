@@ -9,7 +9,7 @@ import scrollTop from '../../utility/scrollToTop'
 import Tooltip from '../shared/tooltip'
 
 export default function View() {
-  const { state } = useLocation()
+  const { pathname, state } = useLocation()
   const { isSignedIn, user, setUser } = useContextHook()
 
   // article data is coming from route state
@@ -90,7 +90,7 @@ export default function View() {
               {user?.id == data?.author_id ? (
                 <Link
                   to='/edit'
-                  state={{ data }}
+                  state={{ data, from: pathname }}
                   id='edit-article'
                   className='group relative -mb-1 block w-8  lg:w-11'
                 >

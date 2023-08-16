@@ -4,8 +4,10 @@ import useContextHook from '../../state/useContextHook'
 import { format } from 'fecha'
 import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreateArticle() {
+  const navigate = useNavigate()
   const { user, setUser } = useContextHook()
   const postUrl = `http://localhost:3000/data`
   const patchUrl = `http://localhost:3000/user/${user.id}`
@@ -48,6 +50,8 @@ export default function CreateArticle() {
       })
       console.log(patchRes)
       setUser(patchRes.data)
+      alert('Article created!')
+      navigate('/')
     } catch (e) {
       // any error
       throw new Error(e)
