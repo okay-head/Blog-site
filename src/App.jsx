@@ -47,8 +47,14 @@ export default function App() {
             <Route element={<CheckAuth />}>
               <Route element={<EditArticle />} path='edit' />
               <Route element={<CreateArticle />} path='create' />
-              <Route path='user/articles' element={<MyArticlesAndBookmarks mode='articles' />} />
-              <Route path='user/bookmarks' element={<MyArticlesAndBookmarks mode='bookmarks' />} />
+              <Route
+                path='user/articles'
+                element={<MyArticlesAndBookmarks mode='articles' />}
+              />
+              <Route
+                path='user/bookmarks'
+                element={<MyArticlesAndBookmarks mode='bookmarks' />}
+              />
               <Route path='user/profile' element={<EditProfile />} />
             </Route>
           </Route>

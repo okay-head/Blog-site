@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
-    user: { user_articles, user_bookmarks },
+    user: { user_id, user_articles, user_bookmarks },
+    setUser,
   } = useContextHook()
 
   // get feed data (iife)
@@ -15,7 +16,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
 
   useEffect(() => {
     getRequest(mode)
-  }, [mode])
+  }, [mode, user_bookmarks])
 
   const getRequest = (mode) => {
     if (mode == 'articles') {
@@ -35,7 +36,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
       return
     }
 
-    // if mode==bookmarks
+    // if mode == bookmarks
     const data = (async () => {
       try {
         return Promise.all(
@@ -51,14 +52,18 @@ export default function MyArticlesAndBookmarks({ mode }) {
     data.then((res) => setFeedData(res.map(({ data }) => data)))
   }
 
-  const deleteCard = (mode, id)=>{
-    console.log('Delete info: ',{mode, id})
+  const deleteCard = (mode, id) => {
+    console.log('Delete info: ', { mode, id })
     if (mode == 'articles') {
       const data = (async () => {
         try {
           // more like patch
-          const new_user_articles = user_articles.filter((el)=>el!=(id))
+          const new_user_articles = user_articles.filter((el) => el != id)
           console.log(new_user_articles)
+
+          // delete from the user list
+          // delete from the article list
+
           // await axios.patch()
           // await axios.delete(`http://localhost:3000/data/${id}`)
         } catch (e) {
@@ -71,19 +76,30 @@ export default function MyArticlesAndBookmarks({ mode }) {
     }
 
     // if mode==bookmarks
-    // const data = (async () => {
-    //   try {
-    //     return Promise.all(
-    //       user_bookmarks.map((id) =>
-    //         axios.get(`http://localhost:3000/data/${id}`)
-    //       )
-    //     )
-    //   } catch (e) {
-    //     alert(e)
-    //     console.log(e)
-    //   }
-    // })()
-    // data.then((res) => setFeedData(res.map(({ data }) => data)))
+    const data = (async () => {
+      const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
+      // console.log(new_user_bookmarks)
+      try {
+        return await axios.patch(
+          `http://localhost:3000/user/${user_id}`,
+          {
+            user_bookmarks: new_user_bookmarks,
+          },
+          { headers: { 'Content-Type': 'application/json' } }
+        )
+      } catch (e) {
+        alert(e)
+        console.log(e)
+      }
+    })()
+
+    data.then((res) => {
+      console.log(res.data)
+      setUser(res.data)
+      alert('Bookmark removed!')
+      // getRequest(mode)
+      // window.location.reload()
+    })
   }
 
   return (
@@ -110,10 +126,11 @@ export default function MyArticlesAndBookmarks({ mode }) {
         <div
           className={`${mode}-flex-container grid grid-flow-row grid-cols-2 gap-10`}
         >
+          {/* add condition for if no articles are present */}
           {Array.isArray(feedData) ? (
             feedData?.map((x) => (
               <Card1
-              deleteCard={deleteCard}
+                deleteCard={deleteCard}
                 mode={mode}
                 minus={true}
                 key={x.id}
@@ -126,12 +143,12 @@ export default function MyArticlesAndBookmarks({ mode }) {
             <h2>Loader</h2>
           )}
         </div>
-      
-      <div className='mt-12 mb-1 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
-        <Link to='/' className='me-2 underline hover:no-underline'>
-          Back to all articles
-        </Link>
-      </div>
+
+        <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+          <Link to='/' className='me-2 underline hover:no-underline'>
+            Back to all articles
+          </Link>
+        </div>
       </Container>
     </section>
   )
