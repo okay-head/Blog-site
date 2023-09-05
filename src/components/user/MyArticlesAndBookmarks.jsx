@@ -140,8 +140,8 @@ export default function MyArticlesAndBookmarks({ mode }) {
               />
             ))
           ): <div className='col-span-2 grid place-items-center mt-14 '>
-            <img src="/assets/icons8-bookmark-250(2).png" alt="Bookmark graphic" />
-            <h3 className='mt-4 text-lg'>Your bookmarks are empty!</h3>
+            <img src="/assets/icons8-bookmark-250(new).png" alt="Bookmark graphic" />
+            <h3 className='mt-4 text-lg text-[var(--text-lighter)] italic'>Your bookmarks are empty!</h3>
           </div>
           ) : (
             <h2>Loader</h2>
