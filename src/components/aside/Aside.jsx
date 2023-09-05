@@ -55,7 +55,7 @@ export default function Aside() {
           <div className='signedIn'>
             <section className='reading-list'>
               <h2 className='block text-lg font-bold md:text-xl'>
-                My reading list
+                My bookmarks
               </h2>
               {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
               <div className='mt-3 text-right text-xs font-semibold'>

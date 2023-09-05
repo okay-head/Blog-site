@@ -7,7 +7,7 @@ export default function NotSignedIn() {
       <div className='lg:max-w-[8rem] '>
         <h2 className='text-lg font-medium lg:text-2xl'>SIGN IN</h2>
         <p className='text-[var(--text-gray)]'>
-          to acess your reading list, favourites and much more...
+          to acess your bookmarks, favourites and much more...
         </p>
       </div>
     </section>

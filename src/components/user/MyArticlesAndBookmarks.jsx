@@ -13,7 +13,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
 
   // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
-
+  console.log(feedData)
   useEffect(() => {
     getRequest(mode)
   }, [mode, user_bookmarks])
@@ -103,7 +103,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
   }
 
   return (
-    <section className={`my-${mode} pb-8 pt-[4.5rem]`}>
+    <section className={`my-${mode} pb-24 pt-[4.5rem] relative min-h-screen`}>
       <Container classVars='pt-10'>
         <div className='heading-text justify-between border-b-2 pb-4  md:mb-10 md:flex md:pb-6'>
           <div className='heading'>
@@ -127,7 +127,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           className={`${mode}-flex-container grid grid-flow-row grid-cols-2 gap-10`}
         >
           {/* add condition for if no articles are present */}
-          {Array.isArray(feedData) ? (
+          {Array.isArray(feedData)? (feedData.length!=0?(
             feedData?.map((x) => (
               <Card1
                 deleteCard={deleteCard}
@@ -139,17 +139,27 @@ export default function MyArticlesAndBookmarks({ mode }) {
                 forTag='!border-2 !border-[var(--gray-200)]'
               />
             ))
+          ): <div className='col-span-2 grid place-items-center mt-14 '>
+            <img src="/assets/icons8-bookmark-250(2).png" alt="Bookmark graphic" />
+            <h3 className='mt-4 text-lg'>Your bookmarks are empty!</h3>
+          </div>
           ) : (
             <h2>Loader</h2>
           )}
         </div>
 
-        <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+        {/* <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+          <Link to='/' className='me-2 underline hover:no-underline'>
+            Back to all articles
+          </Link>
+        </div> */}
+      </Container>
+              <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm absolute bottom-8 right-11'>
           <Link to='/' className='me-2 underline hover:no-underline'>
             Back to all articles
           </Link>
         </div>
-      </Container>
+
     </section>
   )
 }

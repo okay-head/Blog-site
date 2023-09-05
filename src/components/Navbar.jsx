@@ -72,7 +72,7 @@ export default function Navbar() {
                   </li>
                   <li>
                     <Link className='mt-1' to='/user/bookmarks'>
-                      My reading list
+                      My bookmarks
                     </Link>
                   </li>
                   <li>
