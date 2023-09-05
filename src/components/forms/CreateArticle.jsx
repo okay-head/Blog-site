@@ -83,7 +83,7 @@ export default function CreateArticle() {
                 name='title'
                 type='text'
                 placeholder='Enter article title'
-                className='input-bordered input w-full max-w-2xl border-2 text-sm lg:text-base'
+                className='input input-bordered w-full max-w-2xl border-2 text-sm lg:text-base'
                 {...register('title', {
                   required: { value: true, message: 'Title is required' },
                   minLength: {
@@ -120,7 +120,7 @@ export default function CreateArticle() {
                 name='body'
                 type='text'
                 placeholder='Enter article body'
-                className='textarea-bordered textarea h-64 w-full max-w-2xl border-2 text-sm focus:border-2 focus:border-[#1f1f1fcf] focus:outline-0 lg:text-base'
+                className='textarea textarea-bordered h-64 w-full max-w-2xl border-2 text-sm focus:border-2 focus:border-[#1f1f1fcf] focus:outline-0 lg:text-base'
                 {...register('body', {
                   required: { value: true, message: 'Body is required' },
                   minLength: {
@@ -156,7 +156,7 @@ export default function CreateArticle() {
                 name='hero'
                 type='file'
                 placeholder='Enter article hero'
-                className='file-input-bordered file-input w-full max-w-sm border-2 text-sm lg:text-base'
+                className='file-input file-input-bordered w-full max-w-sm border-2 text-sm lg:text-base'
                 {...register('hero', {
                   required: {
                     value: false,
@@ -186,7 +186,7 @@ export default function CreateArticle() {
                 name='tags'
                 type='text'
                 placeholder='Enter space separated article tags'
-                className='input-bordered input w-full max-w-sm border-2 text-sm lg:text-base'
+                className='input input-bordered w-full max-w-sm border-2 text-sm lg:text-base'
                 {...register('tags', {
                   required: {
                     value: true,

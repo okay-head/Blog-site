@@ -75,7 +75,7 @@ export default function Signin() {
           name='email'
           id='email'
           placeholder='Type here'
-          className='custom-input input-bordered input w-full max-w-sm border-2'
+          className='custom-input input input-bordered w-full max-w-sm border-2'
         />
         {errors.email && (
           <label className='label pb-0'>
@@ -101,7 +101,7 @@ export default function Signin() {
           name='password'
           id='password'
           placeholder='Type here'
-          className='custom-input input-bordered input w-full max-w-sm border-2'
+          className='custom-input input input-bordered w-full max-w-sm border-2'
         />
         {errors.password && (
           <label className='label pb-0'>

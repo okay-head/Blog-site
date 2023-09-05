@@ -98,7 +98,7 @@ export default function EditProfile() {
                 name='name'
                 id='name'
                 placeholder='Type here'
-                className='input-bordered input w-full max-w-2xl border-2'
+                className='input input-bordered w-full max-w-2xl border-2'
                 defaultValue={user?.user_displayName || ''}
               />
               {errors.name && (
@@ -126,7 +126,7 @@ export default function EditProfile() {
                 name='email'
                 id='email'
                 placeholder='Type here'
-                className='input-bordered input w-full max-w-2xl border-2'
+                className='input input-bordered w-full max-w-2xl border-2'
                 defaultValue={user?.user_email || ''}
               />
               {errors.email && (
@@ -153,7 +153,7 @@ export default function EditProfile() {
                 name='password'
                 id='password'
                 placeholder='Type here'
-                className='input-bordered input w-full max-w-2xl border-2'
+                className='input input-bordered w-full max-w-2xl border-2'
                 defaultValue={user?.user_passHash || ''}
               />
               {errors.password && (
@@ -179,7 +179,7 @@ export default function EditProfile() {
                   name='avatar'
                   id='avatar'
                   accept='.jpg, .jpeg, .png'
-                  className='file-input-bordered file-input w-full max-w-xl border-2'
+                  className='file-input file-input-bordered w-full max-w-xl border-2'
                   defaultValue={''}
                 />
                 <img

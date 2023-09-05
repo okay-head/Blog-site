@@ -103,7 +103,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
   }
 
   return (
-    <section className={`my-${mode} pb-24 pt-[4.5rem] relative min-h-screen`}>
+    <section className={`my-${mode} relative min-h-screen pb-24 pt-[4.5rem]`}>
       <Container classVars='pt-10'>
         <div className='heading-text justify-between border-b-2 pb-4  md:mb-10 md:flex md:pb-6'>
           <div className='heading'>
@@ -127,22 +127,30 @@ export default function MyArticlesAndBookmarks({ mode }) {
           className={`${mode}-flex-container grid grid-flow-row grid-cols-2 gap-10`}
         >
           {/* add condition for if no articles are present */}
-          {Array.isArray(feedData)? (feedData.length!=0?(
-            feedData?.map((x) => (
-              <Card1
-                deleteCard={deleteCard}
-                mode={mode}
-                minus={true}
-                key={x.id}
-                data={x}
-                classVars='bg-[var(--gray-100)] p-6 rounded-lg !border-t-0'
-                forTag='!border-2 !border-[var(--gray-200)]'
-              />
-            ))
-          ): <div className='col-span-2 grid place-items-center mt-14 '>
-            <img src="/assets/icons8-bookmark-250(new).png" alt="Bookmark graphic" />
-            <h3 className='mt-4 text-lg text-[var(--text-lighter)] italic'>Your bookmarks are empty!</h3>
-          </div>
+          {Array.isArray(feedData) ? (
+            feedData.length != 0 ? (
+              feedData?.map((x) => (
+                <Card1
+                  deleteCard={deleteCard}
+                  mode={mode}
+                  minus={true}
+                  key={x.id}
+                  data={x}
+                  classVars='bg-[var(--gray-100)] p-6 rounded-lg !border-t-0'
+                  forTag='!border-2 !border-[var(--gray-200)]'
+                />
+              ))
+            ) : (
+              <div className='col-span-2 mt-14 grid place-items-center '>
+                <img
+                  src='/assets/icons8-bookmark-250(new).png'
+                  alt='Bookmark graphic'
+                />
+                <h3 className='mt-4 text-lg italic text-[var(--text-lighter)]'>
+                  Your bookmarks are empty!
+                </h3>
+              </div>
+            )
           ) : (
             <h2>Loader</h2>
           )}
@@ -154,12 +162,11 @@ export default function MyArticlesAndBookmarks({ mode }) {
           </Link>
         </div> */}
       </Container>
-              <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm absolute bottom-8 right-11'>
-          <Link to='/' className='me-2 underline hover:no-underline'>
-            Back to all articles
-          </Link>
-        </div>
-
+      <div className='absolute bottom-8 right-11 mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+        <Link to='/' className='me-2 underline hover:no-underline'>
+          Back to all articles
+        </Link>
+      </div>
     </section>
   )
 }

@@ -31,7 +31,7 @@ export default function Feed() {
             <input
               type='text'
               placeholder='Search'
-              className='input-bordered input h-auto w-full rounded-3xl !border-[1px] py-2 ps-10 placeholder:text-sm  md:max-w-xs lg:max-w-md '
+              className='input input-bordered h-auto w-full rounded-3xl !border-[1px] py-2 ps-10 placeholder:text-sm  md:max-w-xs lg:max-w-md '
             />
             <img
               src='/assets/loupe(2).png'

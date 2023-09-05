@@ -63,7 +63,7 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-logged-in'
-                  className='dropdown-content menu absolute -left-24 top-10 z-[100] hidden  w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-28 md:top-11 md:w-40 lg:text-base'
+                  className='menu dropdown-content absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-32 md:top-12 md:w-40 lg:text-base'
                 >
                   <li>
                     <Link className='mt-1' to='/user/articles'>
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-not-logged-in'
-                  className='dropdown-content menu absolute -left-10 top-10 z-[100] hidden w-20 rounded-lg bg-[var(--white-base)] p-2 text-center text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-10 md:top-11 md:w-[5.5rem] lg:text-base'
+                  className='menu dropdown-content absolute -left-10 top-10 z-[100] hidden w-20 rounded-lg bg-[var(--white-base)] p-2 text-center text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-10 md:top-11 md:w-[5.5rem] lg:text-base'
                 >
                   <li>
                     <Link to='/auth/signin'>Login</Link>

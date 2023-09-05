@@ -114,7 +114,7 @@ export default function Signup() {
           name='name'
           id='name'
           placeholder='Type here'
-          className='input-bordered input w-full max-w-sm border-2'
+          className='input input-bordered w-full max-w-sm border-2'
         />
         {errors.name && (
           <label className='label pb-0'>
@@ -140,7 +140,7 @@ export default function Signup() {
           name='email'
           id='email'
           placeholder='Type here'
-          className='input-bordered input w-full max-w-sm border-2'
+          className='input input-bordered w-full max-w-sm border-2'
         />
         {errors.email && (
           <label className='label pb-0'>
@@ -166,7 +166,7 @@ export default function Signup() {
           name='password'
           id='password'
           placeholder='Type here'
-          className='input-bordered input w-full max-w-sm border-2'
+          className='input input-bordered w-full max-w-sm border-2'
         />
         {errors.password && (
           <label className='label pb-0'>
@@ -187,7 +187,7 @@ export default function Signup() {
           name='avatar'
           id='avatar'
           accept='.jpg, .jpeg, .png'
-          className='input-bordered input w-full max-w-sm border-2 pt-2'
+          className='input input-bordered w-full max-w-sm border-2 pt-2'
         />
       </div>
 

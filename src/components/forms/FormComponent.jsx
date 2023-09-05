@@ -21,7 +21,7 @@ export default function FormComponent() {
           type='email'
           name='email'
           placeholder=''
-          className='input-bordered input h-auto w-full max-w-xs py-1'
+          className='input input-bordered h-auto w-full max-w-xs py-1'
         />
 
         {/* or alternatively you can do */}
@@ -33,7 +33,7 @@ export default function FormComponent() {
           name='text'
           id='input_username'
           placeholder=''
-          className='input-bordered input h-auto w-full max-w-xs py-1'
+          className='input input-bordered h-auto w-full max-w-xs py-1'
         />
 
         <button
