@@ -87,7 +87,7 @@ export default function EditProfile() {
           >
             {/* display-name */}
             <div className='display-name-container form-control min-h-[6rem] w-full max-w-2xl'>
-              <label className='label'>
+              <label htmlFor='name' className='label'>
                 <span className='label-text font-semibold'>Display name</span>
               </label>
               <input
@@ -110,7 +110,7 @@ export default function EditProfile() {
 
             {/* email */}
             <div className='email-container form-control min-h-[6rem] w-full max-w-2xl'>
-              <label className='label'>
+              <label htmlFor='email' className='label'>
                 <span className='label-text font-semibold'>Email</span>
               </label>
               <input
@@ -138,7 +138,7 @@ export default function EditProfile() {
 
             {/* password */}
             <div className='password-container form-control min-h-[6rem] w-full max-w-2xl'>
-              <label className='label'>
+              <label htmlFor='password' className='label'>
                 <span className='label-text font-semibold'>Password</span>
               </label>
               <input
@@ -166,7 +166,7 @@ export default function EditProfile() {
             </div>
             {/* avatar */}
             <div className='avatar-container form-control min-h-[6rem] w-full max-w-2xl'>
-              <label className='label'>
+              <label htmlFor='avatar' className='label'>
                 <span className='label-text font-semibold'>Avatar</span>
               </label>
 

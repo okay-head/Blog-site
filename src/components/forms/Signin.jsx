@@ -60,7 +60,7 @@ export default function Signin() {
       </h2>
       {/* email */}
       <div className='email-container form-control min-h-[7rem] w-full max-w-sm'>
-        <label className='label'>
+        <label htmlFor='email' className='label'>
           <span className='label-text font-semibold'>Email</span>
         </label>
         <input
@@ -86,7 +86,7 @@ export default function Signin() {
 
       {/* password */}
       <div className='password-container form-control min-h-[7rem] w-full max-w-sm'>
-        <label className='label'>
+        <label htmlFor='password' className='label'>
           <span className='label-text font-semibold'>Password</span>
         </label>
         <input
