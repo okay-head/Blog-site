@@ -1,5 +1,10 @@
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -20,7 +25,13 @@ export default function Signup() {
     }
   }, [])
 
-  const { redirectTo } = useOutletContext()
+  let { redirectTo } = useOutletContext()
+  const { state } = useLocation()
+
+  if (state) {
+    redirectTo = state?.from || redirectTo
+  }
+
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
   const {
@@ -198,7 +209,11 @@ export default function Signup() {
       <div className='sign-up-help mt-8 flex flex-col gap-4 text-center text-sm'>
         <div className='italic'>Already have an account?</div>
         <div>
-          <Link to='/auth/signin' className='underline hover:no-underline'>
+          <Link
+            to='/auth/signin'
+            state={{ from: redirectTo }}
+            className='underline hover:no-underline'
+          >
             Sign in instead
           </Link>
         </div>

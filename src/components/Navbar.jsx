@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
 
   const location = useLocation().pathname
+  const navigate = useNavigate()
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -84,11 +85,14 @@ export default function Navbar() {
                     <Link
                       className='mt-1'
                       onClick={() => {
+                        if (location === '/') {
+                          navigate('/')
+                          window.location.reload()
+                        }
                         setSignedIn(false)
                         // clear localStorage
                         localStorage.clear()
                         //there's a delay here
-                        // window.location.reload()
                       }}
                     >
                       Logout
@@ -102,7 +106,9 @@ export default function Navbar() {
                   className='menu dropdown-content absolute -left-10 top-10 z-[100] hidden w-20 rounded-lg bg-[var(--white-base)] p-2 text-center text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-10 md:top-11 md:w-[5.5rem] lg:text-base'
                 >
                   <li>
-                    <Link to='/auth/signin'>Login</Link>
+                    <Link to='/auth/signin' state={{ from: location }}>
+                      Login
+                    </Link>
                   </li>
                 </ul>
               )}
