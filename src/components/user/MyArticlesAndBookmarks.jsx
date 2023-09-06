@@ -9,8 +9,10 @@ export default function MyArticlesAndBookmarks({ mode }) {
   const {
     user: { user_id, user_articles, user_bookmarks },
     setUser,
+    isSignedIn,
   } = useContextHook()
 
+  // if(!)
   // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
   console.log(feedData)
@@ -28,7 +30,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
             )
           )
         } catch (e) {
-          alert(e)
+          // alert(e)
           console.log(e)
         }
       })()
@@ -45,7 +47,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           )
         )
       } catch (e) {
-        alert(e)
+        // alert(e)
         console.log(e)
       }
     })()
@@ -67,7 +69,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           // await axios.patch()
           // await axios.delete(`http://localhost:3000/data/${id}`)
         } catch (e) {
-          alert(e)
+          // alert(e)
           console.log(e)
         }
       })()
@@ -88,7 +90,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           { headers: { 'Content-Type': 'application/json' } }
         )
       } catch (e) {
-        alert(e)
+        // alert(e)
         console.log(e)
       }
     })()
@@ -140,8 +142,18 @@ export default function MyArticlesAndBookmarks({ mode }) {
                   forTag='!border-2 !border-[var(--gray-200)]'
                 />
               ))
+            ) : mode === 'articles' ? (
+              <div className='col-span-2 mt-8 grid place-items-center '>
+                <img
+                  src='/assets/image-removebg-preview.png'
+                  alt='Man thinking graphic'
+                />
+                <h3 className='mt-4 text-lg italic text-[var(--text-lighter)]'>
+                  You have authored no articles.
+                </h3>
+              </div>
             ) : (
-              <div className='col-span-2 mt-14 grid place-items-center '>
+              <div className='col-span-2 mt-16 grid place-items-center '>
                 <img
                   src='/assets/icons8-bookmark-250(new).png'
                   alt='Bookmark graphic'
