@@ -1,20 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         montserrat: ['Montserrat', 'system-ui', 'sans-serif'],
         lato: ['Lato', 'system-ui', 'sans-serif'],
-        merriweather: ['Merriweather', 'system-ui', 'sans-serif'],
-        pacifio: ['Pacifio', 'system-ui', 'sans-serif'],
-      }
+      },
     },
   },
-  plugins: [require("daisyui")],
-  daisyui:{
-    themes: ["light", "dark", "wireframe"],
-  }
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['light', 'dark', 'wireframe'],
+  },
 }
-

@@ -8,7 +8,7 @@ import {
 import useContextHook from '../../state/useContextHook'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import userImg from '../../../public/assets/blob/userImg'
+import userImg from '/public/assets/blob/userImg'
 import toTitleCase from '../../utility/toTitleCase'
 
 export default function Signup() {
