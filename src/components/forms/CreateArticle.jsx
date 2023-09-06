@@ -5,8 +5,10 @@ import { format } from 'fecha'
 import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
 import { useNavigate } from 'react-router-dom'
+import scrollTop from '../../utility/scrollToTop'
 
 export default function CreateArticle() {
+  scrollTop()
   const navigate = useNavigate()
   const { user, setUser } = useContextHook()
   const postUrl = `http://localhost:3000/data`

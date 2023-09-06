@@ -15,7 +15,6 @@ export default function MyArticlesAndBookmarks({ mode }) {
   // if(!)
   // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
-  console.log(feedData)
   useEffect(() => {
     getRequest(mode)
   }, [mode, user_bookmarks])
@@ -55,24 +54,37 @@ export default function MyArticlesAndBookmarks({ mode }) {
   }
 
   const deleteCard = (mode, id) => {
-    console.log('Delete info: ', { mode, id })
     if (mode == 'articles') {
       const data = (async () => {
         try {
           // more like patch
           const new_user_articles = user_articles.filter((el) => el != id)
-          console.log(new_user_articles)
-
+          const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
           // delete from the user list
           // delete from the article list
-
-          // await axios.patch()
-          // await axios.delete(`http://localhost:3000/data/${id}`)
+          // i dont fucking know why promise.all is not working guess i'll queue them separately
+          return axios.patch(
+            `http://localhost:3000/user/${user_id}`,
+            {
+              user_articles: new_user_articles,
+              user_bookmarks: new_user_bookmarks,
+            },
+            { headers: { 'Content-Type': 'application/json' } }
+          )
         } catch (e) {
           // alert(e)
           console.log(e)
         }
       })()
+      data
+        .then((res) => {
+          setUser(res.data)
+          return axios.delete(`http://localhost:3000/data/${id}`)
+        })
+        .then(() => {
+          alert('Article removed!')
+          console.log('Deleted!')
+        })
       // data.then((res) => setFeedData(res.map(({ data }) => data)))
       return
     }
