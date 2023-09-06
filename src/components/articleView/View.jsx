@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import scrollTop from '../../utility/scrollToTop'
 import Tooltip from '../shared/tooltip'
+import readingTime from '../../utility/readingTime'
 
 export default function View() {
   const { pathname, state } = useLocation()
@@ -87,7 +88,7 @@ export default function View() {
               {data?.author || defaultData?.author}
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
-              3 min read
+            {readingTime(data?.body) || 3} min read
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
               Last updated: {data?.date || defaultData?.date}

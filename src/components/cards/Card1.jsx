@@ -4,6 +4,7 @@ import Tag from './Tag'
 import { useNavigate } from 'react-router-dom'
 import defaultData from '../../state/defaultData'
 import DeleteCard from './DeleteCard'
+import readingTime from '../../utility/readingTime'
 
 export default function Card1({
   deleteCard,
@@ -43,7 +44,7 @@ export default function Card1({
             {data?.author || defaultData?.author}
           </span>
           <span className='block text-xs font-semibold text-[var(--text-gray)]'>
-            3 min read
+            {readingTime(data?.body) || 3} min read
           </span>
         </div>
         <div>
