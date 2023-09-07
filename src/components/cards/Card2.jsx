@@ -1,4 +1,5 @@
-export default function Card2() {
+import defaultData from './../../state/defaultData.js'
+export default function Card2({data = defaultData}) {
   return (
     <article className='pt-8'>
       <div className='card-content grid h-40 grid-cols-[0.9fr,1.1fr] items-center gap-4 overflow-hidden'>
