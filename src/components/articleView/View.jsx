@@ -88,7 +88,7 @@ export default function View() {
               {data?.author || defaultData?.author}
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
-            {readingTime(data?.body) || 3} min read
+              {readingTime(data?.body) || 3} min read
             </span>
             <span className='block text-xs font-semibold text-[var(--text-gray)] lg:text-sm'>
               Last updated: {data?.date || defaultData?.date}

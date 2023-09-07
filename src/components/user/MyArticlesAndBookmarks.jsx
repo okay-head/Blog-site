@@ -138,7 +138,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           </div> */}
         </div>
         <div
-          className={`${mode}-flex-container grid grid-flow-row grid-cols-2 gap-10`}
+          className={`${mode}-flex-container grid-flow-row grid-cols-2 gap-10 md:grid`}
         >
           {/* add condition for if no articles are present */}
           {Array.isArray(feedData) ? (
