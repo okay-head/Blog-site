@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write && vite build",
+    "server": "npx json-server --watch data/db.json --port 3000",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "format": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write",
     "preview": "vite preview"
