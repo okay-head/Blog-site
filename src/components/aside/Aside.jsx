@@ -6,16 +6,12 @@ import NotSignedIn from './NotSignedIn'
 import sparkles from './razzle-dazzle.png'
 import 'sticksy'
 import useContextHook from '../../state/useContextHook'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Aside() {
-  // console.log('Aside renders');
+  const [bookmarks, setBookmarks] = useState('')
 
-  // useEffect(()=>{
-  //   //not signed in
-  //   if(!(localStorage.getItem('user_data'))){
-  //     window.location.reload()
-  //   }
-  // })
   /*   -------- resize logic -------- */
   //debounce/ optimize later
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
@@ -27,15 +23,36 @@ export default function Aside() {
   function resizeFn() {
     addEventListener('resize', handleResize)
   }
-  const { isSignedIn, user } = useContextHook()
-  // isSignedIn ? console.log(`Aside: `, user) : ''
+  /*   -------- resize logic -------- */
+
+  const {
+    isSignedIn,
+    user: { user_bookmarks },
+  } = useContextHook()
 
   useEffect(() => {
+    // ____setBookmarks____
+    ;(async function getBookmarks() {
+      const res = await Promise.all(
+        user_bookmarks.map((x) => axios.get(`http://localhost:3000/data/${x}`))
+      )
+      setBookmarks(res)
+      console.log(bookmarks)
+    })()
+
+    // _______topMargin adjustment_______
+    // const topMargin = -215
+    // heading offset = 25 | article offset = 190
+
+    const numberOfBookmarks = user_bookmarks?.length
+    const topMargin = -25 + -192 * numberOfBookmarks
+    // console.log(numberOfBookmarks)
+
     resizeFn()
     /* var instance = new Sticksy(target[, options]); */
     let stickyEl = new Sticksy('.js-sticky-widget', {
       listen: true,
-      topSpacing: isSignedIn ? -215 : 70,
+      topSpacing: isSignedIn ? topMargin : 70,
     })
     stickyEl.onStateChanged = function (state) {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
@@ -46,7 +63,6 @@ export default function Aside() {
     //   removeEventListener('resize',handleResize)
     // )
   }, [])
-  /*   -------- resize logic -------- */
 
   return (
     <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
@@ -57,11 +73,30 @@ export default function Aside() {
               <h2 className='block text-lg font-bold md:text-xl'>
                 My bookmarks
               </h2>
-              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+
+              {/* rendering bookmarks */}
+
+              {Array.isArray(bookmarks) && width > lg
+                ? Array.isArray(bookmarks) &&
+                  bookmarks?.map((x) => (
+                    <Card2 key={x?.data?.id} data={x?.data} />
+                  ))
+                : Array.isArray(bookmarks) &&
+                  bookmarks?.map((x) => (
+                    <Card1
+                      tagNone={'hidden'}
+                      key={x?.data?.id}
+                      data={x?.data}
+                    />
+                  ))}
+
+
               <div className='mt-3 text-right text-xs font-semibold'>
-                <a href='#' className='me-2 underline hover:no-underline'>
-                  See all
-                </a>
+                <Link to={'user/bookmarks'}>
+                  <span className='me-2 underline hover:no-underline'>
+                    See all
+                  </span>
+                </Link>
               </div>
             </section>
 
@@ -72,9 +107,12 @@ export default function Aside() {
                   Suggested
                 </h2>
               </div>
+
+              {/* rendering suggestions | these 'll always be three */}
               {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
               {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
               {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+
               <div className='mt-3 pb-2 text-right text-xs font-semibold'>
                 <a href='#' className='me-2 underline hover:no-underline'>
                   See more
