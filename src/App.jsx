@@ -12,6 +12,7 @@ import EditProfile from './components/user/EditProfile'
 import { ErrorBoundary } from 'react-error-boundary'
 import CreateArticle from './components/forms/CreateArticle'
 import EditArticle from './components/forms/EditArticle'
+import Alert from './components/shared/Alert'
 
 function fallbackRender({ error, resetErrorBoundary }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -32,7 +33,7 @@ export default function App() {
         {/* need separate error boundary here */}
 
         <Routes>
-          <Route path='/'>
+          <Route path='/' element={<Alert />}>
             <Route index element={<Main />} />
             <Route path='auth/' element={<FormContainer />}>
               <Route path='signin' element={<Signin />} />
