@@ -18,7 +18,7 @@ export default function Card2({ data = defaultData }) {
 
         <div className='h-36'>
           <h2
-            className='pb-1 text-lg font-semibold !leading-5'
+            className='cursor-pointer pb-1 text-lg font-semibold !leading-5 hover:underline'
             onClick={() => {
               navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
             }}

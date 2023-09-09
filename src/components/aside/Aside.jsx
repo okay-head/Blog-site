@@ -11,6 +11,7 @@ import axios from 'axios'
 
 export default function Aside() {
   const [bookmarks, setBookmarks] = useState('')
+  const [suggestions, setSuggestions] = useState()
 
   /*   -------- resize logic -------- */
   //debounce/ optimize later
@@ -31,21 +32,15 @@ export default function Aside() {
   } = useContextHook()
 
   useEffect(() => {
-    // ____setBookmarks____
-    ;(async function getBookmarks() {
-      const res = await Promise.all(
-        user_bookmarks.map((x) => axios.get(`http://localhost:3000/data/${x}`))
-      )
-      setBookmarks(res)
-      console.log(bookmarks)
-    })()
-
     // _______topMargin adjustment_______
     // const topMargin = -215
     // heading offset = 25 | article offset = 190
-
-    const numberOfBookmarks = user_bookmarks?.length
-    const topMargin = -25 + -192 * numberOfBookmarks
+    let topMargin = undefined
+    if (isSignedIn) {
+      const numberOfBookmarks = user_bookmarks?.length
+      topMargin =
+        user_bookmarks.length == 0 ? 80 : -25 + -192 * numberOfBookmarks
+    }
     // console.log(numberOfBookmarks)
 
     resizeFn()
@@ -64,12 +59,45 @@ export default function Aside() {
     // )
   }, [])
 
+  useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+    // ____setBookmarks____
+    ;(async function getBookmarks() {
+      const res = await Promise.all(
+        user_bookmarks.map((x) => axios.get(`http://localhost:3000/data/${x}`))
+      )
+      setBookmarks(res)
+      console.log(bookmarks)
+    })()
+
+    // ____setBookmarks____
+    ;(async function getSuggestions() {
+      const res = await Promise.all([
+        axios.get(`http://localhost:3000/data/7`),
+        axios.get(`http://localhost:3000/data/8`),
+        axios.get(`http://localhost:3000/data/9`),
+      ])
+
+      setSuggestions(res)
+    })()
+  }, [])
+
   return (
-    <aside className='bg-[var(--gray-100)] lg:max-w-lg '>
+    <aside
+      className={`bg-[var(--gray-100)] lg:max-w-lg ${
+        isSignedIn ? 'lg:min-w-[512px]' : ''
+      }`}
+    >
       <Container classVars='py-8 lg:py-10 lg:ps-6 xl:ps-9 js-sticky-widget'>
         {isSignedIn ? (
           <div className='signedIn'>
-            <section className='reading-list'>
+            <section
+              className={`reading-list mb-8 ${
+                user_bookmarks.length == 0 ? 'hidden' : ''
+              }`}
+            >
               <h2 className='block text-lg font-bold md:text-xl'>
                 My bookmarks
               </h2>
@@ -90,7 +118,6 @@ export default function Aside() {
                     />
                   ))}
 
-
               <div className='mt-3 text-right text-xs font-semibold'>
                 <Link to={'user/bookmarks'}>
                   <span className='me-2 underline hover:no-underline'>
@@ -100,7 +127,7 @@ export default function Aside() {
               </div>
             </section>
 
-            <section className='suggestions mt-8'>
+            <section className='suggestions'>
               <div className='suggestion-header flex items-center gap-2'>
                 <img src={sparkles} alt='sparkles' className='h-6 w-6' />
                 <h2 className='relative block text-lg font-bold md:text-xl'>
@@ -109,9 +136,19 @@ export default function Aside() {
               </div>
 
               {/* rendering suggestions | these 'll always be three */}
-              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
-              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
-              {width > lg ? <Card2 /> : <Card1 tagNone={'hidden'} />}
+              {Array.isArray(suggestions) && width > lg
+                ? Array.isArray(suggestions) &&
+                  suggestions?.map((x) => (
+                    <Card2 key={x?.data?.id} data={x?.data} />
+                  ))
+                : Array.isArray(suggestions) &&
+                  suggestions?.map((x) => (
+                    <Card1
+                      tagNone={'hidden'}
+                      key={x?.data?.id}
+                      data={x?.data}
+                    />
+                  ))}
 
               <div className='mt-3 pb-2 text-right text-xs font-semibold'>
                 <a href='#' className='me-2 underline hover:no-underline'>

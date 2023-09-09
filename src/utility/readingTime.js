@@ -7,6 +7,9 @@
 // also this data is not stored and is calculated at render
 
 const readingTime = (body) => {
+  if (body == undefined || body == null) {
+    return 2
+  }
   const count = Math.ceil(body.split(' ').length / 256)
   return count
 }
