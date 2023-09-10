@@ -65,6 +65,12 @@ export default function Feed() {
               alt='search-icon'
               className='absolute left-4 top-[1.90rem] block w-4 md:top-[.90rem]'
             />
+            <button onClick={()=>{
+              setInputTxt('')
+              setFilterData(feedData)
+              }} className={`absolute right-4 top-[26%] ${inputTxt==''?'hidden':''}`}>
+              <img src="/assets/icons8-close-new-24.png" alt="close-cross" className='w-5' />
+            </button>
           </div>
         </div>
         {/* no articles */}
