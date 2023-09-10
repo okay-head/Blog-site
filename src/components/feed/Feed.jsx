@@ -2,10 +2,13 @@ import axios from 'axios'
 import Container from '../Container'
 import Card1 from './../cards/Card1'
 import { useEffect, useState } from 'react'
+import toTitleCase from './../../utility/toTitleCase'
+
 export default function Feed() {
   // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
-
+  const [filterData, setFilterData] = useState('')
+  const [inputTxt, setInputTxt] = useState('')
   useEffect(() => {
     const data = (async () => {
       try {
@@ -16,8 +19,30 @@ export default function Feed() {
       }
     })()
 
-    data.then((res) => setFeedData(res))
+    data.then((res) => {
+      setFeedData(res.data)
+      setFilterData(res.data)
+    })
   }, [])
+
+  const filterByQuery = (e) => {
+    const q = e.target.value
+    setInputTxt(q)
+
+    if (q == '') {
+      setFilterData(feedData)
+      return
+    }
+    // ig wont work for the 1st word?
+    const filteredData = filterData.filter(
+      (el) =>
+        el.title.search(q) != -1 ||
+        el.title.search(q.toLowerCase()) != -1 ||
+        el.title.search(q.toUpperCase()) != -1 ||
+        el.title.search(toTitleCase(q)) != -1
+    )
+    setFilterData(filteredData)
+  }
 
   return (
     <section className='feed'>
@@ -31,6 +56,8 @@ export default function Feed() {
             <input
               type='text'
               placeholder='Search'
+              value={inputTxt}
+              onChange={(e) => filterByQuery(e)}
               className='input input-bordered h-auto w-full rounded-3xl !border-[1px] py-2 ps-10 placeholder:text-sm  md:max-w-xs lg:max-w-md '
             />
             <img
@@ -40,9 +67,28 @@ export default function Feed() {
             />
           </div>
         </div>
-        {feedData?.data?.map((x) => (
-          <Card1 key={x.id} data={x} />
-        ))}
+        {/* no articles */}
+        {Array.isArray(filterData) && filterData.length == 0 ? (
+          <div className='relative max-h-screen overflow-hidden border-t-2'>
+            <div className='absolute inset-0 top-[-30%] z-10 col-span-2 grid place-items-center'>
+              <div>
+                <img
+                  src='/assets/image-removebg-preview(1).png'
+                  alt='Not found magnifying glass'
+                />
+                <h3 className='mt-4 text-center text-lg italic text-[var(--text-lighter)]'>
+                  No articles found! Try something different.
+                </h3>
+              </div>
+            </div>
+
+            <Card1 classVars='opacity-0' />
+            <Card1 classVars='opacity-0' />
+          </div>
+        ) : (
+          Array.isArray(filterData) &&
+          filterData.map((x) => <Card1 key={x.id} data={x} />)
+        )}
       </Container>
     </section>
   )
