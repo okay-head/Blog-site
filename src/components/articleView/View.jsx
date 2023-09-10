@@ -43,7 +43,7 @@ export default function View() {
     try {
       // first check if bookmark already exists
       if (user.user_bookmarks.find((x) => x == data.id)) {
-        triggerAlert('alert-error', 'Already added to bookmarks!')
+        triggerAlert(undefined, 'Already added to bookmarks!')
         return
       }
 

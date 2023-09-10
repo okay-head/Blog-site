@@ -52,13 +52,13 @@ export default function Signin() {
     const user = data.find((x) => x.user_email == email)
     if (!user) {
       triggerAlert(
-        'alert-error',
+        undefined,
         'Email not found!\nPlease Sign Up if you are a new user.'
       )
       return
     }
     if (user.user_passHash != password) {
-      triggerAlert('alert-error', 'Incorrect password! Try again.')
+      triggerAlert(undefined, 'Incorrect password! Try again.')
       return
     }
     console.log(`Signed in as ${user?.user_displayName}`, user)
