@@ -39,7 +39,7 @@ export default function Aside() {
     if (isSignedIn) {
       const numberOfBookmarks = user_bookmarks?.length
       topMargin =
-        user_bookmarks.length == 0 ? 80 : -25 + -192 * numberOfBookmarks
+        user_bookmarks.length == 0 ? 70 : -25 + -192 * numberOfBookmarks
     }
     // console.log(numberOfBookmarks)
 
