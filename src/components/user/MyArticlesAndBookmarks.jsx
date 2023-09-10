@@ -4,6 +4,7 @@ import Container from '../Container'
 import Card1 from '../cards/Card1'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import triggerAlert from '../shared/triggerAlert'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
@@ -82,7 +83,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           return axios.delete(`http://localhost:3000/data/${id}`)
         })
         .then(() => {
-          alert('Article removed!')
+          triggerAlert(undefined, 'Article removed!')
           console.log('Deleted!')
         })
       // data.then((res) => setFeedData(res.map(({ data }) => data)))
@@ -110,7 +111,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
     data.then((res) => {
       console.log(res.data)
       setUser(res.data)
-      alert('Bookmark removed!')
+      triggerAlert(undefined, 'Bookmark removed!')
       // getRequest(mode)
       // window.location.reload()
     })

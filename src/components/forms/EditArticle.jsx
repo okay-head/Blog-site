@@ -5,6 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { format } from 'fecha'
 import toTitleCase from '../../utility/toTitleCase'
+import triggerAlert from '../shared/triggerAlert'
 
 export default function EditArticle() {
   const navigate = useNavigate()
@@ -43,7 +44,7 @@ export default function EditArticle() {
         }
       )
 
-      alert('Article edited!')
+      triggerAlert(undefined, 'Article edited!')
       console.log(patchRes)
       navigate(state?.from)
       // setArticleData(patchRes.data)

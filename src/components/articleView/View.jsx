@@ -8,6 +8,7 @@ import axios from 'axios'
 import scrollTop from '../../utility/scrollToTop'
 import Tooltip from '../shared/tooltip'
 import readingTime from '../../utility/readingTime'
+import triggerAlert from './../shared/triggerAlert'
 
 export default function View() {
   const { pathname, state } = useLocation()
@@ -42,7 +43,7 @@ export default function View() {
     try {
       // first check if bookmark already exists
       if (user.user_bookmarks.find((x) => x == data.id)) {
-        alert('Already added to bookmarks!')
+        triggerAlert('alert-error', 'Already added to bookmarks!')
         return
       }
 
@@ -55,7 +56,7 @@ export default function View() {
           headers: { 'Content-Type': 'application/json' },
         }
       )
-      alert('Bookmark added!')
+      triggerAlert(undefined, 'Bookmark added!')
       console.log(patchRes)
       setUser(patchRes.data)
     } catch (e) {

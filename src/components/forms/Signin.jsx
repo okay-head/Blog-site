@@ -8,6 +8,7 @@ import {
 import useContextHook from '../../state/useContextHook'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import triggerAlert from './../shared/triggerAlert'
 
 export default function Signin() {
   // get all users
@@ -50,11 +51,14 @@ export default function Signin() {
     // check if the user exists / check password
     const user = data.find((x) => x.user_email == email)
     if (!user) {
-      alert('Email not found!\nPlease Sign Up if you are a new user.')
+      triggerAlert(
+        'alert-error',
+        'Email not found!\nPlease Sign Up if you are a new user.'
+      )
       return
     }
     if (user.user_passHash != password) {
-      alert('Incorrect password! Try again.')
+      triggerAlert('alert-error', 'Incorrect password! Try again.')
       return
     }
     console.log(`Signed in as ${user?.user_displayName}`, user)

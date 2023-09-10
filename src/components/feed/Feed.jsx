@@ -11,7 +11,7 @@ export default function Feed() {
       try {
         return await axios.get('http://localhost:3000/data')
       } catch (e) {
-        alert(e)
+        // alert(e)
         console.log(e)
       }
     })()

@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import userImg from '/public/assets/blob/userImg'
 import toTitleCase from '../../utility/toTitleCase'
+import triggerAlert from './../shared/triggerAlert'
 
 export default function Signup() {
   // get all users
@@ -52,7 +53,7 @@ export default function Signup() {
     // check if the user exists / check password
     let user = data.find((x) => x.user_email == email)
     if (user) {
-      alert('Email already in use!')
+      triggerAlert('alert-error', 'Email already in use!')
       return
     }
 

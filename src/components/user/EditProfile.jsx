@@ -51,7 +51,7 @@ export default function EditProfile() {
       avatar = user.user_avatar
       patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
-        triggerAlert(undefined,'Update successful!')
+        triggerAlert(undefined, 'Update successful!')
         console.log(d)
         // update the data in context as well
         setUser(d.data)
@@ -66,7 +66,7 @@ export default function EditProfile() {
       avatar = reader.result
       patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
-        triggerAlert(undefined,'Update successful!')
+        triggerAlert(undefined, 'Update successful!')
         console.log(d)
         // update the data in context as well
         setUser(d.data)

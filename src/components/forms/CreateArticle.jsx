@@ -6,6 +6,7 @@ import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
 import { useNavigate } from 'react-router-dom'
 import scrollTop from '../../utility/scrollToTop'
+import triggerAlert from './../shared/triggerAlert'
 
 export default function CreateArticle() {
   scrollTop()
@@ -52,7 +53,7 @@ export default function CreateArticle() {
       })
       console.log(patchRes)
       setUser(patchRes.data)
-      alert('Article created!')
+      triggerAlert(undefined, 'Article created!')
       navigate('/')
     } catch (e) {
       // any error

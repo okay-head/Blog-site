@@ -2,7 +2,7 @@ const AlertBox = () => {
   return (
     <div
       id='alert-box'
-      className={`alert-box alert fixed left-[50%] !translate-y-16 translate-x-[-50%] opacity-0 z-40 w-80 border-0 shadow-md`}
+      className={`alert-box alert fixed left-[50%] z-40 w-80 !translate-y-16 translate-x-[-50%] border-0 opacity-0 shadow-md`}
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
