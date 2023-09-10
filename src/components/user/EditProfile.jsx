@@ -4,6 +4,7 @@ import useContextHook from '../../state/useContextHook'
 import { useEffect } from 'react'
 import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
+import triggerAlert from '../shared/triggerAlert'
 
 export default function EditProfile() {
   const { user, setUser } = useContextHook()
@@ -50,7 +51,7 @@ export default function EditProfile() {
       avatar = user.user_avatar
       patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
-        alert('update successful!')
+        triggerAlert(undefined,'Update successful!')
         console.log(d)
         // update the data in context as well
         setUser(d.data)
@@ -65,7 +66,7 @@ export default function EditProfile() {
       avatar = reader.result
       patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
-        alert('update successful!')
+        triggerAlert(undefined,'Update successful!')
         console.log(d)
         // update the data in context as well
         setUser(d.data)
@@ -73,7 +74,7 @@ export default function EditProfile() {
     }
   }
   return (
-    <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
+    <Container classVars='pt-32 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='edit-profile'>
         <div className='heading mb-8 border-b-2 pb-3'>
           <h1 className='block text-lg font-bold md:text-2xl'>
