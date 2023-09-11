@@ -1,13 +1,9 @@
-export default function triggerAlert(
-  classVars = 'bg-[var(--gray-100)]',
-  txt = 'This is an alert'
-) {
+export default function triggerAlert(classVars = [], txt = 'This is an alert') {
   const box = document.getElementById('alert-box')
-  box.classList.add(classVars)
-  box.classList.add('fade-in')
+  box.classList.add('fade-in', ...classVars)
+
   box.childNodes[1].textContent = txt
   setTimeout(() => {
-    box.classList.remove('fade-in')
-    box.classList.remove(classVars)
+    box.classList.remove('fade-in', ...classVars)
   }, 1500)
 }

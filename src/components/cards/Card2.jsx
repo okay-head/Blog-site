@@ -40,30 +40,34 @@ export default function Card2({ data = defaultData }) {
           }}
         ></div>
 
-        <div className='h-36'>
-          <h2
-            className='cursor-pointer pb-1 text-lg font-semibold !leading-5 hover:underline'
-            onClick={() => {
-              navigate(`/view/${articleRef?.current?.id}`, { state: { data } })
-            }}
-          >
-            {adjustTitle(data?.title) || adjustTitle(defaultData?.title)}
-          </h2>
-          <p className='max-h-[8ch] overflow-hidden py-1 text-sm text-[var(--text-gray)]'>
-            {data?.body || defaultData?.body}
-          </p>
+        <div className='h-36 grid place-items-center'>
+          <div>
+            <h2
+              className='cursor-pointer pb-1 text-lg font-semibold !leading-5 hover:underline'
+              onClick={() => {
+                navigate(`/view/${articleRef?.current?.id}`, {
+                  state: { data },
+                })
+              }}
+            >
+              {adjustTitle(data?.title) || adjustTitle(defaultData?.title)}
+            </h2>
+            <p className='max-h-[8ch] overflow-hidden py-1 text-sm text-[var(--text-gray)]'>
+              {data?.body || defaultData?.body}
+            </p>
 
-          <div className='card-head flex max-h-7 gap-2 overflow-hidden pt-2 xl:gap-5'>
-            <div>
-              <span className='block text-sm font-semibold'>
-                {adjustAuthor(data?.author, 14) ||
-                  adjustAuthor(defaultData?.author, 14)}
-              </span>
-            </div>
-            <div>
-              <span className='bullet relative mt-[1px] block text-xs font-semibold text-[var(--text-gray)]'>
-                {data?.date || defaultData?.date}
-              </span>
+            <div className='card-head flex max-h-7 gap-2 overflow-hidden pt-2 xl:gap-5'>
+              <div>
+                <span className='block text-sm font-semibold'>
+                  {adjustAuthor(data?.author, 14) ||
+                    adjustAuthor(defaultData?.author, 14)}
+                </span>
+              </div>
+              <div>
+                <span className='bullet relative mt-[1px] block text-xs font-semibold text-[var(--text-gray)]'>
+                  {data?.date || defaultData?.date}
+                </span>
+              </div>
             </div>
           </div>
         </div>

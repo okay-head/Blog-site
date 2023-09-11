@@ -9,6 +9,10 @@ export default function Feed() {
   const [feedData, setFeedData] = useState('No feed data')
   const [filterData, setFilterData] = useState('')
   const [inputTxt, setInputTxt] = useState('')
+
+  console.log(filterData)
+  console.log(inputTxt)
+  
   useEffect(() => {
     const data = (async () => {
       try {

@@ -112,7 +112,7 @@ input:focus-within {
 
 .fade-in {
   /* top: 5.8rem; jaggy animations, transform has better perfo*/
-  transform: translate(-50%, 5.8rem) !important;
+  transform: translate(-50%, 6rem) !important;
   opacity: 1;
   transition: 0.2s all ease-in;
 }
