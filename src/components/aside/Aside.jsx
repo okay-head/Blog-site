@@ -18,12 +18,12 @@ export default function Aside() {
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
   const [width, setWidth] = useState(window.innerWidth)
 
-  function handleResize() {
-    setWidth(window.innerWidth)
-  }
-  function resizeFn() {
-    addEventListener('resize', handleResize)
-  }
+  // function handleResize() {
+  //   setWidth(window.innerWidth)
+  // }
+  // function resizeFn() {
+  //   addEventListener('resize', handleResize)
+  // }
   /*   -------- resize logic -------- */
 
   const {
@@ -32,7 +32,9 @@ export default function Aside() {
   } = useContextHook()
 
   useEffect(() => {
+    // resizeFn()
     // _______topMargin adjustment_______
+    if ((width > lg)) {
     // const topMargin = -215
     // heading offset = 25 | article offset = 190
     let topMargin = undefined
@@ -43,7 +45,6 @@ export default function Aside() {
     }
     // console.log(numberOfBookmarks)
 
-    resizeFn()
     /* var instance = new Sticksy(target[, options]); */
     let stickyEl = new Sticksy('.js-sticky-widget', {
       listen: true,
@@ -53,11 +54,14 @@ export default function Aside() {
       if (state === 'fixed') stickyEl.nodeRef.classList.add('widget--sticky')
       else stickyEl.nodeRef.classList.remove('widget--sticky')
     }
+
+  }
+
     // uncomment in [production]
     // return(
     //   removeEventListener('resize',handleResize)
     // )
-  }, [])
+  }, [width])
 
   useEffect(() => {
     if (!isSignedIn) {
