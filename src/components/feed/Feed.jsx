@@ -5,14 +5,10 @@ import { useEffect, useState } from 'react'
 import toTitleCase from './../../utility/toTitleCase'
 
 export default function Feed() {
-  // get feed data (iife)
   const [feedData, setFeedData] = useState('No feed data')
   const [filterData, setFilterData] = useState('')
   const [inputTxt, setInputTxt] = useState('')
 
-  console.log(filterData)
-  console.log(inputTxt)
-  
   useEffect(() => {
     const data = (async () => {
       try {
@@ -37,13 +33,12 @@ export default function Feed() {
       setFilterData(feedData)
       return
     }
-    // ig wont work for the 1st word?
-    const filteredData = filterData.filter(
+    const filteredData = feedData.filter(
       (el) =>
-        el.title.search(q) != -1 ||
-        el.title.search(q.toLowerCase()) != -1 ||
-        el.title.search(q.toUpperCase()) != -1 ||
-        el.title.search(toTitleCase(q)) != -1
+        el.title.includes(q) ||
+        el.title.includes(q.toLowerCase()) ||
+        el.title.includes(q.toUpperCase()) ||
+        el.title.includes(toTitleCase(q))
     )
     setFilterData(filteredData)
   }
@@ -69,11 +64,20 @@ export default function Feed() {
               alt='search-icon'
               className='absolute left-4 top-[1.90rem] block w-4 md:top-[.90rem]'
             />
-            <button onClick={()=>{
-              setInputTxt('')
-              setFilterData(feedData)
-              }} className={`absolute right-4 top-[26%] ${inputTxt==''?'hidden':''}`}>
-              <img src="/assets/icons8-close-new-24.png" alt="close-cross" className='w-5' />
+            <button
+              onClick={() => {
+                setInputTxt('')
+                setFilterData(feedData)
+              }}
+              className={`absolute right-4 top-[26%] ${
+                inputTxt == '' ? 'hidden' : ''
+              }`}
+            >
+              <img
+                src='/assets/icons8-close-new-24.png'
+                alt='close-cross'
+                className='w-5'
+              />
             </button>
           </div>
         </div>
