@@ -7,9 +7,9 @@ export default function Main() {
     scrollTop()
   }, [])
   return (
-      <main className='pt-[4.5rem] lg:flex'>
-        <Feed />
-        <Aside />
-      </main>
+    <main className='pt-[4.5rem] lg:flex'>
+      <Feed />
+      <Aside />
+    </main>
   )
 }

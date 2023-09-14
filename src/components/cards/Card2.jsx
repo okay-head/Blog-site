@@ -40,7 +40,7 @@ export default function Card2({ data = defaultData }) {
           }}
         ></div>
 
-        <div className='h-36 grid place-items-center'>
+        <div className='grid h-36 place-items-center'>
           <div>
             <h2
               className='cursor-pointer pb-1 text-lg font-semibold !leading-5 hover:underline'
