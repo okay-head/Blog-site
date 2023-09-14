@@ -37,11 +37,9 @@
   --white-base: #fcfcfc;
   --white-secondary: #f7f7f7;
   --white-tertiary: #fbf9fa;
+
   /* Font */
   --h1: 2rem;
-
-  /* breakpoints */
-  /* md: 768px */
 }
 
 html {
