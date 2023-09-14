@@ -94,10 +94,6 @@ input:focus-within {
   bottom: 25%;
 }
 
-/* .widget--sticky {
-  background-color: aquamarine;
-} */
-
 .custom-h-img {
   height: clamp(10rem, 72cqw, 40rem);
 }
