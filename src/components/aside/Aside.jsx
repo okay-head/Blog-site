@@ -43,7 +43,6 @@ export default function Aside() {
         topMargin =
           user_bookmarks.length == 0 ? 70 : -25 + -192 * numberOfBookmarks
       }
-      // console.log(numberOfBookmarks)
 
       /* var instance = new Sticksy(target[, options]); */
       let stickyEl = new Sticksy('.js-sticky-widget', {
