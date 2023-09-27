@@ -6,7 +6,7 @@ import Tag from '../cards/Tag'
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import scrollTop from '../../utility/scrollToTop'
-import Tooltip from '../shared/tooltip'
+import Tooltip from '../shared/Tooltip'
 import readingTime from '../../utility/readingTime'
 import triggerAlert from './../shared/triggerAlert'
 
