@@ -8,16 +8,7 @@
   }
 }
 
-/*   @font-face {
-    font-family: "Montserrat";
-    src: url('fonts/fira/eot/FiraSans-Bold.eot');
-    src: url('fonts/fira/eot/FiraSans-Bold.eot') format('embedded-opentype'),
-         url('fonts/fira/woff2/FiraSans-Bold.woff2') format('woff2'),
-         url('fonts/fira/woff/FiraSans-Bold.woff') format('woff'),
-         url('fonts/fira/woff2/FiraSans-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-
+/*  
     this is too much work
     just gonna proceed w using the fonts cdn for now
   } */
