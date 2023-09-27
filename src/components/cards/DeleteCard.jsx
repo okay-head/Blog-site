@@ -1,4 +1,4 @@
-import Tooltip from '../shared/tooltip'
+import Tooltip from '../shared/Tooltip'
 
 export default function DeleteCard({ minus = false, mode, id, deleteCard }) {
   const onClickHandler = () => {
