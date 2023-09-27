@@ -29,6 +29,7 @@ export default function Aside() {
   const {
     isSignedIn,
     user: { user_bookmarks },
+    baseUrl,
   } = useContextHook()
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function Aside() {
     // ____setBookmarks____
     ;(async function getBookmarks() {
       const res = await Promise.all(
-        user_bookmarks.map((x) => axios.get(`http://localhost:3000/data/${x}`))
+        user_bookmarks.map((x) => axios.get(`${baseUrl}/data/${x}`))
       )
       setBookmarks(res)
       console.log(bookmarks)
@@ -77,9 +78,9 @@ export default function Aside() {
     // ____setBookmarks____
     ;(async function getSuggestions() {
       const res = await Promise.all([
-        axios.get(`http://localhost:3000/data/7`),
-        axios.get(`http://localhost:3000/data/8`),
-        axios.get(`http://localhost:3000/data/9`),
+        axios.get(`${baseUrl}/data/7`),
+        axios.get(`${baseUrl}/data/8`),
+        axios.get(`${baseUrl}/data/9`),
       ])
 
       setSuggestions(res)

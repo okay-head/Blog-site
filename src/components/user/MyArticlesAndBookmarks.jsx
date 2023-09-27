@@ -11,6 +11,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
     user: { user_id, user_articles, user_bookmarks },
     setUser,
     isSignedIn,
+    baseUrl,
   } = useContextHook()
 
   // if(!)
@@ -25,9 +26,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
       const data = (async () => {
         try {
           return Promise.all(
-            user_articles.map((id) =>
-              axios.get(`http://localhost:3000/data/${id}`)
-            )
+            user_articles.map((id) => axios.get(`${baseUrl}/data/${id}`))
           )
         } catch (e) {
           // alert(e)
@@ -42,9 +41,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
     const data = (async () => {
       try {
         return Promise.all(
-          user_bookmarks.map((id) =>
-            axios.get(`http://localhost:3000/data/${id}`)
-          )
+          user_bookmarks.map((id) => axios.get(`${baseUrl}/data/${id}`))
         )
       } catch (e) {
         // alert(e)
@@ -65,7 +62,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           // delete from the article list
           // i dont fucking know why promise.all is not working guess i'll queue them separately
           return axios.patch(
-            `http://localhost:3000/user/${user_id}`,
+            `${baseUrl}/user/${user_id}`,
             {
               user_articles: new_user_articles,
               user_bookmarks: new_user_bookmarks,
@@ -80,7 +77,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
       data
         .then((res) => {
           setUser(res.data)
-          return axios.delete(`http://localhost:3000/data/${id}`)
+          return axios.delete(`${baseUrl}/data/${id}`)
         })
         .then(() => {
           triggerAlert(undefined, 'Article removed!')
@@ -96,7 +93,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
       // console.log(new_user_bookmarks)
       try {
         return await axios.patch(
-          `http://localhost:3000/user/${user_id}`,
+          `${baseUrl}/user/${user_id}`,
           {
             user_bookmarks: new_user_bookmarks,
           },

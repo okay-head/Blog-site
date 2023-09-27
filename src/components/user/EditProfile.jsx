@@ -7,8 +7,8 @@ import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from '../shared/triggerAlert'
 
 export default function EditProfile() {
-  const { user, setUser } = useContextHook()
-  const postUrl = `http://localhost:3000/user/${user.id}`
+  const { user, setUser, baseUrl } = useContextHook()
+  const postUrl = `${baseUrl}/user/${user.id}`
 
   // prefill with user values - use default props (refs don't work, so don't controlled components, and neither regular DOM manipulation)
   useEffect(() => {

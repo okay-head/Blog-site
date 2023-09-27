@@ -12,7 +12,7 @@ import triggerAlert from './../shared/triggerAlert'
 
 export default function View() {
   const { pathname, state } = useLocation()
-  const { isSignedIn, user, setUser } = useContextHook()
+  const { isSignedIn, user, setUser, baseUrl } = useContextHook()
 
   // article data is coming from route state
   // i.e. it won't be passed when navigating directly thru url 🔴
@@ -27,7 +27,7 @@ export default function View() {
 
       let d = undefined
       try {
-        d = (async () => axios.get(`http://localhost:3000/data/${x}`))()
+        d = (async () => axios.get(`${baseUrl}/data/${x}`))()
       } catch (e) {
         throw new Error(e)
       }
@@ -35,7 +35,7 @@ export default function View() {
     }
   }, [])
 
-  const patchUrl = `http://localhost:3000/user/${user?.id}`
+  const patchUrl = `${baseUrl}/user/${user?.id}`
   const addBookmark = async () => {
     // console.log('bookmark added')
     // make a patch request

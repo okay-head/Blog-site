@@ -11,9 +11,9 @@ import triggerAlert from './../shared/triggerAlert'
 export default function CreateArticle() {
   scrollTop()
   const navigate = useNavigate()
-  const { user, setUser } = useContextHook()
-  const postUrl = `http://localhost:3000/data`
-  const patchUrl = `http://localhost:3000/user/${user.id}`
+  const { user, setUser, baseUrl } = useContextHook()
+  const postUrl = `${baseUrl}/data`
+  const patchUrl = `${baseUrl}/user/${user.id}`
   const {
     register,
     handleSubmit,

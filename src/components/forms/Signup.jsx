@@ -15,10 +15,11 @@ import triggerAlert from './../shared/triggerAlert'
 export default function Signup() {
   // get all users
   const [data, setData] = useState('User data is empty')
+  const { baseUrl } = useContextHook()
   useEffect(() => {
     try {
       ;(async function getData() {
-        const response = await axios.get('http://localhost:3000/user')
+        const response = await axios.get(`${baseUrl}/user`)
         setData(response.data)
       })()
     } catch (e) {
@@ -76,7 +77,7 @@ export default function Signup() {
             user_bookmarks: [],
           })
 
-          return await axios.post('http://localhost:3000/user', payload, {
+          return await axios.post(`${baseUrl}/user`, payload, {
             headers: { 'Content-Type': 'application/json' },
           })
         }

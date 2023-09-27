@@ -13,10 +13,11 @@ import triggerAlert from './../shared/triggerAlert'
 export default function Signin() {
   // get all users
   const [data, setData] = useState('User data is empty')
+  const { baseUrl } = useContextHook()
   useEffect(() => {
     try {
       ;(async function getData() {
-        const response = await axios.get('http://localhost:3000/user')
+        const response = await axios.get(`${baseUrl}/user`)
         setData(response.data)
       })()
     } catch (e) {

@@ -6,12 +6,13 @@ import axios from 'axios'
 import { format } from 'fecha'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from '../shared/triggerAlert'
+import useContextHook from '../../state/useContextHook'
 
 export default function EditArticle() {
   const navigate = useNavigate()
   const { state } = useLocation()
   const [articleData, setArticleData] = useState(state?.data)
-
+  const { baseUrl } = useContextHook()
   //notice we didnt init w a useEffect here as in View.jsx
   const {
     register,
@@ -21,7 +22,7 @@ export default function EditArticle() {
   const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
 
-  const patchUrl = `http://localhost:3000/data/${articleData?.id}`
+  const patchUrl = `${baseUrl}/data/${articleData?.id}`
 
   const submitHandler = async ({ title, body, tags }) => {
     // make a patch

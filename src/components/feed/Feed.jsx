@@ -3,16 +3,18 @@ import Container from '../Container'
 import Card1 from './../cards/Card1'
 import { useEffect, useState } from 'react'
 import toTitleCase from './../../utility/toTitleCase'
+import useContextHook from '../../state/useContextHook'
 
 export default function Feed() {
   const [feedData, setFeedData] = useState('No feed data')
   const [filterData, setFilterData] = useState('')
   const [inputTxt, setInputTxt] = useState('')
+  const { baseUrl } = useContextHook()
 
   useEffect(() => {
     const data = (async () => {
       try {
-        return await axios.get('http://localhost:3000/data')
+        return await axios.get(`${baseUrl}/data`)
       } catch (e) {
         // alert(e)
         console.log(e)
