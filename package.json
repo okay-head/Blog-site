@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write && vite build",
+    "build": "npx prettier ./src/**/*.{js,jsx,css} --write && vite build",
     "server": "npx json-server --watch data/db.json --port 3000",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "format": "npx prettier ./src/**/*.{js,ts,jsx,tsx,css} --write",
+    "format": "npx prettier ./src/**/*.{js,jsx,css} --write",
     "preview": "vite preview"
   },
   "dependencies": {
