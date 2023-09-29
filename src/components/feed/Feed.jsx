@@ -71,7 +71,7 @@ export default function Feed() {
                 setInputTxt('')
                 setFilterData(feedData)
               }}
-              className={`absolute right-4 top-[26%] ${
+              className={`absolute right-3 md:right-4 top-7 md:top-[26%] ${
                 inputTxt == '' ? 'hidden' : ''
               }`}
             >
