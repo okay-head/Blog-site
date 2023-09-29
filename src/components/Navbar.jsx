@@ -10,6 +10,11 @@ export default function Navbar() {
 
   const location = useLocation().pathname
   const navigate = useNavigate()
+
+  const hideAlertBox = ()=>{
+    document.getElementById('alert-box').classList.add('hidden')
+  }
+
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <Container>
@@ -40,7 +45,10 @@ export default function Navbar() {
               />
               <span className='hidden md:inline-block lg:text-base'>Write</span>
             </Link>
-            <div className='group relative'>
+            <div className='group relative' 
+                  onMouseOver={hideAlertBox}
+                  onClick={hideAlertBox}
+            >
               <button className='rounded-full'>
                 {isSignedIn ? (
                   <img
@@ -61,7 +69,7 @@ export default function Navbar() {
               </button>
 
               {isSignedIn ? (
-                <ul
+                <ul 
                   tabIndex={0}
                   id='user-menu-logged-in'
                   className='menu dropdown-content absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-32 md:top-12 md:w-40 lg:text-base'
