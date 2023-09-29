@@ -87,12 +87,13 @@ export default function Feed() {
         {Array.isArray(filterData) && filterData.length == 0 ? (
           <div className='relative max-h-screen overflow-hidden border-t-2'>
             <div className='absolute inset-0 top-[-30%] z-10 col-span-2 grid place-items-center'>
-              <div>
+              <div className='w-60 md:w-[unset]'>
                 <img
                   src='/assets/image-removebg-preview(1).png'
                   alt='Not found magnifying glass'
+                  
                 />
-                <h3 className='mt-4 text-center text-lg italic text-[var(--text-lighter)]'>
+                <h3 className='mt-4 text-center text-base md:text-lg italic text-[var(--text-lighter)]'>
                   No articles found! Try something different.
                 </h3>
               </div>
