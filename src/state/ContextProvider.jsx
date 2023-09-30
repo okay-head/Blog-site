@@ -15,7 +15,8 @@ export function ContextProvider({ children }) {
     data: 'no data present!',
   }
   const base_url =
-    JSON.parse(localStorage.getItem('base_url')) || 'https://json-server-vercel-eta-two.vercel.app'
+    JSON.parse(localStorage.getItem('base_url')) ||
+    'https://json-server-vercel-eta-two.vercel.app'
   // const base_url =
   //   JSON.parse(localStorage.getItem('base_url')) || 'http://localhost:3000'
 

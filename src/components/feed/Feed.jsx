@@ -71,7 +71,7 @@ export default function Feed() {
                 setInputTxt('')
                 setFilterData(feedData)
               }}
-              className={`absolute right-3 md:right-4 top-7 md:top-[26%] ${
+              className={`absolute right-3 top-7 md:right-4 md:top-[26%] ${
                 inputTxt == '' ? 'hidden' : ''
               }`}
             >
@@ -91,9 +91,8 @@ export default function Feed() {
                 <img
                   src='/assets/image-removebg-preview(1).png'
                   alt='Not found magnifying glass'
-                  
                 />
-                <h3 className='mt-4 text-center text-base md:text-lg italic text-[var(--text-lighter)]'>
+                <h3 className='mt-4 text-center text-base italic text-[var(--text-lighter)] md:text-lg'>
                   No articles found! Try something different.
                 </h3>
               </div>
