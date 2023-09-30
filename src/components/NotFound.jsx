@@ -10,6 +10,7 @@ export default function NotFound() {
     }
   }, [])
 
+  // add dedicated not found
   return (
     <div className='bg-red-200 pt-32'>
       <h1>NotFound</h1>
