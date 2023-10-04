@@ -7,6 +7,7 @@
     @apply btn h-auto min-h-0 bg-[var(--gray-100)] capitalize text-inherit hover:bg-[var(--gray-200)];
   }
 }
+
 /*  
     Adding fonts is too much work
     just gonna proceed w using the fonts cdn for now
