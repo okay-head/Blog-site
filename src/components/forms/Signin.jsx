@@ -62,7 +62,7 @@ export default function Signin() {
       triggerAlert(undefined, 'Incorrect password! Try again.')
       return
     }
-    console.log(`Signed in as ${user?.user_displayName}`, user)
+    // console.log(`Signed in as ${user?.user_displayName}`, user)
     setSignedIn(true)
     setUser(user)
     navigate(redirectTo)

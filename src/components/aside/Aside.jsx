@@ -72,7 +72,7 @@ export default function Aside() {
         user_bookmarks.map((x) => axios.get(`${baseUrl}/data/${x}`))
       )
       setBookmarks(res)
-      console.log(bookmarks)
+      // console.log(bookmarks)
     })()
 
     // ____setBookmarks____

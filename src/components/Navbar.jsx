@@ -73,7 +73,7 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   id='user-menu-logged-in'
-                  className='menu dropdown-content absolute -left-24 top-10 z-[100] hidden w-[8.6rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-32 md:top-12 md:w-40 lg:text-base'
+                  className='menu dropdown-content absolute -left-24 top-10 z-[100] hidden w-[8.8rem] rounded-lg bg-[var(--white-base)] p-2 text-[var(--text-gray)] shadow ring-1 ring-inset ring-[var(--text-gray)] hover:block group-hover:block md:-left-32 md:top-12 md:w-40 lg:text-base'
                 >
                   <li>
                     <Link className='mt-1' to='/user/articles'>

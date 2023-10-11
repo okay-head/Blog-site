@@ -87,7 +87,7 @@ export default function Signup() {
       // After entry is added
       post().then((d) => {
         user = d.data
-        console.log(`Signed in as ${user?.user_displayName}`, user)
+        // console.log(`Signed in as ${user?.user_displayName}`, user)
         setSignedIn(true)
         setUser(user)
         navigate(redirectTo)
