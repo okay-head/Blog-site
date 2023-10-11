@@ -8,7 +8,9 @@ export default function DeleteCard({ minus = false, mode, id, deleteCard }) {
   return (
     <button
       onClick={onClickHandler}
-      className={`group/btn absolute right-4 md:right-6 top-7 ${minus ? '' : 'hidden'}`}
+      className={`group/btn absolute right-4 top-7 md:right-6 ${
+        minus ? '' : 'hidden'
+      }`}
     >
       <svg
         style={{ color: '#808080' }}

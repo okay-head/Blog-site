@@ -99,7 +99,7 @@ export default function View() {
           {isSignedIn ? (
             <div
               id='user-logged-in-article-tools'
-              className='me-2 md:me-6 ms-auto flex gap-3 self-end'
+              className='me-2 ms-auto flex gap-3 self-end md:me-6'
             >
               {user?.id == data?.author_id ? (
                 <Link
@@ -164,7 +164,7 @@ export default function View() {
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
-          <Link to='/' className='md:me-2 underline hover:no-underline'>
+          <Link to='/' className='underline hover:no-underline me-1 md:me-2'>
             Back to all articles
           </Link>
         </div>

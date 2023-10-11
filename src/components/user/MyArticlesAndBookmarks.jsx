@@ -153,7 +153,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
                 />
               ))
             ) : mode === 'articles' ? (
-              <div className='col-span-2 mt-24 md:mt-8 grid place-items-center '>
+              <div className='col-span-2 mt-24 grid place-items-center md:mt-8 '>
                 <img
                   src='/assets/image-removebg-preview.png'
                   alt='Man thinking graphic'
@@ -163,7 +163,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
                 </h3>
               </div>
             ) : (
-              <div className='col-span-2 mt-28 md:mt-16 grid place-items-center '>
+              <div className='col-span-2 mt-28 grid place-items-center md:mt-16 '>
                 <img
                   src='/assets/icons8-bookmark-250(new).png'
                   alt='Bookmark graphic'
@@ -184,7 +184,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
           </Link>
         </div> */}
       </Container>
-      <div className='absolute bottom-8 right-5 md:right-11 mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
+      <div className='absolute bottom-8 right-5 mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:right-11 md:text-sm'>
         <Link to='/' className='me-2 underline hover:no-underline'>
           Back to all articles
         </Link>
