@@ -94,6 +94,10 @@ export default function EditProfile() {
               <input
                 {...register('name', {
                   required: 'Display name is required',
+                  minLength: {
+                    value: 7,
+                    message: 'Should be atleast 7 chars',
+                  },
                 })}
                 type='text'
                 name='name'
