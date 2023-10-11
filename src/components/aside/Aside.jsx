@@ -8,11 +8,14 @@ import 'sticksy'
 import useContextHook from '../../state/useContextHook'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Card2Skeleton from '../cards/Card2Skeleton'
+import RenderSuggestions from './RenderSuggestions'
+import RenderBookmarks from './RenderBookmarks'
 
 export default function Aside() {
-  const [bookmarks, setBookmarks] = useState('')
-  const [suggestions, setSuggestions] = useState()
-  const [loading, setLoading] = useState(true)
+  // const [bookmarks, setBookmarks] = useState('')
+  // const [suggestions, setSuggestions] = useState()
+  // const [loading, setLoading] = useState(true)
 
   /*   -------- resize logic -------- */
   //debounce/ optimize later
@@ -63,32 +66,6 @@ export default function Aside() {
     // )
   }, [width])
 
-  useEffect(() => {
-    if (!isSignedIn) {
-      return
-    }
-    // ____setBookmarks____
-    ;(async function getBookmarks() {
-      const res = await Promise.all(
-        user_bookmarks.map((x) => axios.get(`${baseUrl}/data/${x}`))
-      )
-      setBookmarks(res)
-      // console.log(bookmarks)
-    })()
-
-    // ____setBookmarks____
-    ;(async function getSuggestions() {
-      const res = await Promise.all([
-        axios.get(`${baseUrl}/data/7`),
-        axios.get(`${baseUrl}/data/8`),
-        axios.get(`${baseUrl}/data/9`),
-      ])
-
-      setSuggestions(res)
-    })()
-    setLoading(false)
-  }, [])
-
   return (
     <aside
       className={`bg-[var(--gray-100)] lg:max-w-lg ${
@@ -109,19 +86,7 @@ export default function Aside() {
 
               {/* rendering bookmarks */}
 
-              {Array.isArray(bookmarks) && width > lg
-                ? Array.isArray(bookmarks) &&
-                  bookmarks?.map((x) => (
-                    <Card2 key={x?.data?.id} data={x?.data} />
-                  ))
-                : Array.isArray(bookmarks) &&
-                  bookmarks?.map((x) => (
-                    <Card1
-                      tagNone={'hidden'}
-                      key={x?.data?.id}
-                      data={x?.data}
-                    />
-                  ))}
+              <RenderBookmarks baseUrl={baseUrl} width={width} lg={lg} user_bookmarks={user_bookmarks} isSignedIn={isSignedIn} />
 
               <div className='mt-3 text-right text-xs font-semibold'>
                 <Link to={'user/bookmarks'}>
@@ -141,24 +106,9 @@ export default function Aside() {
               </div>
 
               {/* rendering suggestions | these 'll always be three */}
-              {
+        
+                <RenderSuggestions baseUrl={baseUrl} width={width} lg={lg} isSignedIn={isSignedIn} />  
                 
-              Array.isArray(suggestions) && width > lg
-                ? Array.isArray(suggestions) &&
-                  suggestions?.map((x) => (
-                    <Card2 key={x?.data?.id} data={x?.data} />
-                  ))
-                : Array.isArray(suggestions) &&
-                  suggestions?.map((x) => (
-                    <Card1
-                      tagNone={'hidden'}
-                      key={x?.data?.id}
-                      data={x?.data}
-                    />
-                  ))
-                  
-                  }
-
               <div className='mt-3 pb-2 text-right text-xs font-semibold'>
                 <a href='#' className='me-2 underline hover:no-underline'>
                   See more
