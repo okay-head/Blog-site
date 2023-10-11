@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npx prettier ./src/**/*.{js,jsx,css} --write && vite build",
-    "server": "npx json-server --watch data/db.json --port 3000",
+    "server": "npx json-server --watch data/db.json --port 3000 --delay 2000",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "format": "npx prettier ./src/**/*.{js,jsx,css} --write",
     "preview": "vite preview"
@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.10",
     "react-hook-form": "^7.44.3",
+    "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.14.2",
     "sticksy": "^0.2.0"
   },

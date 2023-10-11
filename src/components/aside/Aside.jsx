@@ -12,6 +12,7 @@ import axios from 'axios'
 export default function Aside() {
   const [bookmarks, setBookmarks] = useState('')
   const [suggestions, setSuggestions] = useState()
+  const [loading, setLoading] = useState(true)
 
   /*   -------- resize logic -------- */
   //debounce/ optimize later
@@ -85,6 +86,7 @@ export default function Aside() {
 
       setSuggestions(res)
     })()
+    setLoading(false)
   }, [])
 
   return (
@@ -139,7 +141,9 @@ export default function Aside() {
               </div>
 
               {/* rendering suggestions | these 'll always be three */}
-              {Array.isArray(suggestions) && width > lg
+              {
+                
+              Array.isArray(suggestions) && width > lg
                 ? Array.isArray(suggestions) &&
                   suggestions?.map((x) => (
                     <Card2 key={x?.data?.id} data={x?.data} />
@@ -151,7 +155,9 @@ export default function Aside() {
                       key={x?.data?.id}
                       data={x?.data}
                     />
-                  ))}
+                  ))
+                  
+                  }
 
               <div className='mt-3 pb-2 text-right text-xs font-semibold'>
                 <a href='#' className='me-2 underline hover:no-underline'>

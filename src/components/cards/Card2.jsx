@@ -6,8 +6,6 @@ export default function Card2({ data = defaultData }) {
   const articleRef = useRef(null)
   const navigate = useNavigate()
 
-  46
-
   const adjustTitle = (txt) => {
     const maxLen = 46
     txt = txt.trim()

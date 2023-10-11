@@ -164,7 +164,7 @@ export default function View() {
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
-          <Link to='/' className='underline hover:no-underline me-1 md:me-2'>
+          <Link to='/' className='me-1 underline hover:no-underline md:me-2'>
             Back to all articles
           </Link>
         </div>
