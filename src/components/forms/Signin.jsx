@@ -54,7 +54,8 @@ export default function Signin() {
     if (!user) {
       triggerAlert(
         undefined,
-        'Email not found!\nPlease Sign Up if you are a new user.'
+        `Email not found!
+        Please Sign Up if you are a new user.`
       )
       return
     }

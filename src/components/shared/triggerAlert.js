@@ -6,5 +6,5 @@ export default function triggerAlert(classVars = [], txt = 'This is an alert') {
   box.childNodes[1].textContent = txt
   setTimeout(() => {
     box.classList.remove('fade-in', ...classVars)
-  }, 1500)
+  }, 2000)
 }

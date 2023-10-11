@@ -99,7 +99,7 @@ export default function View() {
           {isSignedIn ? (
             <div
               id='user-logged-in-article-tools'
-              className='me-6 ms-auto flex gap-3 self-end'
+              className='me-2 md:me-6 ms-auto flex gap-3 self-end'
             >
               {user?.id == data?.author_id ? (
                 <Link
@@ -126,7 +126,7 @@ export default function View() {
               >
                 <img src='/assets/book(1).png' alt='book' />
 
-                <Tooltip text='Bookmark' left='-left-[46%]' />
+                <Tooltip text='Bookmark' left='-left-[90%] lg:-left-[46%]' />
               </button>
             </div>
           ) : (
@@ -164,7 +164,7 @@ export default function View() {
         </div>
 
         <div className='border-t-2 pb-3 pt-6 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm lg:text-base'>
-          <Link to='/' className='me-2 underline hover:no-underline'>
+          <Link to='/' className='md:me-2 underline hover:no-underline'>
             Back to all articles
           </Link>
         </div>

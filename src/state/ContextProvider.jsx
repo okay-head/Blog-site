@@ -14,11 +14,11 @@ export function ContextProvider({ children }) {
   const user_data = JSON.parse(localStorage.getItem('user_data')) || {
     data: 'no data present!',
   }
-  // const base_url =
-    // JSON.parse(localStorage.getItem('base_url')) ||
-    // 'https://json-server-vercel-eta-two.vercel.app'
   const base_url =
-    JSON.parse(localStorage.getItem('base_url')) || 'http://localhost:3000'
+    JSON.parse(localStorage.getItem('base_url')) ||
+    'https://json-server-vercel-eta-two.vercel.app'
+  // const base_url =
+  //   JSON.parse(localStorage.getItem('base_url')) || 'http://localhost:3000'
 
   // sign in state
   const [isSignedIn, setIsSignedIn] = useState(flag)
