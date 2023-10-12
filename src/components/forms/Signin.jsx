@@ -50,7 +50,7 @@ export default function Signin() {
     console.clear()
 
     // check if the user exists / check password
-    const user = data.find((x) => x.user_email == email)
+    const user = Array.isArray(data) && data.find((x) => x.user_email == email)
     if (!user) {
       triggerAlert(
         undefined,

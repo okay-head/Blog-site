@@ -29,17 +29,17 @@ export default function RenderBookmarks({
   }, [])
 
   return loading
-    ?
-    (width > lg ?
-     (Array(user_bookmarks?.length)
-        .fill(1)
-        .map((_, i) => {
-          return <Card2Skeleton key={i} />
-        })) : (Array(user_bookmarks?.length)
-        .fill(1)
-        .map((_, i) => {
-          return <Card1Skeleton key={i} />
-        })) )
+    ? width > lg
+      ? Array(user_bookmarks?.length)
+          .fill(1)
+          .map((_, i) => {
+            return <Card2Skeleton key={i} />
+          })
+      : Array(user_bookmarks?.length)
+          .fill(1)
+          .map((_, i) => {
+            return <Card1Skeleton key={i} />
+          })
     : Array.isArray(bookmarks) && width > lg
     ? Array.isArray(bookmarks) &&
       bookmarks?.map((x) => <Card2 key={x?.data?.id} data={x?.data} />)

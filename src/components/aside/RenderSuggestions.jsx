@@ -9,7 +9,6 @@ import Card1Skeleton from '../cards/Card1Skeleton'
 export default function RenderSuggestions({ baseUrl, width, lg, isSignedIn }) {
   const [suggestions, setSuggestions] = useState()
   const [loading, setLoading] = useState(true)
-  console.log(loading)
   useEffect(() => {
     if (!isSignedIn) {
       return
@@ -27,18 +26,21 @@ export default function RenderSuggestions({ baseUrl, width, lg, isSignedIn }) {
     })()
   }, [])
 
-  return loading ? (width > lg ? (
-    <>
-      <Card2Skeleton />
-      <Card2Skeleton />
-      <Card2Skeleton />
-    </>
-  ) : (<>
-    <Card1Skeleton />
-    <Card1Skeleton />
-    <Card1Skeleton />
-  </>)
-  ): Array.isArray(suggestions) && width > lg ? (
+  return loading ? (
+    width > lg ? (
+      <>
+        <Card2Skeleton />
+        <Card2Skeleton />
+        <Card2Skeleton />
+      </>
+    ) : (
+      <>
+        <Card1Skeleton />
+        <Card1Skeleton />
+        <Card1Skeleton />
+      </>
+    )
+  ) : Array.isArray(suggestions) && width > lg ? (
     Array.isArray(suggestions) &&
     suggestions?.map((x) => <Card2 key={x?.data?.id} data={x?.data} />)
   ) : (
