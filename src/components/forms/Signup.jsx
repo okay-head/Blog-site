@@ -52,7 +52,11 @@ export default function Signup() {
     console.clear()
 
     // check if the user exists / check password
-    let user = Array.isArray(data) && data.find((x) => x.user_email == email)
+    if (!Array.isArray(data)) {
+      triggerAlert(undefined, `Please wait...`)
+      return
+    }
+    let user = data.find((x) => x.user_email == email)
     if (user) {
       triggerAlert(undefined, 'Email already in use!')
       return

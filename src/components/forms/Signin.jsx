@@ -50,7 +50,15 @@ export default function Signin() {
     console.clear()
 
     // check if the user exists / check password
-    const user = Array.isArray(data) && data.find((x) => x.user_email == email)
+    if (!Array.isArray(data)) {
+      triggerAlert(undefined, `Please wait...`)
+      return
+    }
+
+    // instead this is the chance to create loading screens for the entire page
+    // Dont load this if signIn info is not available
+
+    const user = data.find((x) => x.user_email == email)
     if (!user) {
       triggerAlert(
         undefined,
