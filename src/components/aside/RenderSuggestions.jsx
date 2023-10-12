@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Card2 from '../cards/Card2'
 import Card2Skeleton from '../cards/Card2Skeleton'
 import Card1 from '../cards/Card1'
+import Card1Skeleton from '../cards/Card1Skeleton'
 
 // idk why but i'm separating the fetches and aside body render logic
 export default function RenderSuggestions({ baseUrl, width, lg, isSignedIn }) {
@@ -26,13 +27,18 @@ export default function RenderSuggestions({ baseUrl, width, lg, isSignedIn }) {
     })()
   }, [])
 
-  return loading ? (
+  return loading ? (width > lg ? (
     <>
       <Card2Skeleton />
       <Card2Skeleton />
       <Card2Skeleton />
     </>
-  ) : Array.isArray(suggestions) && width > lg ? (
+  ) : (<>
+    <Card1Skeleton />
+    <Card1Skeleton />
+    <Card1Skeleton />
+  </>)
+  ): Array.isArray(suggestions) && width > lg ? (
     Array.isArray(suggestions) &&
     suggestions?.map((x) => <Card2 key={x?.data?.id} data={x?.data} />)
   ) : (

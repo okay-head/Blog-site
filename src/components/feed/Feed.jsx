@@ -4,12 +4,17 @@ import Card1 from './../cards/Card1'
 import { useEffect, useState } from 'react'
 import toTitleCase from './../../utility/toTitleCase'
 import useContextHook from '../../state/useContextHook'
+import Card1Skeleton from '../cards/Card1Skeleton'
 
 export default function Feed() {
   const [feedData, setFeedData] = useState('No feed data')
+  const [loading, setLoading] = useState(true)
   const [filterData, setFilterData] = useState('')
   const [inputTxt, setInputTxt] = useState('')
   const { baseUrl } = useContextHook()
+  const [sm, md, lg, xl] = [640, 768, 1024, 1280]
+  const [width, setWidth] = useState(window.innerWidth)
+
 
   useEffect(() => {
     const data = (async () => {
@@ -24,6 +29,7 @@ export default function Feed() {
     data.then((res) => {
       setFeedData(res.data)
       setFilterData(res.data)
+      setLoading(false)
     })
   }, [])
 
@@ -84,7 +90,18 @@ export default function Feed() {
           </div>
         </div>
         {/* no articles */}
-        {Array.isArray(filterData) && filterData.length == 0 ? (
+        {loading ? (
+          <>
+            <Card1Skeleton />
+            <Card1Skeleton />
+            <Card1Skeleton />
+            <Card1Skeleton />
+            <Card1Skeleton />
+            <Card1Skeleton />
+            { width > lg ? (<Card1 classVars='opacity-0' />) : <></>}
+            
+          </>
+        ) : Array.isArray(filterData) && filterData.length == 0 ? (
           <div className='relative max-h-screen overflow-hidden border-t-2'>
             <div className='absolute inset-0 top-[-30%] z-10 col-span-2 grid place-items-center'>
               <div className='w-60 md:w-[unset]'>

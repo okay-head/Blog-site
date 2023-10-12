@@ -86,7 +86,13 @@ export default function Aside() {
 
               {/* rendering bookmarks */}
 
-              <RenderBookmarks baseUrl={baseUrl} width={width} lg={lg} user_bookmarks={user_bookmarks} isSignedIn={isSignedIn} />
+              <RenderBookmarks
+                baseUrl={baseUrl}
+                width={width}
+                lg={lg}
+                user_bookmarks={user_bookmarks}
+                isSignedIn={isSignedIn}
+              />
 
               <div className='mt-3 text-right text-xs font-semibold'>
                 <Link to={'user/bookmarks'}>
@@ -106,9 +112,14 @@ export default function Aside() {
               </div>
 
               {/* rendering suggestions | these 'll always be three */}
-        
-                <RenderSuggestions baseUrl={baseUrl} width={width} lg={lg} isSignedIn={isSignedIn} />  
-                
+
+              <RenderSuggestions
+                baseUrl={baseUrl}
+                width={width}
+                lg={lg}
+                isSignedIn={isSignedIn}
+              />
+
               <div className='mt-3 pb-2 text-right text-xs font-semibold'>
                 <a href='#' className='me-2 underline hover:no-underline'>
                   See more
