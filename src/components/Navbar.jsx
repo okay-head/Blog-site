@@ -4,6 +4,7 @@ import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import LoadingScreen from './shared/LoadingScreen'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
@@ -17,6 +18,7 @@ export default function Navbar() {
 
   return (
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
+      <LoadingScreen />
       <Container>
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>

@@ -102,3 +102,12 @@ input:focus-within {
   opacity: 1;
   transition: 0.2s all ease-in;
 }
+
+#loading-screen {
+  background-size: 100%;
+}
+@media (min-width: 768px) {
+  #loading-screen {
+    background-size: unset;
+  }
+}
