@@ -13,11 +13,11 @@ import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function Signin() {
   // trigger loading state
-  
-  // get all users
-  const [data, setData] = useState(undefined)
 
-  if (data?.length) triggerLoadingScreen(false)
+  // get all users
+  const [data, setData] = useState('No User data')
+
+  if (Array.isArray(data)) triggerLoadingScreen(false)
   else triggerLoadingScreen(true)
 
   const { baseUrl } = useContextHook()

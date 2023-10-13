@@ -9,14 +9,17 @@ import scrollTop from '../../utility/scrollToTop'
 import Tooltip from '../shared/Tooltip'
 import readingTime from '../../utility/readingTime'
 import triggerAlert from './../shared/triggerAlert'
+import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function View() {
   const { pathname, state } = useLocation()
   const { isSignedIn, user, setUser, baseUrl } = useContextHook()
 
   // article data is coming from route state
-  // i.e. it won't be passed when navigating directly thru url 🔴
+  // i.e. it won't be passed when navigating directly thru url (solution below :23)
   const [data, setData] = useState(state?.data)
+  if (Array.isArray(Object.values(data))) triggerLoadingScreen(false)
+  else triggerLoadingScreen(true)
 
   useEffect(() => {
     scrollTop()
@@ -135,7 +138,7 @@ export default function View() {
         </div>
 
         <div
-          className={`img-container bg-style custom-h-img overflow-hidden rounded-md  bg-blue-400`}
+          className={`img-container bg-style custom-h-img overflow-hidden rounded-md  bg-[#b0b1b3]`}
           style={{
             backgroundImage:
               'url("/assets/(m)mick-haupt-TEjR4zowKgE-unsplash(1).jpg")',

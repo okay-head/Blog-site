@@ -15,8 +15,8 @@ import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function Signup() {
   // get all users
-  const [data, setData] = useState(undefined)
-  if (data?.length) triggerLoadingScreen(false)
+  const [data, setData] = useState('No user data')
+  if (Array.isArray(data)) triggerLoadingScreen(false)
   else triggerLoadingScreen(true)
   const { baseUrl } = useContextHook()
   useEffect(() => {

@@ -15,7 +15,6 @@ export default function Feed() {
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
   const [width, setWidth] = useState(window.innerWidth)
 
-
   useEffect(() => {
     const data = (async () => {
       try {
@@ -98,8 +97,7 @@ export default function Feed() {
             <Card1Skeleton />
             <Card1Skeleton />
             <Card1Skeleton />
-            { width > lg ? (<Card1 classVars='opacity-0' />) : <></>}
-            
+            {width > lg ? <Card1 classVars='opacity-0' /> : <></>}
           </>
         ) : Array.isArray(filterData) && filterData.length == 0 ? (
           <div className='relative max-h-screen overflow-hidden border-t-2'>

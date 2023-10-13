@@ -5,6 +5,7 @@ import Card1 from '../cards/Card1'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import triggerAlert from '../shared/triggerAlert'
+import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
@@ -16,9 +17,13 @@ export default function MyArticlesAndBookmarks({ mode }) {
 
   // if(!)
   // get feed data (iife)
-  const [feedData, setFeedData] = useState('No feed data')
+  const [feedData, setFeedData] = useState(undefined)
+  if (Array.isArray(feedData)) triggerLoadingScreen(false)
+  else triggerLoadingScreen(true)
+
   useEffect(() => {
     getRequest(mode)
+    triggerLoadingScreen(true)
   }, [mode, user_bookmarks])
 
   const getRequest = (mode) => {

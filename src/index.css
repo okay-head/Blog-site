@@ -104,10 +104,15 @@ input:focus-within {
 }
 
 #loading-screen {
-  background-size: 100%;
+  background-size: 90%;
 }
 @media (min-width: 768px) {
   #loading-screen {
-    background-size: unset;
+    background-size: 80%;
+  }
+}
+@media (min-width: 1024px) {
+  #loading-screen {
+    background-size: 50%;
   }
 }

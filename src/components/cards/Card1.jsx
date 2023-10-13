@@ -68,7 +68,7 @@ export default function Card1({
           </p>
         </div>
         <div
-          className={`img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-blue-400 md:h-48 ${
+          className={`img-container bg-style h-32 min-w-[130px] overflow-hidden rounded-md  bg-[#b0b1b3] md:h-48 ${
             isSignedIn ? '' : 'md:ms-auto md:w-72'
           }`}
           style={{

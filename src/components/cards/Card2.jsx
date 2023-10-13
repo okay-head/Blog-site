@@ -32,7 +32,7 @@ export default function Card2({ data = defaultData }) {
     <article ref={articleRef} id={`${data.id}`} className='pt-8'>
       <div className='card-content grid h-40 grid-cols-[0.9fr,1.1fr] items-center gap-4 overflow-hidden'>
         <div
-          className='img-container bg-style h-36 min-w-[130px]  rounded-md bg-blue-400'
+          className='img-container bg-style h-36 min-w-[130px]  rounded-md bg-[#b0b1b3]'
           style={{
             backgroundImage: 'url("/assets/(md)galaxy.jpg")',
           }}
