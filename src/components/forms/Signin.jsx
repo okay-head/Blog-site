@@ -9,10 +9,17 @@ import useContextHook from '../../state/useContextHook'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import triggerAlert from './../shared/triggerAlert'
+import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function Signin() {
+  // trigger loading state
+  
   // get all users
-  const [data, setData] = useState('User data is empty')
+  const [data, setData] = useState(undefined)
+
+  if (data?.length) triggerLoadingScreen(false)
+  else triggerLoadingScreen(true)
+
   const { baseUrl } = useContextHook()
   useEffect(() => {
     try {

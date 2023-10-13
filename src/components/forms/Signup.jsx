@@ -11,10 +11,13 @@ import axios from 'axios'
 import userImg from '/public/assets/blob/userImg'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from './../shared/triggerAlert'
+import { triggerLoadingScreen } from '../shared/LoadingScreen'
 
 export default function Signup() {
   // get all users
-  const [data, setData] = useState('User data is empty')
+  const [data, setData] = useState(undefined)
+  if (data?.length) triggerLoadingScreen(false)
+  else triggerLoadingScreen(true)
   const { baseUrl } = useContextHook()
   useEffect(() => {
     try {
