@@ -45,8 +45,6 @@ export default function Signup() {
     formState: { errors },
   } = useForm()
 
-  // {...register(name, options)}
-
   const onSubmit = (vals) => signUpHandler(vals)
   const onError = (err) => console.error(err)
 
@@ -71,7 +69,6 @@ export default function Signup() {
       let post = undefined
       // 'id' attribute is important to every payload !!
       try {
-        // console.log(avatar)
         post = async () => {
           const payload = JSON.stringify({
             id: seed,
@@ -94,7 +91,6 @@ export default function Signup() {
       // After entry is added
       post().then((d) => {
         user = d.data
-        // console.log(`Signed in as ${user?.user_displayName}`, user)
         setSignedIn(true)
         setUser(user)
         navigate(redirectTo)
