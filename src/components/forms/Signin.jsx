@@ -46,8 +46,6 @@ export default function Signin() {
     formState: { errors },
   } = useForm()
 
-  // {...register(name, options)}
-
   const onSubmit = (vals) => signInHandler(vals)
   const onError = (err) => console.error(err)
 
@@ -78,7 +76,6 @@ export default function Signin() {
       triggerAlert(undefined, 'Incorrect password! Try again.')
       return
     }
-    // console.log(`Signed in as ${user?.user_displayName}`, user)
     setSignedIn(true)
     setUser(user)
     navigate(redirectTo)
