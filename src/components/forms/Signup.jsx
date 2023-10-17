@@ -97,7 +97,7 @@ export default function Signup() {
       })
     }
 
-    if (avatar == '' || Object.values(avatar).length == 0) {
+    if (avatar == '' || Object.values(avatar || {}).length == 0) {
       avatar = userImg()
       postHandler()
       return

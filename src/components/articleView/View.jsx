@@ -18,7 +18,7 @@ export default function View() {
   // article data is coming from route state
   // i.e. it won't be passed when navigating directly thru url (solution below :23)
   const [data, setData] = useState(state?.data)
-  if (Array.isArray(Object.values(data))) triggerLoadingScreen(false)
+  if (Array.isArray(Object.values(data || {}))) triggerLoadingScreen(false)
   else triggerLoadingScreen(true)
 
   useEffect(() => {

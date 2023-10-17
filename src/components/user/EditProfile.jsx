@@ -47,7 +47,7 @@ export default function EditProfile() {
     /* __ Post to db__ */
 
     // check if img input is left unchanged
-    if (avatar == '' || Object.values(avatar).length == 0) {
+    if (avatar == '' || Object.values(avatar || {}).length == 0) {
       avatar = user.user_avatar
       patchHandler(toTitleCase(name), email, password, avatar)
       patchHandler().then((d) => {
