@@ -8,6 +8,7 @@ export default function LoadingScreen() {
   )
 }
 
+// when passed true, displays the loading screen
 export const triggerLoadingScreen = (flag) => {
   flag
     ? document.getElementById('loading-screen')?.classList?.remove('hidden')

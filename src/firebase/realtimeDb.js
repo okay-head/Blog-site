@@ -8,6 +8,7 @@ import {
   remove,
 } from 'firebase/database'
 import { app } from './firebaseApp'
+import triggerAlert from '../components/shared/triggerAlert'
 
 const db = getDatabase(app)
 
@@ -19,9 +20,10 @@ const getFn = async (url, check) => {
     const res = await get(ref(db, url))
     if (check) return res.exists()
 
-    console.log(res.exists() && res.val())
+    return res.exists() && res.val()
   } catch (error) {
-    throw new Error(error)
+    console.log(error)
+    triggerAlert(undefined, error)
   }
 }
 // only for getting all data

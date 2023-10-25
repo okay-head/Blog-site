@@ -10,17 +10,22 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
+import { signInFn } from '../../firebase/auth'
+import { getFn } from '../../firebase/realtimedb'
 
 export default function Signin() {
-  // trigger loading state
-
   // get all users
-  const [data, setData] = useState('No User data')
+  // const [data, setData] = useState('No User data')
 
-  if (Array.isArray(data)) triggerLoadingScreen(false)
-  else triggerLoadingScreen(true)
+  // show loader if user data is not available
+  // this is important as we need the user data to validate info
 
-  const { baseUrl } = useContextHook()
+  // trigger loading state
+  // if (Array.isArray(data)) triggerLoadingScreen(false)
+  // else triggerLoadingScreen(true)
+
+  // || however with firebase auth we dont even need to fetch the user data ||
+  /*   const { baseUrl } = useContextHook()
   useEffect(() => {
     try {
       ;(async function getData() {
@@ -31,15 +36,18 @@ export default function Signin() {
       throw new Error(e)
     }
   }, [])
-  let { redirectTo } = useOutletContext()
-  const { state } = useLocation()
+ */
 
-  if (state) {
-    redirectTo = state?.from || redirectTo
-  }
-
+  // __Imports
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
+
+  // where should the user be redirected after login
+  let { redirectTo } = useOutletContext()
+  const { state } = useLocation()
+  if (state) redirectTo = state?.from || redirectTo
+
+  // __React hook form validation
   const {
     register,
     handleSubmit,
@@ -49,36 +57,32 @@ export default function Signin() {
   const onSubmit = (vals) => signInHandler(vals)
   const onError = (err) => console.error(err)
 
-  const signInHandler = ({ email, password }) => {
-    // apply more validations, firebase auth etc..
+  // runs only after validation checks by react-hook-form are passed
+  const signInHandler = async ({ email, password }) => {
+    // Firebase auth
+    const user = await signInFn(email, password)
+    if (!user) return
 
-    console.clear()
+    console.log('Signinjsx | sign in successfull')
+    const userEmail = user?.user?.email
+    const userId = user?.user?.uid
 
-    // check if the user exists / check password
-    if (!Array.isArray(data)) {
-      triggerAlert(undefined, `Please wait...`)
+    // Fetch user info from db/users/userId
+    triggerLoadingScreen(true)
+    const userData = await getFn('users/' + userId, false)
+    triggerLoadingScreen(false)
+    
+    //  if user has no data (not possible but still a check for dev)
+    if (!userData) {
+      triggerAlert(undefined, 'No user data is present!')
       return
     }
 
-    // instead this is the chance to create loading screens for the entire page
-    // Dont load this if signIn info is not available
-
-    const user = data.find((x) => x.user_email == email)
-    if (!user) {
-      triggerAlert(
-        undefined,
-        `Email not found!
-        Please Sign Up if you are a new user.`
-      )
-      return
-    }
-    if (user.user_passHash != password) {
-      triggerAlert(undefined, 'Incorrect password! Try again.')
-      return
-    }
-    setSignedIn(true)
-    setUser(user)
-    navigate(redirectTo)
+    console.log('Now set user data in state', userData)
+    // setSignedIn(true)
+    // setUser(user)
+    triggerAlert(undefined, 'Signing in as ' + userEmail)
+    // navigate(redirectTo)
   }
 
   return (

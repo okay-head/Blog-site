@@ -1,28 +1,37 @@
-import {getAuth,connectAuthEmulator, signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut} from 'firebase/auth'
+import {
+  getAuth,
+  connectAuthEmulator,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 import { app } from './firebaseApp'
+import triggerAlert from '../components/shared/triggerAlert'
 
 const auth = getAuth(app)
 
-connectAuthEmulator(auth,'http://127.0.0.1:9099')
+connectAuthEmulator(auth, 'http://127.0.0.1:9099')
 
-const signInFn = async(email,password)=>{
+const signInFn = async (email, password) => {
   try {
-    const user = await signInWithEmailAndPassword(auth,email,password)
-    console.log('Signed in!',user)
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    return user
   } catch (error) {
     // Log detailed error, make switch case here
     console.log(error.code)
+    triggerAlert(undefined, error.code)
   }
 }
 
-const signUpFn = async(email,password)=>{
+const signUpFn = async (email, password) => {
   try {
-    const user = await createUserWithEmailAndPassword(auth, email,password)
-    console.log('Created user and signed in!',user)
+    const user = await createUserWithEmailAndPassword(auth, email, password)
+    return user
   } catch (error) {
-    console.log(error)
+    console.log(error.code)
+    triggerAlert(undefined, error.code)
   }
-} 
+}
 /* You dont need this function as you're using the global state to monitor authentication status */
 // onAuthStateChanged(auth,()=>{
 // })
@@ -38,13 +47,13 @@ const signOut = async()=>{
 } 
 */
 
-const signOutFn = async()=>{
+const signOutFn = async () => {
   try {
     await signOut(auth)
     console.log('User signed out!')
   } catch (error) {
     console.log(error)
   }
-} 
+}
 
-export {signInFn,signUpFn,signOutFn,}
+export { signInFn, signUpFn, signOutFn }
