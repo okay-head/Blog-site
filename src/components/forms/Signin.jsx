@@ -14,35 +14,9 @@ import { signInFn } from '../../firebase/auth'
 import { getFn } from '../../firebase/realtimedb'
 
 export default function Signin() {
-  // get all users
-  // const [data, setData] = useState('No User data')
-
-  // show loader if user data is not available
-  // this is important as we need the user data to validate info
-
-  // trigger loading state
-  // if (Array.isArray(data)) triggerLoadingScreen(false)
-  // else triggerLoadingScreen(true)
-
-  // || however with firebase auth we dont even need to fetch the user data ||
-  /*   const { baseUrl } = useContextHook()
-  useEffect(() => {
-    try {
-      ;(async function getData() {
-        const response = await axios.get(`${baseUrl}/user`)
-        setData(response.data)
-      })()
-    } catch (e) {
-      throw new Error(e)
-    }
-  }, [])
- */
-
   // __Imports
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
-
-  // where should the user be redirected after login
   let { redirectTo } = useOutletContext()
   const { state } = useLocation()
   if (state) redirectTo = state?.from || redirectTo
@@ -71,7 +45,7 @@ export default function Signin() {
     triggerLoadingScreen(true)
     const userData = await getFn('users/' + userId, false)
     triggerLoadingScreen(false)
-    
+
     //  if user has no data (not possible but still a check for dev)
     if (!userData) {
       triggerAlert(undefined, 'No user data is present!')
@@ -79,9 +53,9 @@ export default function Signin() {
     }
 
     console.log('Now set user data in state', userData)
-    // setSignedIn(true)
-    // setUser(user)
+    setUser(userData)
     triggerAlert(undefined, 'Signing in as ' + userEmail)
+    // setSignedIn(true)
     // navigate(redirectTo)
   }
 

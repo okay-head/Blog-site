@@ -12,27 +12,13 @@ import userImg from '/public/assets/blob/userImg'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
+import { signInFn, signUpFn } from '../../firebase/auth'
+import { setUserFn } from '../../firebase/realtimedb'
 
 export default function Signup() {
-  // get all users
-  const [data, setData] = useState('No user data')
-  if (Array.isArray(data)) triggerLoadingScreen(false)
-  else triggerLoadingScreen(true)
-  const { baseUrl } = useContextHook()
-  useEffect(() => {
-    try {
-      ;(async function getData() {
-        const response = await axios.get(`${baseUrl}/user`)
-        setData(response.data)
-      })()
-    } catch (e) {
-      throw new Error(e)
-    }
-  }, [])
-
+  // Imports
   let { redirectTo } = useOutletContext()
   const { state } = useLocation()
-
   if (state) {
     redirectTo = state?.from || redirectTo
   }
@@ -45,56 +31,47 @@ export default function Signup() {
     formState: { errors },
   } = useForm()
 
+  // __React hook form validation
   const onSubmit = (vals) => signUpHandler(vals)
   const onError = (err) => console.error(err)
 
-  const signUpHandler = ({ name, email, password, avatar }) => {
-    // apply more validations, firebase auth etc..
-    console.clear()
-
-    // check if the user exists / check password
-    if (!Array.isArray(data)) {
-      triggerAlert(undefined, `Please wait...`)
-      return
-    }
-    let user = data.find((x) => x.user_email == email)
+  const signUpHandler = async ({ name, email, password, avatar }) => {
+    // check if user already exists
+    const user = await signInFn(email, password, true)
     if (user) {
       triggerAlert(undefined, 'Email already in use!')
       return
     }
 
-    // if not then post to db
-    const postHandler = () => {
-      const seed = (Math.random() * 100).toFixed(0) + Date.now()
-      let post = undefined
-      // 'id' attribute is important to every payload !!
-      try {
-        post = async () => {
-          const payload = JSON.stringify({
-            id: seed,
-            user_id: seed,
-            user_displayName: toTitleCase(name),
-            user_email: email,
-            user_passHash: password,
-            user_avatar: avatar,
-            user_articles: [],
-            user_bookmarks: [],
-          })
+    // it does not, great | create new user
 
-          return await axios.post(`${baseUrl}/user`, payload, {
-            headers: { 'Content-Type': 'application/json' },
-          })
-        }
-      } catch (e) {
-        throw new Error(e)
+    // --loading screen--
+    const newUser = await signUpFn(email, password)
+    // user created
+    const userId = newUser?.user?.uid
+
+    // create an entry in the database
+    const postHandler = async () => {
+      console.log('posting to db')
+
+      // 'id' attribute is important to every payload !!
+      const payload = {
+        id: userId,
+        user_id: userId,
+        user_displayName: toTitleCase(name),
+        user_email: email,
+        user_avatar: avatar,
+        user_articles: [],
+        user_bookmarks: [],
       }
+
+      // post to db
+      await setUserFn(payload)
       // After entry is added
-      post().then((d) => {
-        user = d.data
-        setSignedIn(true)
-        setUser(user)
-        navigate(redirectTo)
-      })
+      setUser(payload)
+      triggerAlert(undefined, 'Signing in as ' + email)
+      // setSignedIn(true)
+      // navigate(redirectTo)
     }
 
     if (avatar == '' || Object.values(avatar || {}).length == 0) {
