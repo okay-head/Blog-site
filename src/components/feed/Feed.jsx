@@ -1,35 +1,26 @@
-import axios from 'axios'
 import Container from '../Container'
 import Card1 from './../cards/Card1'
 import { useEffect, useState } from 'react'
 import toTitleCase from './../../utility/toTitleCase'
-import useContextHook from '../../state/useContextHook'
 import Card1Skeleton from '../cards/Card1Skeleton'
+import { getAllDataFn } from '../../firebase/realtimedb'
 
 export default function Feed() {
   const [feedData, setFeedData] = useState('No feed data')
   const [loading, setLoading] = useState(true)
   const [filterData, setFilterData] = useState('')
   const [inputTxt, setInputTxt] = useState('')
-  const { baseUrl } = useContextHook()
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
   const [width, setWidth] = useState(window.innerWidth)
 
+  // get feed data
   useEffect(() => {
-    const data = (async () => {
-      try {
-        return await axios.get(`${baseUrl}/data`)
-      } catch (e) {
-        // alert(e)
-        console.log(e)
-      }
-    })()
-
-    data.then((res) => {
-      setFeedData(res.data)
-      setFilterData(res.data)
+    ;(async () => {
+      const d = await getAllDataFn('/data')
+      setFeedData(d)
+      setFilterData(d)
       setLoading(false)
-    })
+    })()
   }, [])
 
   const filterByQuery = (e) => {

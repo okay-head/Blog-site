@@ -36,9 +36,12 @@ const getAllDataFn = async (url) => {
       console.warn('No data present!')
       return
     }
-    res.val().forEach((x, i) => {
-      if (i !== 0) console.log(x)
-    })
+    // could've pushed res.val() directly
+    // but a null array is introduced that way 
+    // at index 0
+    const arr = []
+    res.val().forEach((x) => arr.push(x))
+    return arr
   } catch (error) {
     throw new Error(error)
   }
