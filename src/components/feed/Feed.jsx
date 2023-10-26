@@ -3,7 +3,7 @@ import Card1 from './../cards/Card1'
 import { useEffect, useState } from 'react'
 import toTitleCase from './../../utility/toTitleCase'
 import Card1Skeleton from '../cards/Card1Skeleton'
-import { getAllDataFn } from '../../firebase/realtimedb'
+import { getAllDataFn } from '../../firebase/realtimeDb'
 
 export default function Feed() {
   const [feedData, setFeedData] = useState('No feed data')

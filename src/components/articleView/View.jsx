@@ -9,7 +9,7 @@ import Tooltip from '../shared/Tooltip'
 import readingTime from '../../utility/readingTime'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
-import { getFn, patchFn } from '../../firebase/realtimedb'
+import { getFn, patchFn } from '../../firebase/realtimeDb'
 
 export default function View() {
   const { pathname, state } = useLocation()

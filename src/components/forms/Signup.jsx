@@ -6,14 +6,12 @@ import {
   useOutletContext,
 } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import userImg from '/public/assets/blob/userImg'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
 import { signInFn, signUpFn } from '../../firebase/auth'
-import { setUserFn } from '../../firebase/realtimedb'
+import { setUserFn } from '../../firebase/realtimeDb'
 
 export default function Signup() {
   // Imports

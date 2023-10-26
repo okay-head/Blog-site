@@ -6,12 +6,10 @@ import {
   useOutletContext,
 } from 'react-router-dom'
 import useContextHook from '../../state/useContextHook'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
 import { signInFn } from '../../firebase/auth'
-import { getFn } from '../../firebase/realtimedb'
+import { getFn } from '../../firebase/realtimeDb'
 
 export default function Signin() {
   // __Imports

@@ -12,16 +12,16 @@ const auth = getAuth(app)
 
 connectAuthEmulator(auth, 'http://127.0.0.1:9099')
 
-const signInFn = async (email, password, check=false) => {
+const signInFn = async (email, password, check = false) => {
   try {
     const user = await signInWithEmailAndPassword(auth, email, password)
     return user
   } catch (error) {
     // Log detailed error, make switch case here
     console.log(error.code)
-    if(!check) triggerAlert(undefined, error.code)
+    if (!check) triggerAlert(undefined, error.code)
     // specific use case for signup checking
-    if (error.code=='auth/wrong-password' && check) return true
+    if (error.code == 'auth/wrong-password' && check) return true
   }
 }
 

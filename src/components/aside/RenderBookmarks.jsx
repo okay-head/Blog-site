@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Card2 from '../cards/Card2'
 import Card1 from '../cards/Card1'
 import Card1Skeleton from '../cards/Card1Skeleton'
-import { getFn } from '../../firebase/realtimedb'
+import { getFn } from '../../firebase/realtimeDb'
 
 export default function RenderBookmarks({
   width,
@@ -51,7 +51,5 @@ export default function RenderBookmarks({
     ? Array.isArray(bookmarks) &&
       bookmarks?.map((x) => <Card2 key={x?.id} data={x} />)
     : Array.isArray(bookmarks) &&
-      bookmarks?.map((x) => (
-        <Card1 tagNone={'hidden'} key={x?.id} data={x} />
-      ))
+      bookmarks?.map((x) => <Card1 tagNone={'hidden'} key={x?.id} data={x} />)
 }

@@ -3,7 +3,7 @@ import Card2 from '../cards/Card2'
 import Card2Skeleton from '../cards/Card2Skeleton'
 import Card1 from '../cards/Card1'
 import Card1Skeleton from '../cards/Card1Skeleton'
-import { getFn } from '../../firebase/realtimedb'
+import { getFn } from '../../firebase/realtimeDb'
 
 // idk why but i'm separating the fetches and aside body render logic
 export default function RenderSuggestions({ width, lg, isSignedIn }) {

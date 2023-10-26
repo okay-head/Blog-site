@@ -9,7 +9,6 @@ import RenderSuggestions from './RenderSuggestions'
 import RenderBookmarks from './RenderBookmarks'
 
 export default function Aside() {
-
   /*   -------- resize logic -------- */
   //debounce/ optimize later
   const [sm, md, lg, xl] = [640, 768, 1024, 1280]
@@ -31,7 +30,7 @@ export default function Aside() {
 
   useEffect(() => {
     // resizeFn()
-    
+
     // _______topMargin adjustment_______
     if (width > lg) {
       // const topMargin = -215

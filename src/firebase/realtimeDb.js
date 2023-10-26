@@ -15,7 +15,7 @@ const db = getDatabase(app)
 connectDatabaseEmulator(db, 'localhost', 9000)
 
 // ----| GET |----
-const getFn = async (url, check=false) => {
+const getFn = async (url, check = false) => {
   try {
     const res = await get(ref(db, url))
     if (check) return res.exists()
@@ -37,7 +37,7 @@ const getAllDataFn = async (url) => {
       return
     }
     // could've pushed res.val() directly
-    // but a null array is introduced that way 
+    // but a null array is introduced that way
     // at index 0
     const arr = []
     res.val().forEach((x) => arr.push(x))
