@@ -1,12 +1,11 @@
-import axios from 'axios'
 import Card2Skeleton from '../cards/Card2Skeleton'
 import { useEffect, useState } from 'react'
 import Card2 from '../cards/Card2'
 import Card1 from '../cards/Card1'
 import Card1Skeleton from '../cards/Card1Skeleton'
+import { getFn } from '../../firebase/realtimedb'
 
 export default function RenderBookmarks({
-  baseUrl,
   width,
   lg,
   user_bookmarks,
@@ -19,9 +18,17 @@ export default function RenderBookmarks({
       return
     }
     // ____setBookmarks____
-    ;(async function getBookmarks() {
+    ;(async function () {
+      // check for undefined, not likely to happen but still a check
+      if (user_bookmarks == undefined) {
+        setBookmarks(undefined)
+        setLoading(false)
+        return
+      }
+
+      // get bookmarks
       const res = await Promise.all(
-        user_bookmarks.map((x) => axios.get(`${baseUrl}/data/${x}`))
+        user_bookmarks.map((x) => getFn(`/data/${x}`))
       )
       setBookmarks(res)
       setLoading(false)
@@ -42,9 +49,9 @@ export default function RenderBookmarks({
           })
     : Array.isArray(bookmarks) && width > lg
     ? Array.isArray(bookmarks) &&
-      bookmarks?.map((x) => <Card2 key={x?.data?.id} data={x?.data} />)
+      bookmarks?.map((x) => <Card2 key={x?.id} data={x} />)
     : Array.isArray(bookmarks) &&
       bookmarks?.map((x) => (
-        <Card1 tagNone={'hidden'} key={x?.data?.id} data={x?.data} />
+        <Card1 tagNone={'hidden'} key={x?.id} data={x} />
       ))
 }

@@ -4,19 +4,19 @@ import useContextHook from '../../state/useContextHook'
 import Container from '../Container'
 import Tag from '../cards/Tag'
 import { Link, useLocation } from 'react-router-dom'
-import axios from 'axios'
 import scrollTop from '../../utility/scrollToTop'
 import Tooltip from '../shared/Tooltip'
 import readingTime from '../../utility/readingTime'
 import triggerAlert from './../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
+import { getFn, patchFn } from '../../firebase/realtimedb'
 
 export default function View() {
   const { pathname, state } = useLocation()
-  const { isSignedIn, user, setUser, baseUrl } = useContextHook()
+  const { isSignedIn, user, setUser } = useContextHook()
 
   // article data is coming from route state
-  // i.e. it won't be passed when navigating directly thru url (solution below :23)
+  // i.e. it won't be passed when navigating directly thru url (solution below :26)
   const [data, setData] = useState(state?.data)
   if (Array.isArray(Object.values(data || {}))) triggerLoadingScreen(false)
   else triggerLoadingScreen(true)
@@ -27,41 +27,35 @@ export default function View() {
     if (!state) {
       const x = Number(pathname.split('/')[2])
       console.log(`Route state doesnt exist. Fetching data for ${x}...`)
-
-      let d = undefined
-      try {
-        d = (async () => axios.get(`${baseUrl}/data/${x}`))()
-      } catch (e) {
-        throw new Error(e)
-      }
-      d.then(({ data }) => setData(data))
+      ;(async function () {
+        const d = await getFn('/data/' + x)
+        setData(d)
+      })()
     }
   }, [])
-
-  const patchUrl = `${baseUrl}/user/${user?.id}`
+  const patchUrl = `/users/${user?.id}`
   const addBookmark = async () => {
-    // console.log('bookmark added')
     // make a patch request
-    // update user state
     try {
       // first check if bookmark already exists
-      if (user.user_bookmarks.find((x) => x == data.id)) {
+      if (user?.user_bookmarks?.find((x) => x == data.id)) {
         triggerAlert(undefined, 'Already added to bookmarks!')
         return
       }
 
-      const patchRes = await axios.patch(
-        patchUrl,
-        JSON.stringify({
-          user_bookmarks: [...user.user_bookmarks, data.id],
-        }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      const payload =
+        user?.user_bookmarks == undefined
+          ? { user_bookmarks: [data.id] }
+          : { user_bookmarks: [...user.user_bookmarks, data.id] }
+
+      await patchFn(patchUrl, payload)
       triggerAlert(undefined, 'Bookmark added!')
-      console.log(patchRes)
-      setUser(patchRes.data)
+
+      // refetch user data
+      // update user state
+
+      const newUserData = await getFn(patchUrl)
+      setUser(newUserData)
     } catch (e) {
       throw new Error(e)
     }

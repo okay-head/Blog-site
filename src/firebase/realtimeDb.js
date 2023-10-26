@@ -15,7 +15,7 @@ const db = getDatabase(app)
 connectDatabaseEmulator(db, 'localhost', 9000)
 
 // ----| GET |----
-const getFn = async (url, check) => {
+const getFn = async (url, check=false) => {
   try {
     const res = await get(ref(db, url))
     if (check) return res.exists()
@@ -82,6 +82,7 @@ const setDataFn = async (data) => {
 const patchFn = async (url, data) => {
   try {
     // find if resource exists
+    // remove this check in production
     const exists = await getFn(url, true)
     if (!exists) {
       console.warn('Resource doesnt exist!')

@@ -70,8 +70,8 @@ export default function Signup() {
       // After entry is added
       setUser(payload)
       triggerAlert(undefined, 'Signing in as ' + email)
-      // setSignedIn(true)
-      // navigate(redirectTo)
+      setSignedIn(true)
+      navigate(redirectTo)
     }
 
     if (avatar == '' || Object.values(avatar || {}).length == 0) {

@@ -1,21 +1,14 @@
 import { useState, useEffect } from 'react'
 import Container from '../Container'
-import Card1 from '../cards/Card1'
-import Card2 from '../cards/Card2'
 import NotSignedIn from './NotSignedIn'
 import sparkles from './razzle-dazzle.png'
 import 'sticksy'
 import useContextHook from '../../state/useContextHook'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import Card2Skeleton from '../cards/Card2Skeleton'
 import RenderSuggestions from './RenderSuggestions'
 import RenderBookmarks from './RenderBookmarks'
 
 export default function Aside() {
-  // const [bookmarks, setBookmarks] = useState('')
-  // const [suggestions, setSuggestions] = useState()
-  // const [loading, setLoading] = useState(true)
 
   /*   -------- resize logic -------- */
   //debounce/ optimize later
@@ -38,6 +31,7 @@ export default function Aside() {
 
   useEffect(() => {
     // resizeFn()
+    
     // _______topMargin adjustment_______
     if (width > lg) {
       // const topMargin = -215
@@ -46,7 +40,7 @@ export default function Aside() {
       if (isSignedIn) {
         const numberOfBookmarks = user_bookmarks?.length
         topMargin =
-          user_bookmarks.length == 0 ? 70 : -25 + -192 * numberOfBookmarks
+          user_bookmarks?.length == 0 ? 70 : -25 + -192 * numberOfBookmarks
       }
 
       /* var instance = new Sticksy(target[, options]); */
@@ -77,7 +71,9 @@ export default function Aside() {
           <div className='signedIn'>
             <section
               className={`reading-list mb-8 ${
-                user_bookmarks.length == 0 ? 'hidden' : ''
+                user_bookmarks == undefined || user_bookmarks?.length == 0
+                  ? 'hidden'
+                  : ''
               }`}
             >
               <h2 className='block text-lg font-bold md:text-xl'>
@@ -85,14 +81,15 @@ export default function Aside() {
               </h2>
 
               {/* rendering bookmarks */}
-
-              <RenderBookmarks
-                baseUrl={baseUrl}
-                width={width}
-                lg={lg}
-                user_bookmarks={user_bookmarks}
-                isSignedIn={isSignedIn}
-              />
+              {/* save a call to this component by checking for the existence of user bookmarks here */}
+              {user_bookmarks != undefined && user_bookmarks?.length != 0 && (
+                <RenderBookmarks
+                  width={width}
+                  lg={lg}
+                  user_bookmarks={user_bookmarks}
+                  isSignedIn={isSignedIn}
+                />
+              )}
 
               <div className='mt-3 text-right text-xs font-semibold'>
                 <Link to={'user/bookmarks'}>
@@ -114,7 +111,6 @@ export default function Aside() {
               {/* rendering suggestions | these 'll always be three */}
 
               <RenderSuggestions
-                baseUrl={baseUrl}
                 width={width}
                 lg={lg}
                 isSignedIn={isSignedIn}

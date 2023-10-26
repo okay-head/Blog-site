@@ -55,8 +55,8 @@ export default function Signin() {
     console.log('Now set user data in state', userData)
     setUser(userData)
     triggerAlert(undefined, 'Signing in as ' + userEmail)
-    // setSignedIn(true)
-    // navigate(redirectTo)
+    setSignedIn(true)
+    navigate(redirectTo)
   }
 
   return (
