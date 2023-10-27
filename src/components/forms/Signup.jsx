@@ -44,6 +44,7 @@ export default function Signup() {
     // it does not, great | create new user
 
     // --loading screen--
+    triggerLoadingScreen(true)
     const newUser = await signUpFn(email, password)
     // user created
     const userId = newUser?.user?.uid
@@ -67,6 +68,7 @@ export default function Signup() {
       // post to db
       await setUserFn(payload)
       // After entry is added
+      triggerLoadingScreen(false)
       setUser(payload)
       triggerAlert(undefined, 'Signing in as ' + email)
       setSignedIn(true)

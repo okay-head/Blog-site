@@ -4,7 +4,7 @@ import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import LoadingScreen from './shared/LoadingScreen'
+import LoadingScreen, { triggerLoadingScreen } from './shared/LoadingScreen'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
@@ -96,12 +96,8 @@ export default function Navbar() {
                     <Link
                       className='mt-1'
                       onClick={() => {
-                        if (location === '/') {
-                          navigate('/')
-                          window.location.reload()
-                        }
+                        if (location === '/') window.location.reload()
                         setSignedIn(false)
-                        // clear localStorage
                         localStorage.clear()
                         //there's a delay here
                       }}
