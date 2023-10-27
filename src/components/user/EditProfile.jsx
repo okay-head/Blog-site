@@ -2,13 +2,14 @@ import { useForm } from 'react-hook-form'
 import Container from '../Container'
 import useContextHook from '../../state/useContextHook'
 import { useEffect } from 'react'
-import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from '../shared/triggerAlert'
+import { getFn, patchFn } from '../../firebase/realtimedb'
+import { updatePassFn } from '../../firebase/auth'
 
 export default function EditProfile() {
-  const { user, setUser, baseUrl } = useContextHook()
-  const postUrl = `${baseUrl}/user/${user.id}`
+  const { user, setUser } = useContextHook()
+  const patchUrl = `/users/${user.id}`
 
   // prefill with user values - use default props (refs don't work, so don't controlled components, and neither regular DOM manipulation)
   useEffect(() => {
@@ -25,54 +26,53 @@ export default function EditProfile() {
   const onError = (err) => console.error(err)
 
   const patchHandler = async (name, email, password, avatar) => {
-    try {
-      const payload = JSON.stringify({
-        user_displayName: name,
-        user_email: email,
-        user_passHash: password,
-        user_avatar: avatar,
-      })
-      return await axios.patch(postUrl, payload, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-    } catch (e) {
-      throw new Error(e)
+    // since the user email is non editable
+    const payload = {
+      user_displayName: name,
+      user_passHash: password,
+      user_avatar: avatar,
     }
+
+    // also modify user password in auth
+    await updatePassFn(password)
+
+    return await patchFn(patchUrl, payload)
   }
 
-  const submitHandler = ({ name, email, password, avatar }) => {
-    // apply more validations, firebase auth etc..
-    console.clear()
-
-    /* __ Post to db__ */
-
+  const submitHandler = async ({ name, email, password, avatar }) => {
     // check if img input is left unchanged
     if (avatar == '' || Object.values(avatar || {}).length == 0) {
       avatar = user.user_avatar
-      patchHandler(toTitleCase(name), email, password, avatar)
-      patchHandler().then((d) => {
-        triggerAlert(undefined, 'Update successful!')
-        console.log(d)
-        // update the data in context as well
-        setUser(d.data)
-      })
+
+      await patchHandler(toTitleCase(name), email, password, avatar)
+
+      // update the data in context as well
+      const newUserData = await getFn(patchUrl)
+      // console.log(newUserData)
+      setUser(newUserData)
+
+      triggerAlert(undefined, 'Update successful!')
+
       return
     }
-    // process image if input changed
+
+    // __ process image if input changed
     let reader = new FileReader()
     reader.readAsDataURL(avatar[0])
 
-    reader.onload = () => {
+    reader.onload = async () => {
       avatar = reader.result
-      patchHandler(toTitleCase(name), email, password, avatar)
-      patchHandler().then((d) => {
-        triggerAlert(undefined, 'Update successful!')
-        console.log(d)
-        // update the data in context as well
-        setUser(d.data)
-      })
+
+      await patchHandler(toTitleCase(name), email, password, avatar)
+
+      // update the data in context as well
+      const newUserData = await getFn(patchUrl)
+      // console.log(newUserData)
+      setUser(newUserData)
+      triggerAlert(undefined, 'Update successful!')
     }
   }
+
   return (
     <Container classVars='pt-32 pb-4 lg:max-w-5xl xl:px-0'>
       <section className='edit-profile'>

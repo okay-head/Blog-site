@@ -61,6 +61,7 @@ export default function Signup() {
         user_avatar: avatar,
         user_articles: [],
         user_bookmarks: [],
+        user_passHash: password
       }
 
       // post to db

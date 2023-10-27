@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  updatePassword
 } from 'firebase/auth'
 import { app } from './firebaseApp'
 import triggerAlert from '../components/shared/triggerAlert'
@@ -11,6 +12,17 @@ import triggerAlert from '../components/shared/triggerAlert'
 const auth = getAuth(app)
 
 connectAuthEmulator(auth, 'http://127.0.0.1:9099')
+
+const updatePassFn = async (newPassword) => {
+  try {
+    const user = auth.currentUser
+
+    await updatePassword(user, newPassword)
+    console.log('Password updated!')
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const signInFn = async (email, password, check = false) => {
   try {
@@ -58,4 +70,4 @@ const signOutFn = async () => {
   }
 }
 
-export { signInFn, signUpFn, signOutFn }
+export { signInFn, signUpFn, signOutFn, updatePassFn }
