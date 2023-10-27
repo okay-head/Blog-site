@@ -11,9 +11,9 @@ import triggerAlert from './../shared/triggerAlert'
 export default function CreateArticle() {
   scrollTop()
   const navigate = useNavigate()
-  const { user, setUser, baseUrl } = useContextHook()
-  const postUrl = `${baseUrl}/data`
-  const patchUrl = `${baseUrl}/user/${user.id}`
+  const { user, setUser } = useContextHook()
+  const postUrl = `/data`
+  const patchUrl = `/users/${user.id}`
   const {
     register,
     handleSubmit,
@@ -152,7 +152,7 @@ export default function CreateArticle() {
                 className='mb-3 text-base font-semibold text-[var(--text-gray)]'
                 htmlFor='hero'
               >
-                Hero image
+                Hero image (optional atm)
               </label>
               <input
                 id='hero'

@@ -16,11 +16,12 @@ import { setUserFn } from '../../firebase/realtimeDb'
 export default function Signup() {
   // Imports
   let { redirectTo } = useOutletContext()
-  const { state } = useLocation()
-  if (state) {
-    redirectTo = state?.from || redirectTo
-  }
+  // const { state } = useLocation()
+  // if (state) {
+  //   redirectTo = state?.from || redirectTo
+  // }
 
+  console.log(redirectTo)
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
   const {
@@ -62,7 +63,7 @@ export default function Signup() {
         user_avatar: avatar,
         user_articles: [],
         user_bookmarks: [],
-        user_passHash: password
+        user_passHash: password,
       }
 
       // post to db

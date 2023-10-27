@@ -16,8 +16,8 @@ export default function Signin() {
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
   let { redirectTo } = useOutletContext()
-  const { state } = useLocation()
-  if (state) redirectTo = state?.from || redirectTo
+  // const { state } = useLocation()
+  // if (state) redirectTo = state?.from || redirectTo
 
   // __React hook form validation
   const {
