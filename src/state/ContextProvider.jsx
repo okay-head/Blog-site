@@ -12,7 +12,7 @@ export function ContextProvider({ children }) {
   const user_data = JSON.parse(localStorage.getItem('user_data')) || {
     data: 'no data present!',
   }
-  
+
   // sign in state
   const [isSignedIn, setIsSignedIn] = useState(flag)
   // user state

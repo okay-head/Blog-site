@@ -4,7 +4,7 @@ import useContextHook from '../../state/useContextHook'
 import { useEffect } from 'react'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from '../shared/triggerAlert'
-import { getFn, patchFn } from '../../firebase/realtimedb'
+import { getFn, patchFn } from '../../firebase/realtimeDb'
 import { updatePassFn } from '../../firebase/auth'
 
 export default function EditProfile() {

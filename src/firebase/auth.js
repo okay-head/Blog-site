@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  updatePassword
+  updatePassword,
 } from 'firebase/auth'
 import { app } from './firebaseApp'
 import triggerAlert from '../components/shared/triggerAlert'
