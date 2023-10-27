@@ -27,6 +27,9 @@ export function ContextProvider({ children }) {
   // baseUrl state
   const [baseUrl, setBaseUrlFn] = useState(base_url)
 
+  // just to 're render page' state
+  const [render, setRender] = useState(false)
+
   // sign in setter
   const setSignedIn = (val, _user = {}) => {
     setIsSignedIn(val)
@@ -45,7 +48,16 @@ export function ContextProvider({ children }) {
 
   return (
     <SignInContext.Provider
-      value={{ isSignedIn, setSignedIn, user, setUser, baseUrl, setBaseUrl }}
+      value={{
+        isSignedIn,
+        setSignedIn,
+        user,
+        setUser,
+        baseUrl,
+        setBaseUrl,
+        render,
+        setRender,
+      }}
     >
       {children}
     </SignInContext.Provider>

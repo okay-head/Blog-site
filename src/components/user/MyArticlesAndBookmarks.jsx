@@ -6,117 +6,90 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import triggerAlert from '../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
+import { deleteFn, getFn, patchFn } from '../../firebase/realtimedb'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
-    user: { user_id, user_articles, user_bookmarks },
+    user: { user_id },
     setUser,
-    isSignedIn,
-    baseUrl,
+    render,
+    setRender,
   } = useContextHook()
 
-  // if(!)
-  // get feed data (iife)
+  let {
+    user: { user_articles, user_bookmarks },
+  } = useContextHook()
+  user_articles = user_articles == undefined ? [] : user_articles
+  user_bookmarks = user_bookmarks == undefined ? [] : user_bookmarks
+
+  // show loading screen until feed data is ready
   const [feedData, setFeedData] = useState(undefined)
   if (Array.isArray(feedData)) triggerLoadingScreen(false)
   else triggerLoadingScreen(true)
 
+  // call the backend for render data whenever the mode changes, as well as on the first load
   useEffect(() => {
     getRequest(mode)
     triggerLoadingScreen(true)
-  }, [mode, user_bookmarks])
+  }, [mode, render])
 
-  const getRequest = (mode) => {
+  const getRequest = async (mode) => {
+    // console.log('get req | gets called')
     if (mode == 'articles') {
-      const data = (async () => {
-        try {
-          return Promise.all(
-            user_articles.map((id) => axios.get(`${baseUrl}/data/${id}`))
-          )
-        } catch (e) {
-          // alert(e)
-          console.log(e)
-        }
-      })()
-      data.then((res) => setFeedData(res.map(({ data }) => data)))
+      const data = await Promise.all(
+        user_articles.map((id) => getFn(`/data/${id}`))
+      )
+      setFeedData(data)
       return
     }
 
     // if mode == bookmarks
-    const data = (async () => {
-      try {
-        return Promise.all(
-          user_bookmarks.map((id) => axios.get(`${baseUrl}/data/${id}`))
-        )
-      } catch (e) {
-        // alert(e)
-        console.log(e)
-      }
-    })()
-    data.then((res) => setFeedData(res.map(({ data }) => data)))
+    const data = await Promise.all(
+      user_bookmarks.map((id) => getFn(`/data/${id}`))
+    )
+    setFeedData(data)
   }
 
-  const deleteCard = (mode, id) => {
+  const deleteCard = async (mode, id) => {
     if (mode == 'articles') {
-      const data = (async () => {
-        try {
-          // more like patch
-          const new_user_articles = user_articles.filter((el) => el != id)
-          const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
-          // delete from the user list
-          // delete from the article list
-          // i dont fucking know why promise.all is not working guess i'll queue them separately
-          return axios.patch(
-            `${baseUrl}/user/${user_id}`,
-            {
-              user_articles: new_user_articles,
-              user_bookmarks: new_user_bookmarks,
-            },
-            { headers: { 'Content-Type': 'application/json' } }
-          )
-        } catch (e) {
-          // alert(e)
-          console.log(e)
-        }
-      })()
-      data
-        .then((res) => {
-          setUser(res.data)
-          return axios.delete(`${baseUrl}/data/${id}`)
-        })
-        .then(() => {
-          triggerAlert(undefined, 'Article removed!')
-          console.log('Deleted!')
-        })
-      // data.then((res) => setFeedData(res.map(({ data }) => data)))
+      const new_user_articles = user_articles.filter((el) => el != id)
+
+      // i dont fucking know why promise.all is not working guess i'll queue them separately
+
+      // delete from the user list
+      await patchFn(`users/${user_id}`, {
+        user_articles: new_user_articles,
+      })
+
+      // delete from the article list
+      await deleteFn(`/data/${id}`)
+
+      // update user data in context
+      const newUserData = await getFn(`users/${user_id}`)
+      setUser(newUserData)
+
+      // getRequest(mode)
+      // trigger for re-render
+      setRender((prev) => !prev)
+      triggerAlert(undefined, 'Article removed!')
       return
     }
 
     // if mode==bookmarks
-    const data = (async () => {
-      const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
-      // console.log(new_user_bookmarks)
-      try {
-        return await axios.patch(
-          `${baseUrl}/user/${user_id}`,
-          {
-            user_bookmarks: new_user_bookmarks,
-          },
-          { headers: { 'Content-Type': 'application/json' } }
-        )
-      } catch (e) {
-        // alert(e)
-        console.log(e)
-      }
-    })()
+    const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
 
-    data.then((res) => {
-      console.log(res.data)
-      setUser(res.data)
-      triggerAlert(undefined, 'Bookmark removed!')
-      // getRequest(mode)
-      // window.location.reload()
+    await patchFn(`/users/${user_id}`, {
+      user_bookmarks: new_user_bookmarks,
     })
+
+    // update user data in context
+    const newUserData = await getFn(`users/${user_id}`)
+    setUser(newUserData)
+
+    // getRequest(mode)
+    // trigger for re-render
+    setRender((prev) => !prev)
+    triggerAlert(undefined, 'Bookmark removed!')
   }
 
   return (
@@ -126,24 +99,13 @@ export default function MyArticlesAndBookmarks({ mode }) {
           <div className='heading'>
             <h1 className='block text-lg font-bold md:text-2xl'>My {mode}</h1>
           </div>
-
-          {/* <div className='search-bar relative flex-1 py-1 pt-4 md:ms-auto md:max-w-xs md:p-0 lg:max-w-md'>
-            <input
-              type='text'
-              placeholder='Search'
-              className='input-bordered input h-auto w-full rounded-3xl !border-[1px] py-2 ps-10 placeholder:text-sm  md:max-w-xs lg:max-w-md '
-            />
-            <img
-              src='/assets/loupe(2).png'
-              alt='search-icon'
-              className='absolute left-4 top-[1.90rem] block w-4 md:top-[.90rem]'
-            />
-          </div> */}
         </div>
         <div
           className={`${mode}-flex-container grid-flow-row grid-cols-2 gap-10 md:grid`}
         >
           {/* add condition for if no articles are present */}
+          {/* The first ternay checks if the feedData is an array */}
+          {/* The second checks if it isn't a zero length array */}
           {Array.isArray(feedData) ? (
             feedData.length != 0 ? (
               feedData?.map((x) => (
@@ -179,15 +141,9 @@ export default function MyArticlesAndBookmarks({ mode }) {
               </div>
             )
           ) : (
-            <h2>Loader</h2>
+            <h2>Feed data is not an array</h2>
           )}
         </div>
-
-        {/* <div className='mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:text-sm'>
-          <Link to='/' className='me-2 underline hover:no-underline'>
-            Back to all articles
-          </Link>
-        </div> */}
       </Container>
       <div className='absolute bottom-8 right-5 mb-1 mt-12 text-right text-xs font-semibold text-[var(--text-gray)] md:right-11 md:text-sm'>
         <Link to='/' className='me-2 underline hover:no-underline'>
