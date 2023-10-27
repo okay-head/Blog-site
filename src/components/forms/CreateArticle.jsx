@@ -47,14 +47,14 @@ export default function CreateArticle() {
           : [...user.user_articles, articleId],
     }
 
-    await patchFn(patchUrl,patchPayload)
-    
+    await patchFn(patchUrl, patchPayload)
+
     // update info in context
     const newUserData = await getFn(patchUrl)
     setUser(newUserData)
 
     triggerAlert(undefined, 'Article created!')
-    // navigate('/')
+    navigate('/')
   }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>

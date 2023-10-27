@@ -25,7 +25,6 @@ export default function Aside() {
   const {
     isSignedIn,
     user: { user_bookmarks },
-    baseUrl,
   } = useContextHook()
 
   useEffect(() => {

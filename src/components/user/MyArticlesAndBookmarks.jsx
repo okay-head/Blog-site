@@ -52,13 +52,14 @@ export default function MyArticlesAndBookmarks({ mode }) {
 
   const deleteCard = async (mode, id) => {
     if (mode == 'articles') {
+      // the article could also be a user bookmark
       const new_user_articles = user_articles.filter((el) => el != id)
-
-      // i dont fucking know why promise.all is not working guess i'll queue them separately
+      const new_user_bookmarks = user_bookmarks.filter((el) => el != id)
 
       // delete from the user list
       await patchFn(`users/${user_id}`, {
         user_articles: new_user_articles,
+        user_bookmarks: new_user_bookmarks,
       })
 
       // delete from the article list

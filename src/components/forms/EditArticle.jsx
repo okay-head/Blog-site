@@ -2,17 +2,15 @@ import { useForm } from 'react-hook-form'
 import Container from '../Container'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import axios from 'axios'
 import { format } from 'fecha'
 import toTitleCase from '../../utility/toTitleCase'
 import triggerAlert from '../shared/triggerAlert'
-import useContextHook from '../../state/useContextHook'
+import { patchFn } from '../../firebase/realtimeDb'
 
 export default function EditArticle() {
   const navigate = useNavigate()
   const { state } = useLocation()
   const [articleData, setArticleData] = useState(state?.data)
-  const { baseUrl } = useContextHook()
   //notice we didnt init w a useEffect here as in View.jsx
   const {
     register,
@@ -22,36 +20,23 @@ export default function EditArticle() {
   const onSubmit = (data) => submitHandler(data)
   const onError = (err) => console.error(err)
 
-  const patchUrl = `${baseUrl}/data/${articleData?.id}`
+  const patchUrl = `/data/${articleData.id}`
 
   const submitHandler = async ({ title, body, tags }) => {
     // make a patch
-    try {
-      const patchRes = await axios.patch(
-        patchUrl,
-        JSON.stringify({
-          title: toTitleCase(title),
-          body,
-          tags: tags
-            .trim()
-            .split(' ')
-            .map((el) => toTitleCase(el)),
-          date: format(Date.now(), 'Do MMMM, YYYY'),
-        }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
 
-      triggerAlert(undefined, 'Article edited!')
-      console.log(patchRes)
-      navigate(state?.from)
-      // setArticleData(patchRes.data)
-    } catch (e) {
-      throw new Error(e)
-    }
+    await patchFn(patchUrl, {
+      title: toTitleCase(title),
+      body,
+      tags: tags
+        .trim()
+        .split(' ')
+        .map((el) => toTitleCase(el)),
+      date: format(Date.now(), 'Do MMMM, YYYY'),
+    })
+
+    triggerAlert(undefined, 'Article edited!')
+    navigate(state?.from)
   }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>
