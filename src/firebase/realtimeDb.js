@@ -67,13 +67,14 @@ const setUserFn = async (data) => {
 const setDataFn = async (data) => {
   try {
     // find the count value for id
-    let currentCounter = (await get(ref(db, '/count'))).val()
+    let currentCounter = (await get(ref(db, '/counter'))).val()
     data.id = ++currentCounter
     await set(ref(db, 'data/' + data.id), data)
 
-    //update counter
-    await update(ref(db, '/count'), data.id)
+    // update counter
+    await set(ref(db, '/counter'), data.id)
     console.log('Resource set successfully!')
+    return data.id
   } catch (error) {
     throw new Error(error)
   }

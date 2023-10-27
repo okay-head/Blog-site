@@ -2,11 +2,11 @@ import { useForm } from 'react-hook-form'
 import Container from '../Container'
 import useContextHook from '../../state/useContextHook'
 import { format } from 'fecha'
-import axios from 'axios'
 import toTitleCase from '../../utility/toTitleCase'
 import { useNavigate } from 'react-router-dom'
 import scrollTop from '../../utility/scrollToTop'
 import triggerAlert from './../shared/triggerAlert'
+import { getFn, patchFn, setDataFn } from '../../firebase/realtimeDb'
 
 export default function CreateArticle() {
   scrollTop()
@@ -24,41 +24,37 @@ export default function CreateArticle() {
 
   const submitHandler = async (data) => {
     // create article
-    const postPayload = JSON.stringify({
-      avatar: user.user_avatar,
+    const postPayload = {
       author: user.user_displayName,
       author_id: user.id,
+      avatar: user.user_avatar,
       date: format(Date.now(), 'Do MMMM, YYYY'),
       title: toTitleCase(data.title),
       body: data.body,
       tags: data.tags.trim().split(' '),
       hero: null,
-    })
-
-    try {
-      // making a post request
-      const postRes = await axios.post(postUrl, postPayload, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      // if succeeds
-      console.log('Response successful! Make patch req', postRes)
-      const patchPayload = JSON.stringify({
-        user_articles: [...user.user_articles, postRes.data.id],
-      })
-
-      console.log(patchPayload)
-      const patchRes = await axios.patch(patchUrl, patchPayload, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-      console.log(patchRes)
-      setUser(patchRes.data)
-      triggerAlert(undefined, 'Article created!')
-      navigate('/')
-    } catch (e) {
-      // any error
-      throw new Error(e)
+      // id is added in a later step
     }
+
+    // POST request to add to /data/
+    const articleId = await setDataFn(postPayload)
+
+    // if succeeds, make a patch req to users/userId
+    const patchPayload = {
+      user_articles:
+        user.user_articles == undefined
+          ? [articleId]
+          : [...user.user_articles, articleId],
+    }
+
+    await patchFn(patchUrl,patchPayload)
+    
+    // update info in context
+    const newUserData = await getFn(patchUrl)
+    setUser(newUserData)
+
+    triggerAlert(undefined, 'Article created!')
+    // navigate('/')
   }
   return (
     <Container classVars='pt-28 pb-4 lg:max-w-5xl xl:px-0'>

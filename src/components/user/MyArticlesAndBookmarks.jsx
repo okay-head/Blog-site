@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import triggerAlert from '../shared/triggerAlert'
 import { triggerLoadingScreen } from '../shared/LoadingScreen'
-import { deleteFn, getFn, patchFn } from '../../firebase/realtimedb'
+import { deleteFn, getFn, patchFn } from '../../firebase/realtimeDb'
 
 export default function MyArticlesAndBookmarks({ mode }) {
   const {
@@ -68,7 +68,6 @@ export default function MyArticlesAndBookmarks({ mode }) {
       const newUserData = await getFn(`users/${user_id}`)
       setUser(newUserData)
 
-      // getRequest(mode)
       // trigger for re-render
       setRender((prev) => !prev)
       triggerAlert(undefined, 'Article removed!')
