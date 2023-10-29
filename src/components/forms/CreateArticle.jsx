@@ -90,8 +90,8 @@ export default function CreateArticle() {
                     message: 'Title should be greater than 1 char',
                   },
                   maxLength: {
-                    value: 70,
-                    message: 'Title should be less than 70 chars',
+                    value: 100,
+                    message: 'Title should be less than 100 chars',
                   },
                 })}
               />

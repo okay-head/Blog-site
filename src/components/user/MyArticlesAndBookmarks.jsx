@@ -1,5 +1,4 @@
 import useContextHook from '../../state/useContextHook'
-import axios from 'axios'
 import Container from '../Container'
 import Card1 from '../cards/Card1'
 import { useEffect, useState } from 'react'
