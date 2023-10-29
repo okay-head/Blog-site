@@ -11,6 +11,7 @@ const firebaseConfig = {
   storageBucket: 'blog-site-backend-5b59d.appspot.com',
   messagingSenderId: '352074889279',
   appId: '1:352074889279:web:f4aaeaba816ffe6fc9208a',
+  databaseURL: 'https://blog-site-backend-5b59d-default-rtdb.asia-southeast1.firebasedatabase.app'
 }
 
 // Initialize Firebase

@@ -11,7 +11,7 @@ import triggerAlert from '../components/shared/triggerAlert'
 
 const auth = getAuth(app)
 
-connectAuthEmulator(auth, 'http://127.0.0.1:9099')
+// connectAuthEmulator(auth, 'http://127.0.0.1:9099')
 
 const updatePassFn = async (newPassword) => {
   try {

@@ -71,7 +71,7 @@ export default function Signup() {
       // After entry is added
       triggerLoadingScreen(false)
       setUser(payload)
-      triggerAlert(undefined, 'Signing in as ' + email)
+      triggerAlert(undefined, 'Signed in as ' + email)
       setSignedIn(true)
       navigate(redirectTo)
     }

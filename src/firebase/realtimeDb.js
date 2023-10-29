@@ -12,7 +12,7 @@ import triggerAlert from '../components/shared/triggerAlert'
 
 const db = getDatabase(app)
 
-connectDatabaseEmulator(db, 'localhost', 9000)
+// connectDatabaseEmulator(db, 'localhost', 9000)
 
 // ----| GET |----
 const getFn = async (url, check = false) => {
@@ -84,11 +84,11 @@ const patchFn = async (url, data) => {
   try {
     // find if resource exists
     // remove this check in production
-    const exists = await getFn(url, true)
-    if (!exists) {
-      console.warn('Resource doesnt exist!')
-      return
-    }
+    // const exists = await getFn(url, true)
+    // if (!exists) {
+    //   console.warn('Resource doesnt exist!')
+    //   return
+    // }
     await update(ref(db, url), data)
     console.log('Updated successfully')
   } catch (error) {
