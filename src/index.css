@@ -45,6 +45,10 @@ html {
   font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
 }
 
+.drawer-side{
+  z-index: 10;
+}
+
 .resize-svg svg {
   width: 85%;
 }

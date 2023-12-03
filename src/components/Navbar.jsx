@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import LoadingScreen, { triggerLoadingScreen } from './shared/LoadingScreen'
+import { Link, useLocation } from 'react-router-dom'
+import LoadingScreen from './shared/LoadingScreen'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
 
   const location = useLocation().pathname
-  const navigate = useNavigate()
 
   const hideAlertBox = () => {
     document.getElementById('alert-box').classList.add('hidden')
@@ -20,14 +19,42 @@ export default function Navbar() {
     <nav className='fixed inset-0 bottom-[unset] z-30 bg-[var(--white-base)] shadow-md'>
       <LoadingScreen />
       <Container>
+        <div className='drawer'>
+          <input id='my-drawer' type='checkbox' className='drawer-toggle' />
+          {/* <div className="drawer-content">
+    <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open drawer</label>
+  </div>  */}
+          <div className='drawer-side'>
+            <label
+              htmlFor='my-drawer'
+              aria-label='close sidebar'
+              className='drawer-overlay'
+            ></label>
+            <ul className='menu min-h-full w-80 bg-base-200 p-4 text-base-content'>
+              {/* Sidebar content here */}
+              <li>
+                <a href='https://whispermeter.com/feedback/EUID7RV2TX'>Drop a feedback!</a>
+              </li>
+              <li>
+                <a href='https://github.com/okay-head/Blog-site'>Github</a>
+              </li>
+              <span className='w-max mx-auto mt-auto mb-4 text-xs'>Made with &#10084; by <a className='hover:underline' href="https://github.com/okay-head">Shashwat Jaiswal</a></span>
+            </ul>
+          </div>
+        </div>
+
         <div className='fluid-wrapper min-h-16 flex items-center justify-between py-4'>
           <div className='resize-svg'>
-            <button className='-ms-2 rounded-lg p-2 transition-all duration-200 hover:bg-[var(--gray-100)]'>
+            <button className='relative -ms-2 rounded-lg p-2 transition-all duration-200 hover:bg-[var(--gray-100)]'>
               <FontAwesomeIcon
                 icon={faBars}
                 size='xl'
                 style={{ color: '#1e1e1e' }}
               />
+              <label
+                htmlFor='my-drawer'
+                className='absolute inset-0 cursor-pointer'
+              ></label>
             </button>
           </div>
           <h1 className='title ms-2 font-montserrat text-3xl font-bold md:ms-20'>
