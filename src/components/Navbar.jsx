@@ -62,7 +62,7 @@ export default function Navbar() {
                 </a>
               </li>
               <span className='mx-auto mb-4 mt-auto w-max text-xs'>
-                Made with &#10084; by{' '}
+                Made with ♡ by{' '}
                 <a
                   className='hover:underline'
                   href='https://github.com/okay-head'
