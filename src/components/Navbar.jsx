@@ -37,8 +37,8 @@ export default function Navbar() {
               aria-label='close sidebar'
               className='drawer-overlay'
             ></label>
-            <ul className='menu min-h-full w-80 bg-base-200 p-4 pt-16 text-base-content relative'>
-              <span onClick={handleClose} className='absolute top-3 right-4 cursor-pointer'>
+            <ul className='menu min-h-full w-72 sm:w-80 bg-base-200 p-4 pt-20 text-base-content relative'>
+              <span onClick={handleClose} className='absolute top-6 right-5 cursor-pointer'>
               <FontAwesomeIcon
                 icon={faXmark}
                 size='xl'
@@ -46,12 +46,12 @@ export default function Navbar() {
                 />
                 </span>
               {/* Sidebar content here */}
-              <li>
+              <li className='w-full'>
                 <a className='text-center block' href='https://whispermeter.com/feedback/EUID7RV2TX'>
                   Drop a feedback!
                 </a>
               </li>
-              <li>
+              <li className='w-full'>
                 <a className='text-center block' href='https://github.com/okay-head/Blog-site'>
                   <FontAwesomeIcon
                     icon={faGithub}
@@ -61,13 +61,13 @@ export default function Navbar() {
                   {' '}
                 </a>
               </li>
-              <span className='mx-auto mb-4 mt-auto w-max text-xs'>
+              <span className='mx-auto mb-4 mt-auto w-full text-center sm:w-max text-xs'>
                 Made with ♡ by{' '}
                 <a
                   className='hover:underline'
                   href='https://github.com/okay-head'
                 >
-                  Shashwat Jaiswal
+                  Shashwat&nbsp;Jaiswal
                 </a>
               </span>
             </ul>
