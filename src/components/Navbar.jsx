@@ -6,7 +6,6 @@ import Container from './Container'
 import useContextHook from '../state/useContextHook'
 import { Link, useLocation } from 'react-router-dom'
 import LoadingScreen from './shared/LoadingScreen'
-import { useRef } from 'react'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
@@ -17,9 +16,9 @@ export default function Navbar() {
     document.getElementById('alert-box').classList.add('hidden')
   }
 
-  const checkBoxToggle = document.getElementsByClassName('drawer-toggle')[0]
-
+  
   const handleClose = ()=>{
+    const checkBoxToggle = document.getElementsByClassName('drawer-toggle')[0]
     checkBoxToggle.checked = false
   }
 
