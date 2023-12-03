@@ -1,10 +1,12 @@
 import editing from './../assets/editing(1).png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCircleUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
 import { Link, useLocation } from 'react-router-dom'
 import LoadingScreen from './shared/LoadingScreen'
+import { useRef } from 'react'
 
 export default function Navbar() {
   const { isSignedIn, setSignedIn, user } = useContextHook()
@@ -13,6 +15,12 @@ export default function Navbar() {
 
   const hideAlertBox = () => {
     document.getElementById('alert-box').classList.add('hidden')
+  }
+
+  const checkBoxToggle = document.getElementsByClassName('drawer-toggle')[0]
+
+  const handleClose = ()=>{
+    checkBoxToggle.checked = false
   }
 
   return (
@@ -30,15 +38,39 @@ export default function Navbar() {
               aria-label='close sidebar'
               className='drawer-overlay'
             ></label>
-            <ul className='menu min-h-full w-80 bg-base-200 p-4 text-base-content'>
+            <ul className='menu min-h-full w-80 bg-base-200 p-4 pt-16 text-base-content relative'>
+              <span onClick={handleClose} className='absolute top-3 right-4 cursor-pointer'>
+              <FontAwesomeIcon
+                icon={faXmark}
+                size='xl'
+                style={{ color: '#1e1e1e' }}
+                />
+                </span>
               {/* Sidebar content here */}
               <li>
-                <a href='https://whispermeter.com/feedback/EUID7RV2TX'>Drop a feedback!</a>
+                <a className='text-center block' href='https://whispermeter.com/feedback/EUID7RV2TX'>
+                  Drop a feedback!
+                </a>
               </li>
               <li>
-                <a href='https://github.com/okay-head/Blog-site'>Github</a>
+                <a className='text-center block' href='https://github.com/okay-head/Blog-site'>
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    size='xl'
+                    style={{ color: '#1e1e1e' }}
+                  />
+                  {' '}
+                </a>
               </li>
-              <span className='w-max mx-auto mt-auto mb-4 text-xs'>Made with &#10084; by <a className='hover:underline' href="https://github.com/okay-head">Shashwat Jaiswal</a></span>
+              <span className='mx-auto mb-4 mt-auto w-max text-xs'>
+                Made with &#10084; by{' '}
+                <a
+                  className='hover:underline'
+                  href='https://github.com/okay-head'
+                >
+                  Shashwat Jaiswal
+                </a>
+              </span>
             </ul>
           </div>
         </div>
