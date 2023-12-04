@@ -1,6 +1,11 @@
 import editing from './../assets/editing(1).png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faCircleUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBars,
+  faCircleUser,
+  faCommentDots,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Container from './Container'
 import useContextHook from '../state/useContextHook'
@@ -16,8 +21,7 @@ export default function Navbar() {
     document.getElementById('alert-box').classList.add('hidden')
   }
 
-  
-  const handleClose = ()=>{
+  const handleClose = () => {
     const checkBoxToggle = document.getElementsByClassName('drawer-toggle')[0]
     checkBoxToggle.checked = false
   }
@@ -37,31 +41,49 @@ export default function Navbar() {
               aria-label='close sidebar'
               className='drawer-overlay'
             ></label>
-            <ul className='menu min-h-full w-72 sm:w-80 bg-base-200 p-4 pt-20 text-base-content relative'>
-              <span onClick={handleClose} className='absolute top-6 right-5 cursor-pointer'>
-              <FontAwesomeIcon
-                icon={faXmark}
-                size='xl'
-                style={{ color: '#1e1e1e' }}
+            <ul className='menu relative min-h-full w-72 bg-base-200 p-4 pt-20 text-base-content sm:w-80'>
+              <span
+                onClick={handleClose}
+                className='absolute right-5 top-6 cursor-pointer'
+              >
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  size='xl'
+                  style={{ color: '#1e1e1e' }}
                 />
-                </span>
+              </span>
               {/* Sidebar content here */}
               <li className='w-full'>
-                <a className='text-center block' href='https://whispermeter.com/feedback/EUID7RV2TX'>
-                  Drop a feedback!
+                <a
+                  className='text-base'
+                  href='https://whispermeter.com/feedback/EUID7RV2TX'
+                >
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faCommentDots}
+                      size='lg'
+                      style={{ color: '#1e1e1e' }}
+                    />
+                    <span className='ms-2 mb-1'>Drop a feedback</span>
+                  </span>
                 </a>
               </li>
               <li className='w-full'>
-                <a className='text-center block' href='https://github.com/okay-head/Blog-site'>
-                  <FontAwesomeIcon
-                    icon={faGithub}
-                    size='xl'
-                    style={{ color: '#1e1e1e' }}
-                  />
-                  {' '}
+                <a
+                  className='text-base'
+                  href='https://github.com/okay-head/Blog-site'
+                >
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faGithub}
+                      size='lg'
+                      style={{ color: '#1e1e1e' }}
+                    />
+                    <span className='ms-2'>Github</span>
+                  </span>
                 </a>
               </li>
-              <span className='mx-auto mb-4 mt-auto w-full text-center sm:w-max text-xs'>
+              <span className='mx-auto mb-4 mt-auto w-full text-center text-xs sm:w-max'>
                 Made with ♡ by{' '}
                 <a
                   className='hover:underline'
