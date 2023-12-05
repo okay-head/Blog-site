@@ -2,6 +2,8 @@
   List of states provided:
 - Signed in state
 - User state
+- Render state
+
 */
 import { useState, createContext } from 'react'
 const SignInContext = createContext(undefined)
