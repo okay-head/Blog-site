@@ -8,5 +8,7 @@ Uses React (vite with rollup), react-router, react-hook-form, and tailwind (with
 
 The site is responsive and is based on the wireframe theming (colors are a pain) to keep it minimal.
 
+Do create an account and sign in to see it in action. 
+
 
 [Check it here](https://blog-site-ecru-phi.vercel.app/)
