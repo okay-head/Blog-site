@@ -11,6 +11,6 @@ export default {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light', 'wireframe'],
+    themes: ['light'],
   },
 }
