@@ -14,6 +14,11 @@
 
 */
 
+/* 
+  2 improvements- 
+- Use HSL: using a monochrome theme like this benefits the most from HSL colors
+- Make use of tailwindconfig: Create a color palette in tailwind
+*/
 :root {
   --gray-400: #d9d9d98e;
   --gray-500: #d9d9d950;
@@ -37,6 +42,22 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .padding-fluid {
   padding: 0 40px;
 }
@@ -45,7 +66,7 @@ html {
   font-size: clamp(1.25rem, -0.5rem + 3.6vw, 1.75rem);
 }
 
-.drawer-side{
+.drawer-side {
   z-index: 10;
 }
 

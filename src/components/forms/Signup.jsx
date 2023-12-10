@@ -186,7 +186,7 @@ export default function Signup() {
           name='avatar'
           id='avatar'
           accept='.jpg, .jpeg, .png'
-          className='file-input file-input-bordered input w-full max-w-sm border-2 pl-0'
+          className='file-input input file-input-bordered w-full max-w-sm border-2 pl-0'
         />
       </div>
 

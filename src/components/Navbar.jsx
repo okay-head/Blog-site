@@ -64,7 +64,7 @@ export default function Navbar() {
                       size='lg'
                       style={{ color: '#1e1e1e' }}
                     />
-                    <span className='ms-2 mb-1'>Drop a feedback</span>
+                    <span className='mb-1 ms-2'>Drop a feedback</span>
                   </span>
                 </a>
               </li>
