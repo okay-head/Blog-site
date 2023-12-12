@@ -57,6 +57,8 @@ export default function Navbar() {
                 <a
                   className='text-base'
                   href='https://whispermeter.com/feedback/EUID7RV2TX'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   <span>
                     <FontAwesomeIcon
@@ -72,6 +74,8 @@ export default function Navbar() {
                 <a
                   className='text-base'
                   href='https://github.com/okay-head/Blog-site'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   <span>
                     <FontAwesomeIcon
@@ -88,6 +92,8 @@ export default function Navbar() {
                 <a
                   className='hover:underline'
                   href='https://github.com/okay-head'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   Shashwat&nbsp;Jaiswal
                 </a>
