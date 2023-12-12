@@ -18,9 +18,9 @@ const updatePassFn = async (newPassword) => {
     const user = auth.currentUser
 
     await updatePassword(user, newPassword)
-    console.log('Password updated!')
+    // //console.log('Password updated!')
   } catch (error) {
-    console.log(error)
+    //console.log(error)
   }
 }
 
@@ -30,7 +30,7 @@ const signInFn = async (email, password, check = false) => {
     return user
   } catch (error) {
     // Log detailed error, make switch case here
-    console.log(error.code)
+    //console.log(error.code)
     if (!check) triggerAlert(undefined, error.code)
     // specific use case for signup checking
     if (error.code == 'auth/wrong-password' && check) return true
@@ -42,7 +42,7 @@ const signUpFn = async (email, password) => {
     const user = await createUserWithEmailAndPassword(auth, email, password)
     return user
   } catch (error) {
-    console.log(error.code)
+    //console.log(error.code)
     triggerAlert(undefined, error.code)
   }
 }
@@ -56,7 +56,7 @@ const signOut = async()=>{
   try {
 
   } catch (error) {
-    console.log(error)
+    //console.log(error)
   }
 } 
 */
@@ -64,9 +64,9 @@ const signOut = async()=>{
 const signOutFn = async () => {
   try {
     await signOut(auth)
-    console.log('User signed out!')
+    //console.log('User signed out!')
   } catch (error) {
-    console.log(error)
+    //console.log(error)
   }
 }
 

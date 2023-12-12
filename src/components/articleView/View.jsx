@@ -26,7 +26,7 @@ export default function View() {
     // if state data from prev route is not present, then make an api call to fetch data
     if (!state) {
       const x = Number(pathname.split('/')[2])
-      console.log(`Route state doesnt exist. Fetching data for ${x}...`)
+      // //console.log(`Route state doesnt exist. Fetching data for ${x}...`)
       ;(async function () {
         const d = await getFn('/data/' + x)
         setData(d)

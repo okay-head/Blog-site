@@ -21,7 +21,7 @@ export default function Signup() {
   //   redirectTo = state?.from || redirectTo
   // }
 
-  console.log(redirectTo)
+  // //console.log(redirectTo)
   const { setSignedIn, setUser } = useContextHook()
   const navigate = useNavigate()
   const {
@@ -52,7 +52,7 @@ export default function Signup() {
 
     // create an entry in the database
     const postHandler = async () => {
-      console.log('posting to db')
+      // //console.log('posting to db')
 
       // 'id' attribute is important to every payload !!
       const payload = {

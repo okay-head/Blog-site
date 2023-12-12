@@ -48,7 +48,7 @@ export default function EditProfile() {
 
       // update the data in context as well
       const newUserData = await getFn(patchUrl)
-      // console.log(newUserData)
+      // //console.log(newUserData)
       setUser(newUserData)
 
       triggerAlert(undefined, 'Update successful!')
@@ -67,7 +67,7 @@ export default function EditProfile() {
 
       // update the data in context as well
       const newUserData = await getFn(patchUrl)
-      // console.log(newUserData)
+      // //console.log(newUserData)
       setUser(newUserData)
       triggerAlert(undefined, 'Update successful!')
     }

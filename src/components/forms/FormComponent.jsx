@@ -3,7 +3,7 @@ export default function FormComponent() {
     e.preventDefault()
     const formData = new FormData(e.target)
     for (const [key, value] of formData) {
-      console.log(`${key} : ${value}`)
+      //console.log(`${key} : ${value}`)
     }
   }
   return (

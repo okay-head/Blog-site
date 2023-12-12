@@ -35,7 +35,7 @@ export default function Signin() {
     const user = await signInFn(email, password)
     if (!user) return
 
-    console.log('Signinjsx | sign in successfull')
+    // //console.log('Signinjsx | sign in successfull')
     const userEmail = user?.user?.email
     const userId = user?.user?.uid
 

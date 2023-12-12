@@ -22,7 +22,7 @@ const getFn = async (url, check = false) => {
 
     return res.exists() && res.val()
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     triggerAlert(undefined, error)
   }
 }
@@ -59,7 +59,7 @@ const setUserFn = async (data) => {
     }
 
     await set(ref(db, 'users/' + data.id), data)
-    console.log('Resource set successfully!')
+    //console.log('Resource set successfully!')
   } catch (error) {
     throw new Error(error)
   }
@@ -73,7 +73,7 @@ const setDataFn = async (data) => {
 
     // update counter
     await set(ref(db, '/counter'), data.id)
-    console.log('Resource set successfully!')
+    //console.log('Resource set successfully!')
     return data.id
   } catch (error) {
     throw new Error(error)
@@ -90,7 +90,7 @@ const patchFn = async (url, data) => {
     //   return
     // }
     await update(ref(db, url), data)
-    console.log('Updated successfully')
+    //console.log('Updated successfully')
   } catch (error) {
     throw new Error(error)
   }
@@ -104,7 +104,7 @@ const deleteFn = async (url) => {
       return
     }
     await remove(ref(db, url))
-    console.log('Resource deleted!')
+    //console.log('Resource deleted!')
   } catch (error) {
     throw new Error(error)
   }

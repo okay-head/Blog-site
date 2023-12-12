@@ -33,7 +33,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
   }, [mode, render])
 
   const getRequest = async (mode) => {
-    // console.log('get req | gets called')
+    // //console.log('get req | gets called')
     if (mode == 'articles') {
       const data = await Promise.all(
         user_articles.map((id) => getFn(`/data/${id}`))
