@@ -106,7 +106,7 @@ export default function View() {
                   className='group relative -mb-1 block w-8  lg:w-11'
                 >
                   <img
-                    src='/assets/pen(1).png'
+                    src='/assets/pen(1).webp'
                     alt='pencil'
                     className='rotate-[270deg]'
                   />
@@ -121,7 +121,7 @@ export default function View() {
                 id='bookmark-article'
                 className='group relative -mb-1 block w-7 lg:w-10'
               >
-                <img src='/assets/book(1).png' alt='book' />
+                <img src='/assets/book(1).webp' alt='book' />
 
                 <Tooltip text='Bookmark' left='-left-[90%] lg:-left-[46%]' />
               </button>
@@ -135,7 +135,7 @@ export default function View() {
           className={`img-container bg-style custom-h-img overflow-hidden rounded-md  bg-[#b0b1b3]`}
           style={{
             backgroundImage:
-              'url("/assets/(m)mick-haupt-TEjR4zowKgE-unsplash(1).jpg")',
+              'url("/assets/(m)mick-haupt-TEjR4zowKgE-unsplash(1).webp")',
           }}
         ></div>
 

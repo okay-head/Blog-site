@@ -1,6 +1,6 @@
 const defaultData = {
   id: 1,
-  avatar: '/assets/user.png',
+  avatar: '/assets/user.webp',
   author: 'Tim Urban',
   author_id: 1691142654100,
   date: '16th April, 2023',

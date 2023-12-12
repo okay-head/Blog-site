@@ -73,7 +73,7 @@ export default function Card1({
           }`}
           style={{
             backgroundImage:
-              'url("/assets/(s)mick-haupt-TEjR4zowKgE-unsplash.jpg")',
+              'url("/assets/(s)mick-haupt-TEjR4zowKgE-unsplash.webp")',
           }}
         ></div>
       </div>

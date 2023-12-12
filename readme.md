@@ -1,7 +1,7 @@
 # Blog site
 
 
-![Site snapshot](./public/assets/Blog-site-snapshot.png)
+![Site snapshot](./public/assets/Blog-site-snapshot.webp)
 
 The project features a full-stack blog site with a focus on the create, read, update and delete [CRUD] functionality. 
 Uses React (vite with rollup), react-router, react-hook-form, and tailwind (with daisyui) on the frontend and utilizes firebase for storage.

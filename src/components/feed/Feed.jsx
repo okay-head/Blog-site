@@ -58,7 +58,7 @@ export default function Feed() {
               className='input input-bordered h-auto w-full rounded-3xl !border-[1px] py-2 ps-10 placeholder:text-sm  md:max-w-xs lg:max-w-md '
             />
             <img
-              src='/assets/loupe(2).png'
+              src='/assets/loupe(2).webp'
               alt='search-icon'
               className='absolute left-4 top-[1.90rem] block w-4 md:top-[.90rem]'
             />
@@ -72,7 +72,7 @@ export default function Feed() {
               }`}
             >
               <img
-                src='/assets/icons8-close-new-24.png'
+                src='/assets/icons8-close-new-24.webp'
                 alt='close-cross'
                 className='w-5'
               />
@@ -95,7 +95,7 @@ export default function Feed() {
             <div className='absolute inset-0 top-[-30%] z-10 col-span-2 grid place-items-center'>
               <div className='w-60 md:w-[unset]'>
                 <img
-                  src='/assets/image-removebg-preview(1).png'
+                  src='/assets/image-removebg-preview(1).webp'
                   alt='Not found magnifying glass'
                 />
                 <h3 className='mt-4 text-center text-base italic text-[var(--text-lighter)] md:text-lg'>

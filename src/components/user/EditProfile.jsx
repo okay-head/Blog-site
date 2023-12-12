@@ -183,12 +183,12 @@ export default function EditProfile() {
                   type='file'
                   name='avatar'
                   id='avatar'
-                  accept='.jpg, .jpeg, .png'
+                  accept='.jpg, .jpeg, .webp, .png'
                   className='file-input file-input-bordered w-full max-w-xl border-2'
                   defaultValue={''}
                 />
                 <img
-                  src='/assets/user.png'
+                  src='/assets/user.webp'
                   id='current-avatar'
                   className='ms-4 w-11 lg:w-14'
                   alt='current user image'

@@ -34,7 +34,7 @@ export default function Card2({ data = defaultData }) {
         <div
           className='img-container bg-style h-36 min-w-[130px]  rounded-md bg-[#b0b1b3]'
           style={{
-            backgroundImage: 'url("/assets/(md)galaxy.jpg")',
+            backgroundImage: 'url("/assets/(md)galaxy.webp")',
           }}
         ></div>
 

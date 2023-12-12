@@ -1,4 +1,4 @@
-import editing from './../assets/editing(1).png'
+import editing from './../assets/editing(1).webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Container from '../Container'
 import NotSignedIn from './NotSignedIn'
-import sparkles from './razzle-dazzle.png'
+import sparkles from './razzle-dazzle.webp'
 import 'sticksy'
 import useContextHook from '../../state/useContextHook'
 import { Link } from 'react-router-dom'

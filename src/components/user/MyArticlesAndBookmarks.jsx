@@ -121,7 +121,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
             ) : mode === 'articles' ? (
               <div className='col-span-2 mt-24 grid place-items-center md:mt-8 '>
                 <img
-                  src='/assets/image-removebg-preview.png'
+                  src='/assets/image-removebg-preview.webp'
                   alt='Man thinking graphic'
                 />
                 <h3 className='mt-4 text-lg italic text-[var(--text-lighter)]'>
@@ -131,7 +131,7 @@ export default function MyArticlesAndBookmarks({ mode }) {
             ) : (
               <div className='col-span-2 mt-28 grid place-items-center md:mt-16 '>
                 <img
-                  src='/assets/icons8-bookmark-250(new).png'
+                  src='/assets/icons8-bookmark-250(new).webp'
                   alt='Bookmark graphic'
                 />
                 <h3 className='mt-4 text-lg italic text-[var(--text-lighter)]'>
