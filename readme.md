@@ -28,4 +28,4 @@ password: cheemsthedoge
 
 ### Deployment
 
-[Check it here](https://blog-site-ecru-phi.vercel.app/)
+Check it [here](https://blog-site-ecru-phi.vercel.app/)
