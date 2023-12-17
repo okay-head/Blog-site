@@ -12,7 +12,7 @@ The site is responsive and is based on the wireframe theming (colors are a pain)
 ### Features
 
 - Create an account
-- Create and Delete articles
+- Create and delete articles
 - Edit articles
 - Bookmark articles
 - Edit profile
