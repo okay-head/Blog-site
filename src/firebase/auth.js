@@ -50,17 +50,6 @@ const signUpFn = async (email, password) => {
 // onAuthStateChanged(auth,()=>{
 // })
 
-//skeleton
-/* 
-const signOut = async()=>{
-  try {
-
-  } catch (error) {
-    //console.log(error)
-  }
-} 
-*/
-
 const signOutFn = async () => {
   try {
     await signOut(auth)
