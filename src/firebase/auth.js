@@ -1,6 +1,6 @@
 import {
   getAuth,
-  connectAuthEmulator,
+  // connectAuthEmulator,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
