@@ -3,7 +3,7 @@
 <a href="https://makeapullrequest.com/" target="_blank"><img alt="custom badge" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-plastic" /></a>
     <a href="/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
-  <a href="https://twitter.com/shash0\_0" target="_blank">
+  <a href="https://twitter.com/shash0_0" target="_blank">
     <img alt="Twitter: shash0_0" src="https://img.shields.io/twitter/follow/shash0_0.svg?style=social" />
   </a>
 </p>
