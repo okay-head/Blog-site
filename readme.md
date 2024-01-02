@@ -80,6 +80,11 @@ npm install
 pnpm dev
 ``````
 
+## Continued development
+- Converting to use typescript
+- Introduction of more user actions
+- Enforcing tests
+- Dark theme support
 
 ## Author
 
