@@ -1,38 +1,29 @@
 <h1 align="center">On the Blog</h1>
 <p align="center">
-<a href="https://makeapullrequest.com/" target="_blank"><img alt="custom badge" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-plastic" /></a><a href="/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
+<a href="https://makeapullrequest.com/" target="_blank"><img alt="custom badge" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-plastic" /></a>
+    <a href="/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
   <a href="https://twitter.com/shash0\_0" target="_blank">
     <img alt="Twitter: shash0_0" src="https://img.shields.io/twitter/follow/shash0_0.svg?style=social" />
   </a>
 </p>
 
-<p align="center">
-> The project features a full-stack blog site with a focus on CRUD functionality. 
-</p>
-<p align="center">
-> Fully responsive
-</p>
-<p align="center">
-> Minimal themeing
-</p>
+> <p align="center">Full-stack blog site with a focus on CRUD functionality. Fully responsive</p>
 
 ## Demo
 [Live site](blog-site-ecru-phi.vercel.app/)
 
 ![Site snapshot](./public/assets/Blog-site-snapshot.webp)
 
-## 
 
 ## Usage
 
-#### Signed out
+#### Signed out 🔓
 - Visit the site and scroll through articles
 - Open and read an article in a separate view
 - Search for an article
 
-#### Signed in
+#### Signed in 🔒
 
 Create a new user account or use the following dummy credentials
 ```
