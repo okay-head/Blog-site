@@ -1,31 +1,111 @@
-# Blog site
+<h1 align="center">On the Blog</h1>
+<p align="center">
+<a href="https://makeapullrequest.com/" target="_blank"><img alt="custom badge" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-plastic" /></a><a href="/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/shash0\_0" target="_blank">
+    <img alt="Twitter: shash0_0" src="https://img.shields.io/twitter/follow/shash0_0.svg?style=social" />
+  </a>
+</p>
 
+<p align="center">
+> The project features a full-stack blog site with a focus on CRUD functionality. 
+</p>
+<p align="center">
+> Fully responsive
+</p>
+<p align="center">
+> Minimal themeing
+</p>
+
+## Demo
+[Live site](blog-site-ecru-phi.vercel.app/)
 
 ![Site snapshot](./public/assets/Blog-site-snapshot.webp)
 
-The project features a full-stack blog site with a focus on the create, read, update and delete [CRUD] functionality. 
+## 
 
-Uses React (vite with rollup), react-router, react-hook-form, and tailwind (with daisyui) on the frontend and utilizes firebase for storage.
-The site is responsive and is based on the wireframe theming (colors are a pain) to keep it minimal.
+## Usage
 
+#### Signed out
+- Visit the site and scroll through articles
+- Open and read an article in a separate view
+- Search for an article
 
-### Features
+#### Signed in
 
-- Create an account
-- Create and delete articles
-- Edit articles
-- Bookmark articles
-- Edit profile
-
-
-### Sample account 
-
-For a test. Sign in with these credentials to see all the above features in action.
+Create a new user account or use the following dummy credentials
 ```
 username: cheems@doge.com
 password: cheemsthedoge
 ```
+Once signed in
+- Write a new article
+- Edit, delete and view your articles
+- Bookmark articles and view and manage your bookmarks
+- Edit your profile
+- Logout
 
-### Deployment
+## Tech stack 
 
-Check it [here](https://blog-site-ecru-phi.vercel.app/)
+- **[React](https://react.dev/)** - for composable spaghetti code
+- **[Tailwindcss](https://tailwindcss.com/)** - for hideous HTML
+- **[Daisyui](https://daisyui.com/)** - themeing library for tailwind
+- **[React hook form](https://react-hook-form.com/)** - form states, validation, errors
+- **[Firebase](https://firebase.google.com/)** - putting the full in full-stack 
+
+#### Utilities
+
+- **[Sticksy](https://sticksy.js.org/)** - because `position:sticky` is not sticky enough
+- **[React loading skeleton](https://www.npmjs.com/package/react-loading-skeleton)** - loading animations
+- **[Fakerjs](https://prettier.io/)** - mock data generation
+- **[Prettier](https://prettier.io/)** - automatic class sorting
+- **[Vite](https://vitejs.dev/guide/why.html)** - blazingly fast module bundler
+- **[pnpm](https://pnpm.io/)** - low disk space? say no more
+
+
+
+## Install
+
+This project is built with 
+```
+pnpm v8.12.0
+node v20.7.0
+``````
+
+1. If you want to install this repo locally.
+Fork and pull this repo, then run
+
+```sh
+pnpm install
+
+or
+
+npm install
+```
+2. Spin up the development server
+
+```sh
+pnpm dev
+``````
+
+
+## Author
+
+👤 **Shashwat Jaiswal**
+
+* Website: [Link](okay-head.netlify.app)
+* Twitter: [@shash0\_0](https://twitter.com/shash0\_0)
+* Github: [@okay-head](https://github.com/okay-head)
+
+## Show your support
+
+Give a ⭐️ if you liked this project!
+
+## License
+
+Copyright © 2024 [Shashwat Jaiswal](https://github.com/okay-head).<br />
+This project is [MIT](/LICENSE) licensed.
+
+##  Acknowledgements
+Quick scaffolding readme by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)
