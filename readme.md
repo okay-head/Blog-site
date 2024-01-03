@@ -32,7 +32,7 @@ password: cheemsthedoge
 Once signed in
 - Write a new article
 - Edit, delete and view your articles
-- Bookmark articles and view and manage your bookmarks
+- Bookmark articles, view and manage your bookmarks
 - Edit your profile
 - Logout
 
@@ -63,8 +63,7 @@ pnpm v8.12.0
 node v20.7.0
 ``````
 
-1. If you want to install locally.
-Fork and pull this repo, then run
+1. If you want to install locally, fork and pull this repo, then run
 
 ```sh
 pnpm install
@@ -80,7 +79,7 @@ pnpm dev
 ``````
 
 ## Continued development
-- Converting to use typescript
+- Rewriting with typescript
 - Introduction of more user actions
 - Enforcing tests
 - Dark theme support
