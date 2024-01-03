@@ -10,8 +10,7 @@
 
 > <p align="center">Full-stack blog site with a focus on CRUD functionality. Fully responsive</p>
 
-## Demo
-[Live site](blog-site-ecru-phi.vercel.app/)
+## [Demo](blog-site-ecru-phi.vercel.app/)
 
 ![Site snapshot](./public/assets/Blog-site-snapshot.webp)
 
