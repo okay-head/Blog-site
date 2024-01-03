@@ -43,12 +43,12 @@ Once signed in
 - **[Tailwindcss](https://tailwindcss.com/)** - for hideous HTML
 - **[Daisyui](https://daisyui.com/)** - themeing library for tailwind
 - **[React hook form](https://react-hook-form.com/)** - form states, validation, errors
-- **[Firebase](https://firebase.google.com/)** - putting the full in full-stack 
+- **[Firebase](https://firebase.google.com/)** - google's powerful backend-as-a-service
 
 #### Utilities
 
-- **[Sticksy](https://sticksy.js.org/)** - because `position:sticky` is not sticky enough
-- **[React loading skeleton](https://www.npmjs.com/package/react-loading-skeleton)** - loading animations
+- **[Sticksy](https://sticksy.js.org/)** - because `position:sticky` was not sticky enough
+- **[React loading skeleton](https://www.npmjs.com/package/react-loading-skeleton)** - walking skeletons
 - **[Fakerjs](https://prettier.io/)** - mock data generation
 - **[Prettier](https://prettier.io/)** - automatic class sorting
 - **[Vite](https://vitejs.dev/guide/why.html)** - blazingly fast module bundler
@@ -64,14 +64,14 @@ pnpm v8.12.0
 node v20.7.0
 ``````
 
-1. If you want to install this repo locally.
+1. If you want to install locally.
 Fork and pull this repo, then run
 
 ```sh
 pnpm install
-
-or
-
+```
+&nbsp;&nbsp;&nbsp;&nbsp;or
+```sh
 npm install
 ```
 2. Spin up the development server
