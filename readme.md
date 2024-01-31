@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> <p align="center">Full-stack blog site with a focus on CRUD functionality. Fully responsive</p>
+<p align="center">Full-stack blog site with a focus on CRUD functionality. Fully responsive</p>
 
 ## [Demo](blog-site-ecru-phi.vercel.app/)
 
@@ -90,7 +90,6 @@ pnpm dev
 
 * Website: [Link](okay-head.netlify.app)
 * Twitter: [@shash0\_0](https://twitter.com/shash0\_0)
-* Github: [@okay-head](https://github.com/okay-head)
 
 ## Show your support
 
@@ -98,7 +97,7 @@ Give a ⭐️ if you liked this project!
 
 ## License
 
-Copyright © 2024 [Shashwat Jaiswal](https://github.com/okay-head).<br />
+Copyright © 2023 [Shashwat Jaiswal](https://github.com/okay-head).<br />
 This project is [MIT](/LICENSE) licensed.
 
 ##  Acknowledgements
