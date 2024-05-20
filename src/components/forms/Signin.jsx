@@ -24,7 +24,9 @@ export default function Signin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: { email: 'cheems@doge.com', password: 'cheemsthedoge' },
+  })
 
   const onSubmit = (vals) => signInHandler(vals)
   const onError = (err) => console.error(err)
